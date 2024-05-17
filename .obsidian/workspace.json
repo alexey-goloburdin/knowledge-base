@@ -1,0 +1,183 @@
+{
+  "main": {
+    "id": "d7891af07e002d78",
+    "type": "split",
+    "children": [
+      {
+        "id": "b3df66e0a99e87e0",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "b705a4c80bc12d88",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "daily/2024-05-17.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "vertical"
+  },
+  "left": {
+    "id": "5a61935af53b6301",
+    "type": "split",
+    "children": [
+      {
+        "id": "b7287c69a6b13df8",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "189c4955013f7129",
+            "type": "leaf",
+            "state": {
+              "type": "file-explorer",
+              "state": {
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "a0fff3de587311bb",
+            "type": "leaf",
+            "state": {
+              "type": "search",
+              "state": {
+                "query": "",
+                "matchingCase": false,
+                "explainSearch": false,
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical"
+              }
+            }
+          },
+          {
+            "id": "352a0387e49bafda",
+            "type": "leaf",
+            "state": {
+              "type": "bookmarks",
+              "state": {}
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 240.5
+  },
+  "right": {
+    "id": "f2996cf528bc65a1",
+    "type": "split",
+    "children": [
+      {
+        "id": "c9173cbedc7a9432",
+        "type": "tabs",
+        "children": [
+          {
+            "id": "4423bb8b71664eb9",
+            "type": "leaf",
+            "state": {
+              "type": "backlink",
+              "state": {
+                "file": "daily/2024-05-17.md",
+                "collapseAll": false,
+                "extraContext": false,
+                "sortOrder": "alphabetical",
+                "showSearch": false,
+                "searchQuery": "",
+                "backlinkCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "f6261ba2ba1545e1",
+            "type": "leaf",
+            "state": {
+              "type": "outgoing-link",
+              "state": {
+                "file": "daily/2024-05-17.md",
+                "linksCollapsed": false,
+                "unlinkedCollapsed": true
+              }
+            }
+          },
+          {
+            "id": "1acddb2ef567e95a",
+            "type": "leaf",
+            "state": {
+              "type": "tag",
+              "state": {
+                "sortOrder": "frequency",
+                "useHierarchy": true
+              }
+            }
+          },
+          {
+            "id": "b6681aa7552ec63d",
+            "type": "leaf",
+            "state": {
+              "type": "outline",
+              "state": {
+                "file": "daily/2024-05-17.md"
+              }
+            }
+          }
+        ]
+      }
+    ],
+    "direction": "horizontal",
+    "width": 300,
+    "collapsed": true
+  },
+  "left-ribbon": {
+    "hiddenItems": {
+      "switcher:Меню быстрого перехода": false,
+      "graph:Граф": false,
+      "canvas:Создать новый холст": false,
+      "daily-notes:Сегодняшняя заметка": false,
+      "templates:Вставить шаблон": false,
+      "command-palette:Открыть палитру команд": false
+    }
+  },
+  "active": "b705a4c80bc12d88",
+  "lastOpenFiles": [
+    "Запись РИТ++ 2015 конференция по бизнесу.md",
+    "Джосайя Кавиани.md",
+    "Видео «Производительность запросов в PostgreSQL. Илья Космодемьянский (PostgreSQL Consulting)».md",
+    "daily/2024-05-17.md",
+    "daily/2024-05-16.md",
+    "Python.md",
+    "PostgreSQL.md",
+    "PgBouncer.md",
+    "Odyssey.md",
+    "Bandit Python library.md",
+    "Сергей Шляков.md",
+    "Поиск запросов для оптимизации в PostgreSQL.md",
+    "Оптимизация запросов в PostgreSQL.md",
+    "Никита Постнов.md",
+    "Не отключать autovacuum в PostgreSQL.md",
+    "Не использовать много соединений к PostgreSQL.md",
+    "Михаил Фленов.md",
+    "Книга «Python с нуля», Пётр Левашов.md",
+    "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
+    "Книга «Совершенный код», Стив Макконнелл.md",
+    "Бизнес.md",
+    "Антон Зайцев.md",
+    "types/Человек.md",
+    "types/Ссылка на полезное видео или статью.md",
+    "types/Книга.md",
+    "templates/Шаблон книги.md",
+    "projects",
+    "daily",
+    "types",
+    "templates/Шаблон книги.md~",
+    "templates"
+  ]
+}
