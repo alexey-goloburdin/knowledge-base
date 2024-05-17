@@ -22,5 +22,13 @@
       ],
       "key": "G"
     }
+  ],
+  "obsidian-git:push": [
+    {
+      "modifiers": [
+        "Ctrl"
+      ],
+      "key": "P"
+    }
   ]
 }
