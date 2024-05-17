@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-19.md",
+                "file": "daily/2024-05-16.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "daily/2024-05-19.md",
+                "file": "daily/2024-05-16.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "daily/2024-05-19.md",
+                "file": "daily/2024-05-16.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "daily/2024-05-19.md"
+                "file": "daily/2024-05-16.md"
               }
             }
           }
@@ -161,10 +161,10 @@
   },
   "active": "64a0a47d2c23b35b",
   "lastOpenFiles": [
+    "daily/2024-05-19.md",
     "daily/2024-05-18.md",
     "daily/2024-05-17.md",
     "daily/2024-05-16.md",
-    "daily/2024-05-19.md",
     "Книга «Начинаем программировать на Python», 5 изд, Тони Гэддис.md",
     "projects/Курс Хардкорная веб-разработка.md",
     "Книга «Совершенный код», Стив Макконнелл.md",
