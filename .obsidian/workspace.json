@@ -8,31 +8,30 @@
         "type": "tabs",
         "children": [
           {
-            "id": "ca43913f217ddeb3",
+            "id": "3f3d2ac0a2c2bc06",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-18.md",
+                "file": "daily/2024-05-19.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "64a0a47d2c23b35b",
+            "id": "13f406937d56aa8e",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-18.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +97,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "daily/2024-05-18.md",
+                "file": "daily/2024-05-19.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +114,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "daily/2024-05-18.md",
+                "file": "daily/2024-05-19.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +137,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "daily/2024-05-18.md"
+                "file": "daily/2024-05-19.md"
               }
             }
           }
@@ -159,10 +158,12 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "64a0a47d2c23b35b",
+  "active": "3f3d2ac0a2c2bc06",
   "lastOpenFiles": [
+    "Сценарий дополнений про Nested Loops.md",
     "daily/2024-05-19.md",
     "daily/2024-05-18.md",
+    "types/Сценарий.md",
     "daily/2024-05-17.md",
     "daily/2024-05-16.md",
     "Книга «Начинаем программировать на Python», 5 изд, Тони Гэддис.md",
@@ -185,8 +186,6 @@
     "Михаил Фленов.md",
     "Книга «Python с нуля», Пётр Левашов.md",
     "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
-    "Бизнес.md",
-    "Антон Зайцев.md",
     "projects",
     "daily",
     "types",
