@@ -18,21 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "da5253c74826568b",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Оптимизация запросов в PostgreSQL.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -99,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Оптимизация запросов в PostgreSQL.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Оптимизация запросов в PostgreSQL.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Оптимизация запросов в PostgreSQL.md"
+                "file": "Сценарий дополнений про Nested Loops.md"
               }
             }
           }
@@ -160,8 +147,9 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "189c4955013f7129",
+  "active": "13f406937d56aa8e",
   "lastOpenFiles": [
+    "Оптимизация запросов в PostgreSQL.md",
     "Сценарий дополнений про Nested Loops.md",
     "daily/2024-05-19.md",
     "daily/2024-05-18.md",
@@ -181,7 +169,6 @@
     "Bandit Python library.md",
     "Сергей Шляков.md",
     "Поиск запросов для оптимизации в PostgreSQL.md",
-    "Оптимизация запросов в PostgreSQL.md",
     "Никита Постнов.md",
     "Не отключать autovacuum в PostgreSQL.md",
     "Не использовать много соединений к PostgreSQL.md",
