@@ -50,36 +50,25 @@ print(f"{delta}%")
 import sys
 import timeit
 
-BIG = int(sys.argv[1])
-SMALL = int(sys.argv[2])
+BIG_LIMIT = int(sys.argv[1])
+SMALL_LIMIT = int(sys.argv[2])
 TIMEIT_ITERATIONS = int(sys.argv[3])
 
-def func1():
+def func(outer_loop_limit, inner_loop_limit):
     i = 0
     overall_sum = 0
-    while i < BIG:
+    while i < outer_loop_limit:
         j = 0
-        while j < SMALL:
+        while j < inner_loop_limit:
             overall_sum += 1
             j += 1
         i += 1
     return overall_sum
 
-def func2():
-    i = 0
-    overall_sum = 0
-    while i < SMALL:
-        j = 0
-        while j < BIG:
-            overall_sum += 1
-            j += 1
-        i += 1
-    return overall_sum
+print(f"{func(BIG_LIMIT, SMALL_LIMIT)=}, {func(SMALL_LIMIT, BIG_LIMIT)=}")
 
-print(f"{func1()=}, {func2()=}")
-
-big = timeit.timeit(func1, number=TIMEIT_ITERATIONS)
-small = timeit.timeit(func2, number=TIMEIT_ITERATIONS)
+big = timeit.timeit(lambda: func(BIG_LIMIT, SMALL_LIMIT), number=TIMEIT_ITERATIONS)
+small = timeit.timeit(lambda: func(SMALL_LIMIT, BIG_LIMIT), number=TIMEIT_ITERATIONS)
 print(f"delta is {round(100*(big-small)/big)}%")
 ```
 
@@ -209,7 +198,36 @@ delta is -18%
 
 Вот это поворот! А почему так?
 
-Давайте, поставьте на паузу, и подумайте. Быть может, дело в кеше процессора? Может быть, в хитрой внутренней оптимизации виртуальной машины Python, которая запускает этот код? Может быть, дело в личной закладке Гвидо ван Россума, из-за которой всё работает так?
+Быть может, дело в оптимизации компилятора в байткод?
+
+```python
+import dis
+dis.dis(lambda: func(SMALL_LIMIT, BIG_LIMIT))
+exit()
+```
+
+```shell
+$ python3.12 main.py 100 5 1000 > dis_func1
+```
+
+```python
+dis.dis(lambda: func(BIG_LIMIT, SMALL_LIMIT))
+```
+
+```shell
+$ python3.12 main.py 100 5 1000 > dis_func2
+$ diff dis_func1 dis_func2
+
+<              12 LOAD_GLOBAL              2 (BIG_LIMIT)
+<              22 LOAD_GLOBAL              4 (SMALL_LIMIT)
+---
+>              12 LOAD_GLOBAL              2 (SMALL_LIMIT)
+>              22 LOAD_GLOBAL              4 (BIG_LIMIT)
+```
+
+Нет, никаких оптимизаций в байт-коде нет. Байт-код ровно соответствует высокоуровневому коду.
+
+Давайте, поставьте на паузу, и подумайте, откуда разница. Быть может, дело в кеше процессора? Может быть, в хитрой внутренней оптимизации виртуальной машины Python, которая запускает этот байт-код? Может быть, дело в личной закладке Гвидо ван Россума, из-за которой всё работает так?
 
 Давайте, поставьте на паузу и подумайте.
 
