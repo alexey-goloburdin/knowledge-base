@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "10885957c6cd3076",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Salesbeat loaders params in yandex cloud.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -86,7 +99,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "Salesbeat loaders params in yandex cloud.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +116,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "Salesbeat loaders params in yandex cloud.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +139,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md"
+                "file": "Salesbeat loaders params in yandex cloud.md"
               }
             }
           }
@@ -147,10 +160,12 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "13f406937d56aa8e",
+  "active": "10885957c6cd3076",
   "lastOpenFiles": [
-    "daily/2024-05-19.md",
+    "Снимок экрана 2024-05-20 в 15.51.23.png",
+    "Salesbeat loaders params in yandex cloud.md",
     "Сценарий дополнений про Nested Loops.md",
+    "daily/2024-05-19.md",
     "Оптимизация запросов в PostgreSQL.md",
     "daily/2024-05-18.md",
     "types/Сценарий.md",
@@ -173,8 +188,6 @@
     "Не отключать autovacuum в PostgreSQL.md",
     "Не использовать много соединений к PostgreSQL.md",
     "Михаил Фленов.md",
-    "Книга «Python с нуля», Пётр Левашов.md",
-    "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
     "projects",
     "daily",
     "types",
