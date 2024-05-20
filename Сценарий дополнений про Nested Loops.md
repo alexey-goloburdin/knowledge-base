@@ -302,7 +302,6 @@ import timeit
 parser = argparse.ArgumentParser()
 parser.add_argument("--big", type=int)
 parser.add_argument("--small", type=int)
-parser.add_argument("--sleep", action="store_true")
 parser.add_argument("--timeit", default=100, type=int)
 args = parser.parse_args()
 
@@ -310,7 +309,6 @@ big_tuple = tuple(random.randint(1000, 10_000) for _ in range(args.big))
 small_tuple = tuple(random.randint(1000, 10_000) for _ in range(args.small))
 
 def run_loop(outer_iterable, inner_iterable):
-    if args.sleep: time.sleep(0.001)
     overall = 0
     for _ in outer_iterable:
         for _ in inner_iterable:
@@ -321,7 +319,7 @@ small = timeit.timeit(partial(run_loop, small_tuple, big_tuple), number=args.tim
 print(f"delta is {round(100*(big-small)/big)}%")
 ```
 
-Здесь я решил вынести наружу значения ограничения большего и меньшего циклов, чтобы они принимались из аргументов командной строки при запуске скрипта. Также оттуда передаётся количество запусков для `timeit` с дефолтным значением 100. И ещё добавил возможность добавлять `time.sleep` к каждому вызову функции с циклами.
+Здесь я решил вынести наружу значения ограничения большего и меньшего циклов, чтобы они принимались из аргументов командной строки при запуске скрипта. Также оттуда передаётся количество запусков для `timeit` с дефолтным значением 100.
 
 И вместо двух функций сделал одну, которая просто вызывается с разными параметрами. 
 
@@ -335,111 +333,138 @@ print(f"delta is {round(100*(big-small)/big)}%")
 $ python3.12 main_with_for.py --big 100 --small 5
 delta is 47%
 
-$ python3.12 main_with_for.py --big 100 --small 5 --sleep
-delta is -2%
-
 $ python3.12 main_with_for.py --big 500 --small 5
 delta is 45%
-
-$ python3.12 main_with_for.py --big 500 --small 5 --sleep
-delta is -7%
 
 $ python3.12 main_with_for.py --big 1500 --small 5
 delta is 48%
 
-$ python3.12 main_with_for.py --big 1500 --small 5 --sleep
-delta is -21%
-
 $ python3.12 main_with_for.py --big 3000 --small 50
 delta is 7%
 
-$ python3.12 main_with_for.py --big 3000 --small 50 --sleep
-delta is 4%
-
-$ python3.12 main_with_for.py --big 10000 --small 300
+$ python3.12 main_with_for.py --big 10000 --small 100
 delta is 2%
+
+$ python3.12 main_with_for.py --big 100000 --small 10
+delta is 29%
 ```
 
-Вот это поворот! А почему так?
+Что мы видим — мы видим, что на каких-то значениях меньший внешний цикл эффективнее на 47%, на каких-то на 30%, а где-то и почти неважно, какой цикл внешний.
 
-Может, при росте общего количества выполнения циклов — тех самых итераций или ассимиляций гиперпостранственного фокала социалистических измерений — происходит замедление? Нет, это не так, мы видим вызовы на 1500x5 итераций, в одном случае есть ускорение на 48%, в другом замедление на 21%.
+Какой отсюда можно сделать вывод?
 
-Может, дело в sleep? Давайте заменим его на вызов сложной функции.
+При прочих равных в 3.12 CPython если вы будете ставить меньший цикл внешним, вы или увеличите общую эффективность, или как минимум её не уменьшите. Конечно, при условии, что код в циклах независим от порядка итерирования.
 
+Ну а для знатоков ассимиляций гиперпостранственного фокала социалистических измерений — вот вам задачка.
 
-
-Быть может, дело в оптимизации компилятора в байткод? Но мы аргументы передаём снаружи в код и на момент его компиляции у компилятора этих параметров ещё нет.
-
-Так, а может быть, тут дело в хитростях обхода кортежей? Давайте перепишем всё на `while`.
-
-Так, а если вместо `while` с явной работой со счетчиками будет `for`?
+Я перепишу циклы на while, чтобы сделать работу со счетчиками явными.
 
 ```python
+import argparse
 from functools import partial
-import sys
+import random
 import timeit
 
-BIG_LIMIT = int(sys.argv[1])
-SMALL_LIMIT = int(sys.argv[2])
-TIMEIT_ITERATIONS = int(sys.argv[3])
+parser = argparse.ArgumentParser()
+parser.add_argument("--big", type=int)
+parser.add_argument("--small", type=int)
+parser.add_argument("--timeit", default=100, type=int)
+args = parser.parse_args()
 
-def run_loop(outer_loop_limit, inner_loop_limit):
+big_tuple = tuple(random.randint(1000, 10_000) for _ in range(args.big))
+small_tuple = tuple(random.randint(1000, 10_000) for _ in range(args.small))
+
+def run_loop(outer_iterable, inner_iterable):
     i = 0
     overall_sum = 0
-    outer_tuple = tuple(range(outer_loop_limit))
-    inner_tuple = tuple(range(inner_loop_limit))
-    for _ in outer_tuple:
-        for _ in inner_tuple:
+    while i < len(outer_iterable):
+        j = 0
+        while j < len(inner_iterable):
             overall_sum += 1
+            j += 1
+        i += 1
     return overall_sum
-
-print(f"{run_loop(BIG_LIMIT, SMALL_LIMIT)=}, {run_loop(SMALL_LIMIT, BIG_LIMIT)=}")
-
-big = timeit.timeit(partial(run_loop, BIG_LIMIT, SMALL_LIMIT), number=TIMEIT_ITERATIONS)
-small = timeit.timeit(partial(run_loop, SMALL_LIMIT, BIG_LIMIT), number=TIMEIT_ITERATIONS)
+    
+big = timeit.timeit(partial(run_loop, big_tuple, small_tuple), number=args.timeit)
+small = timeit.timeit(partial(run_loop, small_tuple, big_tuple), number=args.timeit)
 print(f"delta is {round(100*(big-small)/big)}%")
 ```
 
 Запускаем:
 
 ```shell
-$ python3.12 main2.py 100 5 1000
-run_loop(BIG_LIMIT, SMALL_LIMIT)=500, run_loop(SMALL_LIMIT, BIG_LIMIT)=500
-delta is 55%
+$ python3.12 main_with_while.py --big 100 --small 5
+delta is 17%
 
-$ python3.12 main2.py 1000 5 1000
-run_loop(BIG_LIMIT, SMALL_LIMIT)=5000, run_loop(SMALL_LIMIT, BIG_LIMIT)=5000
-delta is 43%
+$ python3.12 main_with_while.py --big 500 --small 5
+delta is 9%
 
-$ python3.12 main2.py 1000 5 1000
-run_loop(BIG_LIMIT, SMALL_LIMIT)=5000, run_loop(SMALL_LIMIT, BIG_LIMIT)=5000
-delta is 6%
+$ python3.12 main_with_while.py --big 1500 --small 5
+delta is 5%
 
+$ python3.12 main_with_while.py --big 3000 --small 50
+delta is -27%
+
+$ python3.12 main_with_while.py --big 10000 --small 100
+delta is -30%
+
+$ python3.12 main_with_while.py --big 100000 --small 10
+delta is -29%
 ```
 
+Интереееесно! А если убрать кортежи вообще?
 
+```python
+import argparse
+from functools import partial
+import timeit
 
+parser = argparse.ArgumentParser()
+parser.add_argument("--big", type=int)
+parser.add_argument("--small", type=int)
+parser.add_argument("--timeit", default=100, type=int)
+args = parser.parse_args()
 
-Давайте, поставьте на паузу, и подумайте, откуда разница. Быть может, дело в кеше процессора? Может быть, в хитрой внутренней оптимизации виртуальной машины Python, которая запускает этот байт-код? Может быть, дело в личной закладке Гвидо ван Россума, из-за которой всё работает так?
+def run_loop(outer_iterations, inner_iterations):
+    i = 0
+    overall_sum = 0
+    while i < outer_iterations:
+        j = 0
+        while j < inner_iterations:
+            overall_sum += 1
+            j += 1
+        i += 1
+    return overall_sum
+    
+big = timeit.timeit(partial(run_loop, args.big, args.small), number=args.timeit)
+small = timeit.timeit(partial(run_loop, args.small, args.big), number=args.timeit)
+print(f"delta is {round(100*(big-small)/big)}%")
+```
 
-Давайте, поставьте на паузу и подумайте.
+Получаем аналогичные результаты:
 
-// киваю секунду
+```shell
+$ python3.12 main_with_while.py --big 100 --small 5
+delta is 19%
 
-Итак, внимание ответ! Да какая нахрен разница:)))
+$ python3.12 main_with_while.py --big 500 --small 5
+delta is 14%
 
-Если подход внешнего меньшего цикла работает лучше при размерах 100 и 5, но хуже при размерах 1000 и 50, то отсюда можно сделать один простой вывод, что не надо нахрен об этом в питоне думать при написании вложенных циклов. Всё!
+$ python3.12 main_with_while.py --big 1500 --small 5
+delta is 7%
 
-При оптимизации — возможно, но не при написании. Если у вас есть конкретный вложенный цикл и по результатам профилирования вы выяснили, что он работает медленно и вам кровь из носу как надо его оптимизировать — ну вот как один из вариантов можете попробовать поменять их местами и сравнить результаты, стало лучше и это не погрешность — нормас, стало хуже — откатились обратно.
+$ python3.12 main_with_while.py --big 3000 --small 50
+delta is -27%
 
-То есть да, вывод моего прошлого видоса оказался неверным.
+$ python3.12 main_with_while.py --big 10000 --small 100
+delta is -31%
 
-Погонял аналогичные тесты на JS, кстати, — результаты такие же, как и для питона, иногда выигрывает один сценарий, иногда другой.
+$ python3.12 main_with_while.py --big 100000 --small 10
+delta is -20%
+```
 
-Современные компиляторы, виртуальные машины, механизмы оптимизации внутри процессора — сложны. И даже если нам кажется очевидным, что вот такой способ будет работать тоооочно лучше, это надо тестировать. Возможно, это так, а возможно это не так.
+Итак, призываю вас, добро пожаловать в комментарии! Шо там по кешам процессора, спотыкающимся электронам, специальным закладкам Гвидо ван Россума в коде CPython и другим причинам такого поведения.
 
-Ну и преждевременная оптимизация зло, как писал еще Кнут. Хотя подход с поменять циклы местами я назвать преждевременной оптимизацией не могу, если это не осложняет код, не ухудшает его читабельность, не делает разработку дольше и сложнее, то это просто эффективное использование имеющихся инструментов, а не оптимизация.
-
-Но тем не менее, повторюсь, в случае питона и JS подход с меньшим внешним циклом работает лучше не всегда, как мы убедились, а значит брать его в общем случае к использованию — не стоит. В то же время иногда он действительно может работать лучше. Надо тестить.
+Спасибо, что посмотрели, надеюсь, что-то полезное узнали, до связи в следующем видео! Пока-пока:)
 
 [[Сценарий]]
