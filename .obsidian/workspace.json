@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-21.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 240.5,
-    "collapsed": true
+    "width": 240.5
   },
   "right": {
     "id": "f2996cf528bc65a1",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-21.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-21.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md"
+                "file": "daily/2024-05-21.md"
               }
             }
           }
@@ -149,12 +148,13 @@
   },
   "active": "13f406937d56aa8e",
   "lastOpenFiles": [
+    "daily/2024-05-19.md",
+    "daily/2024-05-21.md",
+    "daily/2024-05-18.md",
+    "Сценарий дополнений про Nested Loops.md",
     "Salesbeat loaders params in Yandex cloud.md",
     "Снимок экрана 2024-05-20 в 15.51.23.png",
-    "Сценарий дополнений про Nested Loops.md",
-    "daily/2024-05-19.md",
     "Оптимизация запросов в PostgreSQL.md",
-    "daily/2024-05-18.md",
     "types/Сценарий.md",
     "daily/2024-05-17.md",
     "daily/2024-05-16.md",
