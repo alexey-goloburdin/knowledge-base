@@ -6,6 +6,8 @@
 
 // ну, скорее всего...
 
+Посмотрим, как работают циклы, как они выглядят в дизассемблированном виде, как правильно считать итерации и как всё таки эффективно использовать вложенные циклы!
+
 ## О чём речь
 
 Коротенько напомню, об чём речь. Вывод в видосе: когда у вас есть вложенные циклы, для эффективности имеет смысл цикл меньшего размера ставить наружным, а цикл большего размера ставить внутренним.
@@ -291,92 +293,84 @@ print(my_range.called)  # 505
 Ладно, давайте упростим наш код, чтобы с ним было проще играться.
 
 ```python
+import argparse
 from functools import partial
-import sys
+import random
+import time
 import timeit
 
-BIG_LIMIT = int(sys.argv[1])
-SMALL_LIMIT = int(sys.argv[2])
-TIMEIT_ITERATIONS = int(sys.argv[3])
+parser = argparse.ArgumentParser()
+parser.add_argument("--big", type=int)
+parser.add_argument("--small", type=int)
+parser.add_argument("--sleep", action="store_true")
+parser.add_argument("--timeit", default=100, type=int)
+args = parser.parse_args()
 
-def run_loop(outer_loop_limit, inner_loop_limit):
-    i = 0
-    overall_sum = 0
-    while i < outer_loop_limit:
-        j = 0
-        while j < inner_loop_limit:
-            overall_sum += 1
-            j += 1
-        i += 1
-    return overall_sum
+big_tuple = tuple(random.randint(1000, 10_000) for _ in range(args.big))
+small_tuple = tuple(random.randint(1000, 10_000) for _ in range(args.small))
 
-print(f"{run_loop(BIG_LIMIT, SMALL_LIMIT)=}, {run_loop(SMALL_LIMIT, BIG_LIMIT)=}")
+def run_loop(outer_iterable, inner_iterable):
+    if args.sleep: time.sleep(0.001)
+    overall = 0
+    for _ in outer_iterable:
+        for _ in inner_iterable:
+            overall += 1
 
-big = timeit.timeit(partial(run_loop, BIG_LIMIT, SMALL_LIMIT), number=TIMEIT_ITERATIONS)
-small = timeit.timeit(partial(run_loop, SMALL_LIMIT, BIG_LIMIT), number=TIMEIT_ITERATIONS)
+big = timeit.timeit(partial(run_loop, big_tuple, small_tuple), number=args.timeit)
+small = timeit.timeit(partial(run_loop, small_tuple, big_tuple), number=args.timeit)
 print(f"delta is {round(100*(big-small)/big)}%")
 ```
 
-Здесь я решил вынести наружу значения ограничения большего и меньшего циклов, чтобы они принимались из аргументов командной строки при запуске скрипта.
+Здесь я решил вынести наружу значения ограничения большего и меньшего циклов, чтобы они принимались из аргументов командной строки при запуске скрипта. Также оттуда передаётся количество запусков для `timeit` с дефолтным значением 100. И ещё добавил возможность добавлять `time.sleep` к каждому вызову функции с циклами.
 
-Также я отказался от `for` в пользу явной работы со счётчиками. И также вместо двух функций сделал одну, которая просто вызывается с разными параметрами.
-
-Результат кода аналогичный — меньший внешний цикл работает на примерно 20-30% быстрее.
+И вместо двух функций сделал одну, которая просто вызывается с разными параметрами. 
 
 ## Адовые тесты!
 
 Ну так вот. Всё мы значит выяснили, где чо как работает, где какие итерации, что эффективнее и почему. Быгыгы:)
 
-Однако давайте протестируем наш код с разными входными данными.
+Давайте протестируем наш код с разными входными данными.
 
 ```shell
-$ python3.12 main.py 100 5 1000
-func1()=500, func2()=500
-delta is 31%
+$ python3.12 main_with_for.py --big 100 --small 5
+delta is 47%
 
-$ python3.12 main.py 1000 5 1000
-func1()=5000, func2()=5000
-delta is 6%
+$ python3.12 main_with_for.py --big 100 --small 5 --sleep
+delta is -2%
 
-$ python3.12 main.py 1000 50 1000
-func1()=50000, func2()=50000
-delta is -18%
+$ python3.12 main_with_for.py --big 500 --small 5
+delta is 45%
 
-$ python3.12 main.py 10000 5 1000
-func1()=50000, func2()=50000
-delta is 5%
+$ python3.12 main_with_for.py --big 500 --small 5 --sleep
+delta is -7%
+
+$ python3.12 main_with_for.py --big 1500 --small 5
+delta is 48%
+
+$ python3.12 main_with_for.py --big 1500 --small 5 --sleep
+delta is -21%
+
+$ python3.12 main_with_for.py --big 3000 --small 50
+delta is 7%
+
+$ python3.12 main_with_for.py --big 3000 --small 50 --sleep
+delta is 4%
+
+$ python3.12 main_with_for.py --big 10000 --small 300
+delta is 2%
 ```
 
 Вот это поворот! А почему так?
 
-Быть может, дело в оптимизации компилятора в байткод?
+Может, при росте общего количества выполнения циклов — тех самых итераций или ассимиляций гиперпостранственного фокала социалистических измерений — происходит замедление? Нет, это не так, мы видим вызовы на 1500x5 итераций, в одном случае есть ускорение на 48%, в другом замедление на 21%.
 
-```python
-import dis
-dis.dis(lambda: func(SMALL_LIMIT, BIG_LIMIT))
-exit()
-```
+Может, дело в sleep? Давайте заменим его на вызов сложной функции.
 
-```shell
-$ python3.12 main.py 100 5 1000 > dis_func1
-```
 
-```python
-dis.dis(lambda: func(BIG_LIMIT, SMALL_LIMIT))
-```
 
-```shell
-$ python3.12 main.py 100 5 1000 > dis_func2
-$ diff dis_func1 dis_func2
+Быть может, дело в оптимизации компилятора в байткод? Но мы аргументы передаём снаружи в код и на момент его компиляции у компилятора этих параметров ещё нет.
 
-<              12 LOAD_GLOBAL              2 (BIG_LIMIT)
-<              22 LOAD_GLOBAL              4 (SMALL_LIMIT)
----
->              12 LOAD_GLOBAL              2 (SMALL_LIMIT)
->              22 LOAD_GLOBAL              4 (BIG_LIMIT)
-```
-
-Нет, никаких оптимизаций в байт-коде нет. Байт-код ровно соответствует высокоуровневому коду.
+Так, а может быть, тут дело в хитростях обхода кортежей? Давайте перепишем всё на `while`.
 
 Так, а если вместо `while` с явной работой со счетчиками будет `for`?
 
