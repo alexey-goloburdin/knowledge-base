@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Salesbeat loaders params in yandex cloud.md",
+                "file": "Salesbeat loaders params in Yandex cloud.md",
                 "mode": "source",
                 "source": false
               }
@@ -82,8 +82,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 240.5,
-    "collapsed": true
+    "width": 240.5
   },
   "right": {
     "id": "f2996cf528bc65a1",
@@ -99,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Salesbeat loaders params in yandex cloud.md",
+                "file": "Salesbeat loaders params in Yandex cloud.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Salesbeat loaders params in yandex cloud.md",
+                "file": "Salesbeat loaders params in Yandex cloud.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Salesbeat loaders params in yandex cloud.md"
+                "file": "Salesbeat loaders params in Yandex cloud.md"
               }
             }
           }
@@ -163,7 +162,7 @@
   "active": "10885957c6cd3076",
   "lastOpenFiles": [
     "Снимок экрана 2024-05-20 в 15.51.23.png",
-    "Salesbeat loaders params in yandex cloud.md",
+    "Salesbeat loaders params in Yandex cloud.md",
     "Сценарий дополнений про Nested Loops.md",
     "daily/2024-05-19.md",
     "Оптимизация запросов в PostgreSQL.md",
