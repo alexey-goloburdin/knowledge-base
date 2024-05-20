@@ -18,21 +18,8 @@
                 "source": false
               }
             }
-          },
-          {
-            "id": "10885957c6cd3076",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Salesbeat loaders params in Yandex cloud.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -82,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 240.5
+    "width": 240.5,
+    "collapsed": true
   },
   "right": {
     "id": "f2996cf528bc65a1",
@@ -98,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Salesbeat loaders params in Yandex cloud.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Salesbeat loaders params in Yandex cloud.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Salesbeat loaders params in Yandex cloud.md"
+                "file": "Сценарий дополнений про Nested Loops.md"
               }
             }
           }
@@ -159,10 +147,10 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "10885957c6cd3076",
+  "active": "13f406937d56aa8e",
   "lastOpenFiles": [
-    "Снимок экрана 2024-05-20 в 15.51.23.png",
     "Salesbeat loaders params in Yandex cloud.md",
+    "Снимок экрана 2024-05-20 в 15.51.23.png",
     "Сценарий дополнений про Nested Loops.md",
     "daily/2024-05-19.md",
     "Оптимизация запросов в PostgreSQL.md",
