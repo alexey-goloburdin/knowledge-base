@@ -8,18 +8,6 @@
         "type": "tabs",
         "children": [
           {
-            "id": "8bc021e07164907d",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "daily/2024-05-21.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
             "id": "13f406937d56aa8e",
             "type": "leaf",
             "state": {
@@ -98,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "daily/2024-05-21.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "daily/2024-05-21.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "daily/2024-05-21.md"
+                "file": "Сценарий дополнений про Nested Loops.md"
               }
             }
           }
@@ -159,10 +147,10 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "8bc021e07164907d",
+  "active": "13f406937d56aa8e",
   "lastOpenFiles": [
-    "Книга «PostgreSQL 11. Мастерство разработки», Ганс-Юрген Шёниг.md",
     "daily/2024-05-21.md",
+    "Книга «PostgreSQL 11. Мастерство разработки», Ганс-Юрген Шёниг.md",
     "Сценарий дополнений про Nested Loops.md",
     "Python for vs while loop performance.md",
     "Python.md",
