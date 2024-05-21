@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-21.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 240.5
+    "width": 240.5,
+    "collapsed": true
   },
   "right": {
     "id": "f2996cf528bc65a1",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "daily/2024-05-21.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "daily/2024-05-21.md",
+                "file": "Сценарий дополнений про Nested Loops.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "daily/2024-05-21.md"
+                "file": "Сценарий дополнений про Nested Loops.md"
               }
             }
           }
@@ -148,8 +149,8 @@
   },
   "active": "13f406937d56aa8e",
   "lastOpenFiles": [
-    "daily/2024-05-19.md",
     "daily/2024-05-21.md",
+    "daily/2024-05-19.md",
     "daily/2024-05-18.md",
     "Сценарий дополнений про Nested Loops.md",
     "Salesbeat loaders params in Yandex cloud.md",
