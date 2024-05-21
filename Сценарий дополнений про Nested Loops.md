@@ -86,7 +86,8 @@ print(f"{delta}%")
 
 ```python
 import dis
-dis.dis(big_outer_loop)
+print(dis.dis(big_outer_loop))
+print(dis.dis(small_outer_loop))
 ```
 
 Повторюсь, что это не байт-код, связанный с конкретной системой команд конкретной архитектуры процессора, потому что его выполнять будет Python Virtual Machine, виртуальная машина Python.
