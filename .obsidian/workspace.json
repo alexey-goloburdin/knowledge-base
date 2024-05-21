@@ -31,8 +31,7 @@
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -99,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-21.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -116,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-21.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -139,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md"
+                "file": "daily/2024-05-21.md"
               }
             }
           }
@@ -160,10 +159,13 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "189c4955013f7129",
+  "active": "8bc021e07164907d",
   "lastOpenFiles": [
+    "Книга «PostgreSQL 11. Мастерство разработки», Ганс-Юрген Шёниг.md",
     "daily/2024-05-21.md",
     "Сценарий дополнений про Nested Loops.md",
+    "Python for vs while loop performance.md",
+    "Python.md",
     "daily/2024-05-19.md",
     "daily/2024-05-20.md",
     "daily/2024-05-16.md",
@@ -179,7 +181,6 @@
     "Запись РИТ++ 2015 конференция по бизнесу.md",
     "Джосайя Кавиани.md",
     "Видео «Производительность запросов в PostgreSQL. Илья Космодемьянский (PostgreSQL Consulting)».md",
-    "Python.md",
     "PostgreSQL.md",
     "PgBouncer.md",
     "Odyssey.md",
@@ -187,8 +188,6 @@
     "Сергей Шляков.md",
     "Поиск запросов для оптимизации в PostgreSQL.md",
     "Никита Постнов.md",
-    "Не отключать autovacuum в PostgreSQL.md",
-    "Не использовать много соединений к PostgreSQL.md",
     "projects",
     "daily",
     "types",

@@ -1,8 +1,8 @@
 ## Введение
 
-Здоров котаны, вчера вышло видео про оптимизацию вложенных циклов с примером на Python, которое вызвало бурное обсуждение в комментариях и я решил снять дополнение к этому видосу.
+Здоров котаны, вчера вышло видео про оптимизацию вложенных циклов с примером на Python, которое вызвало бурное обсуждение в комментариях и бурную критику, в связи с чем я решил снять дополнение к этому видосу.
 
-Да, выводы, которые звучали во вчерашнем видосе, оказались поспешными и не всегда правильными, как мы сейчас убедимся.  Сейчас мы наконец-то с вами во всём разберёмся и сделаем прррравильные выводы!
+Сейчас мы наконец-то с вами во всём разберёмся и сделаем прррравильные выводы!
 
 // ну, скорее всего...
 
@@ -355,115 +355,302 @@ delta is 29%
 
 При прочих равных в 3.12 CPython если вы будете ставить меньший цикл внешним, вы или увеличите общую эффективность, или как минимум её не уменьшите. Конечно, при условии, что код в циклах независим от порядка итерирования.
 
-Ну а для знатоков ассимиляций гиперпостранственного фокала социалистических измерений — вот вам задачка.
+## А если переписать на while?
 
-Я перепишу циклы на while, чтобы сделать работу со счетчиками явными.
+А давайте перепишем цикл на `while`.
+
+```python
+import argparse
+from functools import partial
+import timeit
+
+parser = argparse.ArgumentParser()
+parser.add_argument("--big", type=int)
+parser.add_argument("--small", type=int)
+parser.add_argument("--timeit", default=100, type=int)
+args = parser.parse_args()
+
+def run_loop(outer_iterable, inner_iterable):
+    outer_iterable = iter(outer_iterable)
+    inner_iterable = iter(inner_iterable)
+    outer_has_next = True
+    inner_has_next = True
+    while outer_has_next:
+        try:
+            next(outer_iterable)
+        except StopIteration:
+            outer_has_next = False
+        while inner_has_next:
+            try:
+                next(inner_iterable)
+            except StopIteration:
+                inner_has_next = False
+
+big = timeit.timeit(partial(run_loop, range(args.big), range(args.small)), number=args.timeit)
+small = timeit.timeit(partial(run_loop, range(args.small), range(args.big)), number=args.timeit)
+print(f"delta is {round(100*(big-small)/big)}%")
+```
+
+Здесь мы принимаем на вход две итерабельные сущности, получаем из них итераторы и итерируемся по ним.
+
+Тесты!
+
+```shell
+$ python3.12 main_with_while.py --big 100 --small 5
+delta is 8%
+
+$ python3.12 main_with_while.py --big 500 --small 5
+delta is 10%
+
+$ python3.12 main_with_while.py --big 1500 --small 5
+delta is 12%
+
+$ python3.12 main_with_while.py --big 3000 --small 50
+delta is 14%
+
+$ python3.12 main_with_while.py --big 10000 --small 100
+delta is 15%
+
+$ python3.12 main_with_while.py --big 100000 --small 10
+delta is 8%
+```
+
+Видим, что для `while` большой разницы в 30% получить не удаётся, однако всё равно меньший внешний цикл выигрывает.
+
+## while работаем медленнее, чем for?
+
+Давайте посмотрим разницу `while` и `for` в байткоде?
+
+```python
+from functools import partial
+import timeit
+from typing import Iterable
+
+def for_loop(iterable: Iterable):
+    for _ in iterable:
+        pass
+
+
+def while_loop(iterable: Iterable):
+    iseq = iter(iterable)
+    _loop = True
+    while _loop:
+        try:
+            next(iseq)
+        except StopIteration:
+            _loop = False
+
+print(timeit.timeit(partial(for_loop, range(1_000_000)), number=100))  # 2.1
+print(timeit.timeit(partial(while_loop, range(1_000_000)), number=100))  # 3.4
+```
+
+ А чо так? Смотрим `dis` от `for`:
+ 
+```text
+  5           0 RESUME                   0
+
+  6           2 LOAD_FAST                0 (iterable)
+              4 GET_ITER
+        >>    6 FOR_ITER                 2 (to 14)
+             10 STORE_FAST               1 (_)
+
+  7          12 JUMP_BACKWARD            4 (to 6)
+
+  6     >>   14 END_FOR
+             16 RETURN_CONST             0 (None)
+```
+
+Смотрим `dis` от `while`:
+
+```text
+ 10           0 RESUME                   0
+
+ 11           2 LOAD_GLOBAL              1 (NULL + iter)
+             12 LOAD_FAST                0 (iterable)
+             14 CALL                     1
+             22 STORE_FAST               1 (iseq)
+
+ 12          24 LOAD_CONST               1 (True)
+             26 STORE_FAST               2 (_loop)
+
+ 13          28 LOAD_FAST                2 (_loop)
+             30 POP_JUMP_IF_FALSE       16 (to 64)
+
+ 14     >>   32 NOP
+
+ 15          34 LOAD_GLOBAL              3 (NULL + next)
+             44 LOAD_FAST                1 (iseq)
+             46 CALL                     1
+             54 POP_TOP
+
+ 13     >>   56 LOAD_FAST                2 (_loop)
+             58 POP_JUMP_IF_FALSE        1 (to 62)
+             60 JUMP_BACKWARD           15 (to 32)
+        >>   62 RETURN_CONST             0 (None)
+        >>   64 RETURN_CONST             0 (None)
+        >>   66 PUSH_EXC_INFO
+
+ 16          68 LOAD_GLOBAL              4 (StopIteration)
+             78 CHECK_EXC_MATCH
+             80 POP_JUMP_IF_FALSE        5 (to 92)
+             82 POP_TOP
+
+ 17          84 LOAD_CONST               2 (False)
+             86 STORE_FAST               2 (_loop)
+             88 POP_EXCEPT
+             90 JUMP_BACKWARD           18 (to 56)
+
+ 16     >>   92 RERAISE                  0
+        >>   94 COPY                     3
+             96 POP_EXCEPT
+             98 RERAISE                  1
+ExceptionTable:
+  34 to 54 -> 66 [0]
+  66 to 86 -> 94 [1] lasti
+  92 to 92 -> 94 [1] lasti
+None
+```
+
+Как видим, здесь больше кода для `while`, однако это не значит, что именно поэтому он работает медленнее — как мы видели раньше, тупо повторение кода вместо использования цикла вообще работает быстрее.
+
+Однако здесь дело в том, что for написан на C, а этот код интерпретируется и потому работает медленнее.
+
+Давайте перепишем while на счетчиках вместо сложного кода с итератором:
+
+```python
+from functools import partial
+import timeit
+
+def for_loop(count: int):
+    for _ in range(count):
+        pass
+
+
+def while_loop(count: int):
+    counter = 0
+    while counter < count:
+        counter += 1
+
+print(timeit.timeit(partial(for_loop, 1_000_000), number=100))  # 2.1
+print(timeit.timeit(partial(while_loop, 1_000_000), number=100))  # 3.3
+```
+
+Результат аналогичный — `for` работает быстрее. Такие дела.
+
+## Выводы
+
+Ну а в общем — меньший внешний цикл работает быстрее, чем больший внешний цикл при прочих равных. Что значит при прочих равных? Это значит, что если нет причины итерироваться именно конкретным способом. Например, если мы реализуем в своём коде аналог CROSS JOIN из SQL, когда нам надо обработать все пары возможных значений из двух наборов данных. Понятно, что здесь нет разницы какой цикл ставить внешним — и тогда стоит внешним циклом поставить меньший цикл.
+
+Например, в нашем продукте Salesbeat, это модуль доставки для интернет магазинов, который считает доставку, есть логика расчёта сроков и стоимости доставки по пунктам выдачи. И эти сроки и стоимости можно у нас настраивать, то есть магазин может давать свои наценки или скидки на стоимость доставки, а также изменять сроки доставки по разным службам доставки или даже конкретным пунктам выдачи.
+
+Ну и там непростая логика, реализовывать её на уровне базы в данном случае не хотелось бы.
+
+Получается, у нас есть набор пунктов выдачи и он может быть на несколько тысяч пунктов, и есть набор правил, он достигает нескольких десятков. В каком порядке это перебирать с логической точки зрения разницы нет — можно сначала по пунктам, потом по правилам, можно наоборот. Вот просто поменяв порядок циклов, можно добиться ускорения этого конкретного участка.
+
+При этом понятно, что с точки зрения конечного результата это может не дать эффекта, то есть вот эта часть итерации ускорится, но логика, которая внутри вложенного цикла выполняется, может быть настолько тяжелой, что на конечное время выполнения сервиса это никак не повлияет. Потому что основная часть времени уходит именно на эту логику, а не на саму логику обслуживания циклов. Или на запросы к СУБД.
+
+Давайте внутрь цикла добавим вызов некоторой функции, которая займёт время. Это функция находит простые чисел с помощью решета Эратосфена (ударение на *е*):
 
 ```python
 import argparse
 from functools import partial
 import random
+import time
 import timeit
 
 parser = argparse.ArgumentParser()
-parser.add_argument("--big", type=int)
-parser.add_argument("--small", type=int)
+parser.add_argument("--big", type=int, required=True)
+parser.add_argument("--small", type=int, required=True)
 parser.add_argument("--timeit", default=100, type=int)
+parser.add_argument("--with-logic", action="store_true")
 args = parser.parse_args()
 
 big_tuple = tuple(random.randint(1000, 10_000) for _ in range(args.big))
 small_tuple = tuple(random.randint(1000, 10_000) for _ in range(args.small))
 
-def run_loop(outer_iterable, inner_iterable):
-    i = 0
-    overall_sum = 0
-    while i < len(outer_iterable):
-        j = 0
-        while j < len(inner_iterable):
-            overall_sum += 1
-            j += 1
-        i += 1
-    return overall_sum
+def sieve_of_eratosthenes(limit):
+    primes = [True] * (limit + 1)
+    p = 2
+    while p * p <= limit:
+        if primes[p]:
+            for i in range(p * p, limit + 1, p):
+                primes[i] = False
+        p += 1
+    return [p for p in range(2, limit + 1) if primes[p]]
+
+def run_loop(outer_iterable, inner_iterable, with_logic):
+    overall = 0
+    for _ in outer_iterable:
+        for _ in inner_iterable:
+            overall += 1
+            if with_logic:
+                sieve_of_eratosthenes(50)
     
-big = timeit.timeit(partial(run_loop, big_tuple, small_tuple), number=args.timeit)
-small = timeit.timeit(partial(run_loop, small_tuple, big_tuple), number=args.timeit)
+big = timeit.timeit(
+    partial(run_loop, big_tuple, small_tuple, args.with_logic),
+    number=args.timeit)
+small = timeit.timeit(
+    partial(run_loop, small_tuple, big_tuple, args.with_logic),
+    number=args.timeit)
 print(f"delta is {round(100*(big-small)/big)}%")
 ```
 
-Запускаем:
+Запустим тесты:
 
 ```shell
-$ python3.12 main_with_while.py --big 100 --small 5
-delta is 17%
+$ python3.12 final_compare.py --big 100 --small 5
+delta is 45%
 
-$ python3.12 main_with_while.py --big 500 --small 5
-delta is 9%
+$ python3.12 final_compare.py --big 100 --small 5 --with-logic
+delta is 2%
 
-$ python3.12 main_with_while.py --big 1500 --small 5
-delta is 5%
 
-$ python3.12 main_with_while.py --big 3000 --small 50
-delta is -27%
+$ python3.12 final_compare.py --big 500 --small 5
+delta is 46%
 
-$ python3.12 main_with_while.py --big 10000 --small 100
-delta is -30%
+$ python3.12 final_compare.py --big 500 --small 5  --with-logic
+delta is 3%
 
-$ python3.12 main_with_while.py --big 100000 --small 10
-delta is -29%
+
+$ python3.12 final_compare.py --big 1500 --small 5
+delta is 47%
+
+$ python3.12 final_compare.py --big 1500 --small 5 --with-logic
+delta is 1%
 ```
 
-Интереееесно! А если убрать кортежи вообще?
+То есть, конечно, это не то, что в большинстве практических сценариев драматически ускорит ваше приложение, там на 30%, ну нет, конечно. Это просто принцип, который можно знать и использовать при написании кода. Что-то, что не осложняет разработку, не ухудшает читаемость кода, не ухудшает поддерживаемость кода, не ухудшает расширяемость кода, но при этом может положительно сказаться на эффективности какой-то части программы.
+
+Если упростить логику в цикле, то разница снова становится заметной:
 
 ```python
-import argparse
-from functools import partial
-import timeit
-
-parser = argparse.ArgumentParser()
-parser.add_argument("--big", type=int)
-parser.add_argument("--small", type=int)
-parser.add_argument("--timeit", default=100, type=int)
-args = parser.parse_args()
-
-def run_loop(outer_iterations, inner_iterations):
-    i = 0
-    overall_sum = 0
-    while i < outer_iterations:
-        j = 0
-        while j < inner_iterations:
-            overall_sum += 1
-            j += 1
-        i += 1
-    return overall_sum
-    
-big = timeit.timeit(partial(run_loop, args.big, args.small), number=args.timeit)
-small = timeit.timeit(partial(run_loop, args.small, args.big), number=args.timeit)
-print(f"delta is {round(100*(big-small)/big)}%")
+def run_loop(outer_iterable, inner_iterable, with_logic):
+    overall = 0
+    for _ in outer_iterable:
+        for index in inner_iterable:
+            overall += 1
+            if with_logic:
+                if index // 2:
+                    some_tuple = (1, 2, 3)
+                    overall -= len(some_tuple) + some_tuple[-1]
 ```
 
-Получаем аналогичные результаты:
+Это плохой код, тут большая вложенность и ничего непонятно — я привожу его просто для примера несложной с вычислительной точки зрения логики — проще, чем вычисление простых чисел.
+
+Тесты:
 
 ```shell
-$ python3.12 main_with_while.py --big 100 --small 5
-delta is 19%
+$ python3.12 final_compare.py --big 100 --small 5 --with-logic
+delta is 15%
 
-$ python3.12 main_with_while.py --big 500 --small 5
-delta is 14%
+$ python3.12 final_compare.py --big 500 --small 5  --with-logic
+delta is 16%
 
-$ python3.12 main_with_while.py --big 1500 --small 5
-delta is 7%
-
-$ python3.12 main_with_while.py --big 3000 --small 50
-delta is -27%
-
-$ python3.12 main_with_while.py --big 10000 --small 100
-delta is -31%
-
-$ python3.12 main_with_while.py --big 100000 --small 10
-delta is -20%
+$ python3.12 final_compare.py --big 1500 --small 5 --with-logic
+delta is 6%
 ```
 
-Итак, призываю вас, добро пожаловать в комментарии! Шо там по кешам процессора, спотыкающимся электронам, специальным закладкам Гвидо ван Россума в коде CPython и другим причинам такого поведения.
+Такие дела. Пользуйтесь.
 
 Спасибо, что посмотрели, надеюсь, что-то полезное узнали, до связи в следующем видео! Пока-пока:)
 
