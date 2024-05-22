@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-21.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,8 +69,7 @@
       }
     ],
     "direction": "horizontal",
-    "width": 240.5,
-    "collapsed": true
+    "width": 240.5
   },
   "right": {
     "id": "f2996cf528bc65a1",
@@ -86,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-21.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -103,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-21.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -126,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md"
+                "file": "daily/2024-05-21.md"
               }
             }
           }
@@ -149,9 +148,10 @@
   },
   "active": "13f406937d56aa8e",
   "lastOpenFiles": [
+    "Сценарий дополнений про Nested Loops.md",
+    "LUTs.md",
     "daily/2024-05-21.md",
     "Книга «PostgreSQL 11. Мастерство разработки», Ганс-Юрген Шёниг.md",
-    "Сценарий дополнений про Nested Loops.md",
     "Python for vs while loop performance.md",
     "Python.md",
     "daily/2024-05-19.md",
@@ -175,7 +175,6 @@
     "Bandit Python library.md",
     "Сергей Шляков.md",
     "Поиск запросов для оптимизации в PostgreSQL.md",
-    "Никита Постнов.md",
     "projects",
     "daily",
     "types",
