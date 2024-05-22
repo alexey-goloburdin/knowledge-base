@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-21.md",
+                "file": "daily/2024-05-22.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "daily/2024-05-21.md",
+                "file": "daily/2024-05-22.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "daily/2024-05-21.md",
+                "file": "daily/2024-05-22.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "daily/2024-05-21.md"
+                "file": "daily/2024-05-22.md"
               }
             }
           }
@@ -148,9 +148,10 @@
   },
   "active": "13f406937d56aa8e",
   "lastOpenFiles": [
+    "daily/2024-05-21.md",
+    "daily/2024-05-22.md",
     "Сценарий дополнений про Nested Loops.md",
     "LUTs.md",
-    "daily/2024-05-21.md",
     "Книга «PostgreSQL 11. Мастерство разработки», Ганс-Юрген Шёниг.md",
     "Python for vs while loop performance.md",
     "Python.md",
@@ -174,7 +175,6 @@
     "Odyssey.md",
     "Bandit Python library.md",
     "Сергей Шляков.md",
-    "Поиск запросов для оптимизации в PostgreSQL.md",
     "projects",
     "daily",
     "types",
