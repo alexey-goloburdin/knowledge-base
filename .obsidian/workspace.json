@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-22.md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-22.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md",
+                "file": "daily/2024-05-22.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Сценарий дополнений про Nested Loops.md"
+                "file": "daily/2024-05-22.md"
               }
             }
           }
@@ -148,33 +148,33 @@
   },
   "active": "13f406937d56aa8e",
   "lastOpenFiles": [
-    "daily/2024-05-22.md",
-    "Magsafe чехол для SSD на iPhone.md",
-    "Пост Мегафон МТС Билайн Теле2 курс.md",
-    "daily/2024-05-21.md",
-    "daily/2024-05-20.md",
-    "daily/2024-05-19.md",
-    "daily/2024-05-18.md",
-    "daily/2024-05-17.md",
-    "daily/2024-05-16.md",
-    "Сценарий дополнений про Nested Loops.md",
-    "LUTs.md",
-    "Книга «PostgreSQL 11. Мастерство разработки», Ганс-Юрген Шёниг.md",
-    "Python for vs while loop performance.md",
-    "Python.md",
-    "Salesbeat loaders params in Yandex cloud.md",
-    "Снимок экрана 2024-05-20 в 15.51.23.png",
-    "Оптимизация запросов в PostgreSQL.md",
-    "types/Сценарий.md",
-    "Книга «Начинаем программировать на Python», 5 изд, Тони Гэддис.md",
-    "projects/Курс Хардкорная веб-разработка.md",
-    "Книга «Совершенный код», Стив Макконнелл.md",
-    "Запись РИТ++ 2015 конференция по бизнесу.md",
-    "Джосайя Кавиани.md",
+    "Антон Зайцев.md",
+    "types/Бизнес.md",
     "Видео «Производительность запросов в PostgreSQL. Илья Космодемьянский (PostgreSQL Consulting)».md",
-    "PostgreSQL.md",
-    "PgBouncer.md",
+    "Джосайя Кавиани.md",
+    "Запись РИТ++ 2015 конференция по бизнесу.md",
+    "Книга «Начинаем программировать на Python», 5 изд, Тони Гэддис.md",
+    "Книга «Совершенный код», Стив Макконнелл.md",
+    "Книга «PostgreSQL 11. Мастерство разработки», Ганс-Юрген Шёниг.md",
+    "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
+    "Книга «Python с нуля», Пётр Левашов.md",
+    "Михаил Фленов.md",
+    "Не использовать много соединений к PostgreSQL.md",
+    "Не отключать autovacuum в PostgreSQL.md",
+    "Никита Постнов.md",
+    "Оптимизация запросов в PostgreSQL.md",
+    "Поиск запросов для оптимизации в PostgreSQL.md",
+    "Пост Мегафон МТС Билайн Теле2 курс.md",
+    "Сергей Шляков.md",
+    "types/Пост.md",
+    "Сценарий дополнений про Nested Loops.md",
+    "types/Сценарий.md",
+    "Bandit Python library.md",
+    "Magsafe чехол для SSD на iPhone.md",
     "Odyssey.md",
+    "OWASP.md",
+    "types/PostgreSQL.md",
+    "Снимок экрана 2024-05-20 в 15.51.23.png",
     "projects",
     "daily",
     "types",
