@@ -18,8 +18,21 @@
                 "source": false
               }
             }
+          },
+          {
+            "id": "7c01076f05bd3381",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "Magsafe чехол для SSD на iPhone.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "daily/2024-05-22.md",
+                "file": "Magsafe чехол для SSD на iPhone.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "daily/2024-05-22.md",
+                "file": "Magsafe чехол для SSD на iPhone.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "daily/2024-05-22.md"
+                "file": "Magsafe чехол для SSD на iPhone.md"
               }
             }
           }
@@ -146,11 +159,13 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "13f406937d56aa8e",
+  "active": "7c01076f05bd3381",
   "lastOpenFiles": [
-    "daily/2024-05-20.md",
-    "daily/2024-05-21.md",
     "daily/2024-05-22.md",
+    "Magsafe чехол для SSD на iPhone.md",
+    "Пост Мегафон МТС Билайн Теле2 курс.md",
+    "daily/2024-05-21.md",
+    "daily/2024-05-20.md",
     "daily/2024-05-19.md",
     "daily/2024-05-18.md",
     "daily/2024-05-17.md",
@@ -173,8 +188,6 @@
     "PostgreSQL.md",
     "PgBouncer.md",
     "Odyssey.md",
-    "Bandit Python library.md",
-    "Сергей Шляков.md",
     "projects",
     "daily",
     "types",
