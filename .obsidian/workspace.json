@@ -8,12 +8,12 @@
         "type": "tabs",
         "children": [
           {
-            "id": "13f406937d56aa8e",
+            "id": "47a4a8fc72654b6d",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-22.md",
+                "file": "daily/2024-05-23.md",
                 "mode": "source",
                 "source": false
               }
@@ -69,7 +69,8 @@
       }
     ],
     "direction": "horizontal",
-    "width": 240.5
+    "width": 240.5,
+    "collapsed": true
   },
   "right": {
     "id": "f2996cf528bc65a1",
@@ -85,7 +86,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "daily/2024-05-22.md",
+                "file": "daily/2024-05-23.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +103,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "daily/2024-05-22.md",
+                "file": "daily/2024-05-23.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +126,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "daily/2024-05-22.md"
+                "file": "daily/2024-05-23.md"
               }
             }
           }
@@ -146,19 +147,27 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "13f406937d56aa8e",
+  "active": "47a4a8fc72654b6d",
   "lastOpenFiles": [
+    "Международные банковские карты для оплаты.md",
+    "daily/2024-05-23.md",
+    "Книга «Совершенный код», Стив Макконнелл.md",
+    "Михаил Фленов.md",
+    "daily/2024-05-22.md",
+    "Сценарий дополнений про Nested Loops.md",
+    "Chrome dev tools удобные API.md",
+    "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
+    "Проработать в курсе.md",
+    "projects/Курс Хардкорная веб-разработка.md",
+    "types/Frontend.md",
     "Антон Зайцев.md",
     "types/Бизнес.md",
     "Видео «Производительность запросов в PostgreSQL. Илья Космодемьянский (PostgreSQL Consulting)».md",
     "Джосайя Кавиани.md",
     "Запись РИТ++ 2015 конференция по бизнесу.md",
     "Книга «Начинаем программировать на Python», 5 изд, Тони Гэддис.md",
-    "Книга «Совершенный код», Стив Макконнелл.md",
     "Книга «PostgreSQL 11. Мастерство разработки», Ганс-Юрген Шёниг.md",
-    "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
     "Книга «Python с нуля», Пётр Левашов.md",
-    "Михаил Фленов.md",
     "Не использовать много соединений к PostgreSQL.md",
     "Не отключать autovacuum в PostgreSQL.md",
     "Никита Постнов.md",
@@ -166,14 +175,6 @@
     "Поиск запросов для оптимизации в PostgreSQL.md",
     "Пост Мегафон МТС Билайн Теле2 курс.md",
     "Сергей Шляков.md",
-    "types/Пост.md",
-    "Сценарий дополнений про Nested Loops.md",
-    "types/Сценарий.md",
-    "Bandit Python library.md",
-    "Magsafe чехол для SSD на iPhone.md",
-    "Odyssey.md",
-    "OWASP.md",
-    "types/PostgreSQL.md",
     "Снимок экрана 2024-05-20 в 15.51.23.png",
     "projects",
     "daily",
