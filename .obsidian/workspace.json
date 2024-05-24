@@ -4,35 +4,22 @@
     "type": "split",
     "children": [
       {
-        "id": "29dd3bd0e47ea560",
+        "id": "1837b7f2b9b81db8",
         "type": "tabs",
         "children": [
           {
-            "id": "e80cf6d1d372c28b",
+            "id": "7379fb3a7220b3b1",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-24.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "df8f20dac7b3c680",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "Nginx ssl certificate order.md",
+                "file": "Книга «Обучение со смыслом. 13 правил для тех, кто учит взрослых», Елена Тихомирова.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Nginx ssl certificate order.md",
+                "file": "Книга «Обучение со смыслом. 13 правил для тех, кто учит взрослых», Елена Тихомирова.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Nginx ssl certificate order.md",
+                "file": "Книга «Обучение со смыслом. 13 правил для тех, кто учит взрослых», Елена Тихомирова.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Nginx ssl certificate order.md"
+                "file": "Книга «Обучение со смыслом. 13 правил для тех, кто учит взрослых», Елена Тихомирова.md"
               }
             }
           }
@@ -159,18 +146,24 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "df8f20dac7b3c680",
+  "active": "7379fb3a7220b3b1",
   "lastOpenFiles": [
-    "Nginx ssl certificate order.md",
-    "daily/2024-05-24.md",
+    "daily/2024-05-22.md",
+    "Книга «Обучение со смыслом. 13 правил для тех, кто учит взрослых», Елена Тихомирова.md",
+    "Книга «Код, который умещается в голове», Симан Марк.md",
+    "daily/2024-05-18.md",
+    "daily/2024-05-19.md",
+    "daily/2024-05-20.md",
+    "daily/2024-05-21.md",
     "daily/2024-05-23.md",
+    "daily/2024-05-24.md",
+    "Nginx ssl certificate order.md",
     "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
     "Пост Мегафон МТС Билайн Теле2 курс.md",
     "Шаблоны ответов.md",
     "Международные банковские карты для оплаты.md",
     "Книга «Совершенный код», Стив Макконнелл.md",
     "Михаил Фленов.md",
-    "daily/2024-05-22.md",
     "Сценарий дополнений про Nested Loops.md",
     "Chrome dev tools удобные API.md",
     "Проработать в курсе.md",
@@ -181,12 +174,6 @@
     "Видео «Производительность запросов в PostgreSQL. Илья Космодемьянский (PostgreSQL Consulting)».md",
     "Джосайя Кавиани.md",
     "Запись РИТ++ 2015 конференция по бизнесу.md",
-    "Книга «Начинаем программировать на Python», 5 изд, Тони Гэддис.md",
-    "Книга «PostgreSQL 11. Мастерство разработки», Ганс-Юрген Шёниг.md",
-    "Книга «Python с нуля», Пётр Левашов.md",
-    "Не использовать много соединений к PostgreSQL.md",
-    "Не отключать autovacuum в PostgreSQL.md",
-    "Никита Постнов.md",
     "Снимок экрана 2024-05-20 в 15.51.23.png",
     "projects",
     "daily",
