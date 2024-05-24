@@ -25,7 +25,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "nginx ssl certificate order.md",
+                "file": "Nginx ssl certificate order.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "nginx ssl certificate order.md",
+                "file": "Nginx ssl certificate order.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "nginx ssl certificate order.md",
+                "file": "Nginx ssl certificate order.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "nginx ssl certificate order.md"
+                "file": "Nginx ssl certificate order.md"
               }
             }
           }
@@ -161,7 +161,7 @@
   },
   "active": "df8f20dac7b3c680",
   "lastOpenFiles": [
-    "nginx ssl certificate order.md",
+    "Nginx ssl certificate order.md",
     "daily/2024-05-24.md",
     "daily/2024-05-23.md",
     "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
