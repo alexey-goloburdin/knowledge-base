@@ -13,7 +13,7 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-24.md",
+                "file": "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
                 "mode": "source",
                 "source": false
               }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "daily/2024-05-24.md",
+                "file": "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "daily/2024-05-24.md",
+                "file": "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "daily/2024-05-24.md"
+                "file": "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md"
               }
             }
           }
@@ -148,9 +148,9 @@
   },
   "active": "7379fb3a7220b3b1",
   "lastOpenFiles": [
+    "daily/2024-05-24.md",
     "daily/2024-05-22.md",
     "daily/2024-05-23.md",
-    "daily/2024-05-24.md",
     "Книга «Изучаем PostgreSQL 10», Салахалдин Джуба, Андрей Волков.md",
     "Книга «Кодер с улицы. Правила нарушать рекомендуется», Капаноглу Седат.md",
     "Книга «PostgreSQL SQL + PL-pgSQL для тех, кто хочет стать профессионалом», Ткачев О.А..md",
