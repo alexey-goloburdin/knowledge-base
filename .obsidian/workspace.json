@@ -13,26 +13,13 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-22.md",
-                "mode": "source",
-                "source": false
-              }
-            }
-          },
-          {
-            "id": "2326d19e3072329a",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
                 "file": "daily/2024-05-24.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -159,10 +146,12 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "2326d19e3072329a",
+  "active": "7379fb3a7220b3b1",
   "lastOpenFiles": [
-    "Книга «Изучаем PostgreSQL 10», Салахалдин Джуба, Андрей Волков.md",
     "daily/2024-05-22.md",
+    "daily/2024-05-23.md",
+    "daily/2024-05-24.md",
+    "Книга «Изучаем PostgreSQL 10», Салахалдин Джуба, Андрей Волков.md",
     "Книга «Кодер с улицы. Правила нарушать рекомендуется», Капаноглу Седат.md",
     "Книга «PostgreSQL SQL + PL-pgSQL для тех, кто хочет стать профессионалом», Ткачев О.А..md",
     "Книга «Оптимизация запросов в PostgreSQL», Домбровская Г., Новиков Б., Бейликова А..md",
@@ -174,8 +163,6 @@
     "daily/2024-05-19.md",
     "daily/2024-05-20.md",
     "daily/2024-05-21.md",
-    "daily/2024-05-23.md",
-    "daily/2024-05-24.md",
     "Nginx ssl certificate order.md",
     "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
     "Пост Мегафон МТС Билайн Теле2 курс.md",
