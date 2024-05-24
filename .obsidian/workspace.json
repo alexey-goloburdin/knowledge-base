@@ -8,24 +8,24 @@
         "type": "tabs",
         "children": [
           {
-            "id": "47a4a8fc72654b6d",
+            "id": "e80cf6d1d372c28b",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "daily/2024-05-23.md",
+                "file": "daily/2024-05-24.md",
                 "mode": "source",
                 "source": false
               }
             }
           },
           {
-            "id": "e80cf6d1d372c28b",
+            "id": "df8f20dac7b3c680",
             "type": "leaf",
             "state": {
               "type": "markdown",
               "state": {
-                "file": "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
+                "file": "nginx ssl certificate order.md",
                 "mode": "source",
                 "source": false
               }
@@ -98,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
+                "file": "nginx ssl certificate order.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
+                "file": "nginx ssl certificate order.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md"
+                "file": "nginx ssl certificate order.md"
               }
             }
           }
@@ -159,12 +159,13 @@
       "command-palette:Открыть палитру команд": false
     }
   },
-  "active": "e80cf6d1d372c28b",
+  "active": "df8f20dac7b3c680",
   "lastOpenFiles": [
-    "daily/2024-05-23.md",
-    "Без названия.md",
-    "Пост Мегафон МТС Билайн Теле2 курс.md",
+    "nginx ssl certificate order.md",
     "daily/2024-05-24.md",
+    "daily/2024-05-23.md",
+    "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
+    "Пост Мегафон МТС Билайн Теле2 курс.md",
     "Шаблоны ответов.md",
     "Международные банковские карты для оплаты.md",
     "Книга «Совершенный код», Стив Макконнелл.md",
@@ -172,7 +173,6 @@
     "daily/2024-05-22.md",
     "Сценарий дополнений про Nested Loops.md",
     "Chrome dev tools удобные API.md",
-    "Книга «PostgreSQL 16 изнутри», Рогов Е. В..md",
     "Проработать в курсе.md",
     "projects/Курс Хардкорная веб-разработка.md",
     "types/Frontend.md",
