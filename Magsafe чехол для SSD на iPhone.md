@@ -3,4 +3,4 @@ Hagibis M2 SSD Enclosure
 
 https://www.youtube.com/shorts/LMwSZxGgnlA
 
-[[съёмка видео]]
+[[Съёмка видео]]
