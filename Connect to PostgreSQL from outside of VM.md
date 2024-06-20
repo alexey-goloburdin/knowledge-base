@@ -6,7 +6,7 @@
 3. Отлично, затем редактируем первый конфиг:
 	- `sudo vim /etc/postgresql/16/main/postgresql.conf`
 		- `listen_addresses = '*'`
-4. Затем редактируем второй конфиг (разрешаем пользователю rroom коннект с любых IP — актуально только для dev-среды):
+4. Затем редактируем второй конфиг (разрешаем пользователю `rroom` коннект с любых IP — актуально только для dev-среды):
 	- `sudo vim /etc/postgresql/16/main/pg_hba.conf`
 		- `host    all             rroom          0.0.0.0/0            md5`
 5. Рестартим сервер PostgreSQL:
