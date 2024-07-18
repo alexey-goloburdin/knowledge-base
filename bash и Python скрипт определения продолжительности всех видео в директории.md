@@ -1,3 +1,5 @@
+# Bash
+
 ```bash
 #!/bin/bash
 
@@ -38,6 +40,49 @@ seconds=$((total_duration % 60))
 
 # Вывод общей длительности
 printf "Общая длительность всех видео: %02d:%02d:%02d\n" $hours $minutes $seconds
+```
+
+# Python
+
+```python
+import os
+import subprocess
+import re
+
+def get_duration(filename):
+    result = subprocess.run(
+        ["ffmpeg", "-i", filename],
+        stderr=subprocess.PIPE,
+        stdout=subprocess.PIPE,
+        text=True
+    )
+    duration_match = re.search(r'Duration: (\d+):(\d+):(\d+\.\d+)', result.stderr)
+    if duration_match:
+        hours, minutes, seconds = map(float, duration_match.groups())
+        total_seconds = int(hours * 3600 + minutes * 60 + seconds)
+        return total_seconds
+    return 0
+
+def convert_to_hms(seconds):
+    hours = seconds // 3600
+    minutes = (seconds % 3600) // 60
+    seconds = seconds % 60
+    return hours, minutes, seconds
+
+def main():
+    total_duration = 0
+    for filename in os.listdir('.'):
+        if os.path.isfile(filename):
+            duration = get_duration(filename)
+            if duration:
+                print(f"Файл: {filename}, Длительность: {duration} секунд")
+                total_duration += duration
+
+    hours, minutes, seconds = convert_to_hms(total_duration)
+    print(f"Общая длительность всех видео: {hours:02}:{minutes:02}:{seconds:02}")
+
+if __name__ == "__main__":
+    main()
 ```
 
 [[Tools]]
