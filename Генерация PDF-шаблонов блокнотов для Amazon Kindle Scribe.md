@@ -44,6 +44,3 @@ duplicate_pdf_page(input_pdf_path, output_pdf_path, number_of_copies)
 
 
 [[Tools]]
-
-
-
