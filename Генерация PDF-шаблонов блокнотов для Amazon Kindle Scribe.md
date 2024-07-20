@@ -16,6 +16,7 @@ Color: dddddd
 ## Создать многостраничный PDF
 
 ```python
+# pip install pypdf2
 from PyPDF2 import PdfReader, PdfWriter
 
 def duplicate_pdf_page(input_pdf_path, output_pdf_path, number_of_copies):
