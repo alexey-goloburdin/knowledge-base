@@ -22,7 +22,6 @@ conn = http.client.HTTPSConnection(url)
 headers = {'Content-type': 'application/json'}
 conn.request("POST", endpoint, body=json_data, headers=headers)
 response = conn.getresponse()
-
 conn.close()
 ```
 
