@@ -6,3 +6,5 @@ chrome://flags/#enable-quic
 
 https://joyreactor.cc/post/5884959
 
+https://github.com/ValdikSS/GoodbyeDPI/issues/378
+
