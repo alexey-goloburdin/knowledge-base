@@ -1,6 +1,9 @@
 https://startpage.com, Visit in Anonymous View
 
-https://habr.com/ru/articles/799751/ — обзорная статья 
+https://habr.com/ru/articles/799751/ — обзорная статья
+
+![[статья про xray.pdf]]
+
 
 >[!info] Коммент [отсюда](https://habr.com/ru/articles/832678/):
 >
