@@ -17,7 +17,6 @@ https://github.com/ValdikSS/GoodbyeDPI/issues/378
 
 https://habr.com/ru/articles/771892/
 
-
 Рекомендуемые клиенты для устройств:
 
 iOS:  
