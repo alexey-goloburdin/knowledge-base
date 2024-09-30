@@ -12,4 +12,12 @@ create database rroom_db
 	owner rroom;
 ```
 
+Если есть проблемы с локалями:
+
+```bash
+sudo apt-get install -y locales
+sudo locale-gen ru_RU.UTF-8
+sudo dpkg-reconfigure locales
+```
+
 [[PostgreSQL]]
