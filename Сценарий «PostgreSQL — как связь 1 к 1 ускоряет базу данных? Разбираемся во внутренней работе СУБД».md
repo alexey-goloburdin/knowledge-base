@@ -99,7 +99,7 @@ sudo apt install -y pgcli
 pgcli -h localhost -U sterx -d wide_tables
 ```
 
-Отлично, теперь создадим
+Отлично, теперь создадим широкую таблицу и наполним её данными. Ссылку на скрипты я приложу в описании видео.
 
 ```sql
 create table employee (
@@ -178,7 +178,7 @@ SELECT
     CASE WHEN random() < 0.5 THEN repeat('Hardworking', 50) ELSE repeat('Punctual', 50) END,
     -- Случайное значение корпоративного счёта
     (random() * 5000)::int,
-    -- some_bullshit fields
+    -- Случайные значения полей some_bullshit
 	substr(md5(random()::text), 1, 10), substr(md5(random()::text), 1, 10),
 	substr(md5(random()::text), 1, 10), substr(md5(random()::text), 1, 10),
 	substr(md5(random()::text), 1, 10), substr(md5(random()::text), 1, 10),
@@ -220,7 +220,7 @@ where department_id='HR' order by employment_date limit 20;
 -- Execution Time: 234.087 ms
 ```
 
-Здесь мы видим buffers shared hit — это прочитанные из буферного кеша страницы, а read это прочитаные из файловой системы страницы. Как видим, было прочитано почти 85 тысяч страниц с диска.
+Здесь мы видим buffers shared hit — это прочитанные из буферного кеша страницы, а read это прочитанные из файловой системы страницы. Как видим, было прочитано 142 тысячи страниц с диска.
 
 Теперь смотрим на нормализованные узкие таблицы:
 
