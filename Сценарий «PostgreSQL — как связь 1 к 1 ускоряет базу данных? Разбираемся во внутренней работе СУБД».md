@@ -1,5 +1,9 @@
 Как хранит данные Postgres и как использовать это знание для увеличения производительности запросов?
 
+Один к одному — фигачьте всё в 1 таблицу, как говорят некоторые специалисты, в том числе, например, Владимир Хориков, автор отличной книги о юнит-тестировании и автор блога https://enterprisecraftsmanship.com/. Он [пишет](https://enterprisecraftsmanship.com/posts/modeling-relationships-in-ddd-way/) в статье о моделировании отношений в DDD следующее: «Такие отношения совершенно не нужны. Вы не получите от них никакой пользы. Единственное, что делают отношения «один к одному», - это загромождают вашу базу данных. Если две таблицы соотносятся друг с другом как один к одному, объедините их в одну таблицу».
+
+Так ли это? Попробуем разобраться в этом видео, прям вот потыкаем, проведём эксперименты, разберёмся, как работает база данных изнутри, как она хранит данные и достаёт их и может ли связь один к одному быть полезной. В видео есть таймкоды, можете прыгать на интересующую вас часть
+
 ## Настройка
 
 Чистый Debian 12. Ставим актуальный вышедший недавно PostgreSQL 17.
@@ -511,36 +515,31 @@ select first_name, last_name from wide_employee;
 
 ## Дальше
 
+Проверить когда достаём по PK, что получается.
+
+Ребутаем сервер.
+
+Широкая таблица:
 
 ```sql
--- from postgres user
-create extension pg_buffercache;
-
--- see used and unused buffers count
-select * from pg_buffercache_summary();
-
-show work_mem;
-set work_mem='128MB';
-
-EXPLAIN (analyze, buffers)
-SELECT employee_id, first_name, last_name FROM wide_employee where department_id='HR' order by employment_date limit 20;
--- Buffers: shared hit=114 read=248062
--- Execution Time: 1370.851 ms
--- памяти work_mem хватает
-
--- sudo systemctl restart postgresql
-EXPLAIN (analyze, buffers)
-
-SELECT e.employee_id, e.first_name, e.last_name
-FROM employee e
-JOIN employee_hierarchy eh ON e.employee_id = eh.employee_id
-WHERE department_id='HR' order by employment_date limit 20;
--- уходим в файловый кеш, ребутаем и поднимаем work_mem до 128MB
--- Buffers: shared hit=138 read=85877
--- Execution Time: 1453.068 ms
+explain (analyze, buffers)
+select employee_id, first_name, last_name
+from employee
+WHERE employee_id=12381
+-- Buffers: shared hit=3 read=4
+-- Execution Time: 0.082 ms
 ```
 
-Проверить когда достаём по PK, что получается
+Узкие таблицы:
+
+```sql
+EXPLAIN (analyze, buffers)
+SELECT e.employee_id, e.first_name, e.last_name
+FROM employee e
+WHERE employee_id=12381
+-- uffers: shared hit=3 read=4
+-- Execution Time: 0.070 ms
+```
 
 Сравнить размер СУБД (с учетом индексов PK)
 Сказать про сценарий является и владеет (или как-то так)
@@ -554,12 +553,15 @@ WHERE department_id='HR' order by employment_date limit 20;
 
 ```sql
 SELECT pg_size_pretty(pg_database_size('wide_tables')) AS db_size;
--- 696 MB
+-- 1145 MB
 SELECT pg_size_pretty(pg_database_size('norm_tables')) AS db_size;
--- 855 MB
+-- 1336 MB
 ```
 
 Да, узкие таблицы занимают больше места на диске. Как минимум поля первичных ключей и их индексы дублируются в каждой таблице. Является ли это проблемой — в каждом конкретном случае решать вам.
 
+Юзеры — и расширяющие их таблицы видов юзеров, например, клиенты компании и сотрудники компании.
+
+много null-значений
 
 [[Сценарий]]
