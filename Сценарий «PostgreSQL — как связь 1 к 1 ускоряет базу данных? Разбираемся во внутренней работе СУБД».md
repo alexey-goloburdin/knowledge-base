@@ -1,4 +1,4 @@
-Здоров, котаны, поговорим в этом видео о недооценённой связи таблиц в реляционных базах данных один к одному, о том, как связь один к одному может ускорить вашу базу данных на примере PostgreSQL и упростить разработку.
+Здоров, котаны, поговорим в этом видео о недооценённой связи таблиц в реляционных базах данных — один к одному, о том, как связь один к одному может ускорить вашу базу данных на примере PostgreSQL и упростить разработку.
 
 Есть мнение, что связи один ко многим и многие ко многим необходимы, а связь один к одному, вообще говоря, лишняя. Потому что можно просто не разносить данные по разным таблицам, а собрать их в одной таблице и всё. Напомню, что связь один к одному это когда одной записи одной таблицы соответствует одна запись в другой таблице. Соответственно технически можно просто собрать это всё в одной таблице и не разносить по разным.
 
@@ -17,7 +17,7 @@
 >
 >Я, кстати, был в дата-центре Selectel в Санкт-Петербурге и это, конечно, очень мощное зрелище. Там столько нюансов — начиная от выделенной линии электропитания прямо от электростанции до всяких хитрых систем вентиляции и шумоизоляции серверных, систем быстрого пожаротушения и прочего. Ну и сам вид огромных шкафов с серверами и мигающими светодиодами внушает... я бы даже сказал трепет. Смотришь и понимаешь, что вот он — век информации, а в этих дата-центрах его сердце. Да:)
 >
->Регистрируйтесь по ссылке в описании и приходите на Selectel Tech Day 10 октября в центре событий в Москве. До встречи!
+>Регистрируйтесь по ссылке в описании и приходите на Selectel Tech Day 10 октября в центре событий РБК в Москве. До встречи!
 
 Итак, давай на Selectel новый сервер. Чистый Debian 12, 2 vCPU, 4 GB RAM, 30 GB HDD.
 
@@ -367,11 +367,7 @@ SELECT
 	substr(md5(random()::text), 1, 10)
 FROM generate_series(1, 1000000) AS gs;
 
-VACUUM FULL ANALYZE employee;
-VACUUM FULL ANALYZE employee_contact;
-VACUUM FULL ANALYZE employee_hierarchy;
-VACUUM FULL ANALYZE employee_accounting;
-VACUUM FULL ANALYZE employee_some_bullshit;
+VACUUM FULL ANALYZE employee, employee_contact, employee_hierarchy, employee_accounting, employee_some_bullshit;
 
 EXPLAIN (analyze, buffers)
 SELECT e.employee_id, e.first_name, e.last_name
@@ -483,15 +479,15 @@ sudo ls -l /var/lib/postgresql/16/main
 ```sql
 SELECT pg_database.datname, pg_tablespace_location(pg_database.dattablespace) AS tablespace_location
 FROM pg_database
-WHERE datname = 'birds';
+WHERE datname = 'wide_tables';
 ```
 
-Видим пустой `tablespace_location`, значит, используется стандартное табличное пространство. Его расположение это директория `base` в `data_directory`, то есть `/var/lib/postgresql/16/main/base`. Отлично!
+Видим пустой `tablespace_location`, значит, используется стандартное табличное пространство. Его расположение это директория `base` в `data_directory`, то есть `/var/lib/postgresql/17/main/base`. Отлично!
 
 А где там данные нашей БД? Для этого можно достать идентификатор этой БД:
 
 ```sql
-SELECT oid FROM pg_database WHERE datname = 'birds';
+SELECT oid FROM pg_database WHERE datname = 'wide_tables';
 -- 32774
 ```
 
