@@ -498,7 +498,7 @@ SELECT oid FROM pg_database WHERE datname = 'wide_tables';
 Как посмотреть, где лежат данные таблицы?
 
 ```sql
-select pg_relation_filepath('wide_employee');
+select pg_relation_filepath('employee');
 --  base/32774/74776
 ```
 
@@ -522,7 +522,7 @@ sudo ls -l /var/lib/postgresql/16/main/base/32774 | grep 74776
 Там могут быть еще файлы fsm — карта свободного пространства, и файлы vm — карта видимости.
 
 ```sql
-update wide_employee set email='tmp@example.com' where employee_id =1;
+update employee set email='tmp@example.com' where employee_id =1;
 ```
 
 Посмотрим файлы:
