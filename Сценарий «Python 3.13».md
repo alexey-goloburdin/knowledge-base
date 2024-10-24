@@ -1,0 +1,9 @@
+# Links:
+- https://proglib.io/p/zmeya-sbrosila-staruyu-kozhu-chto-novogo-v-python-3-13-2024-05-10
+- https://www.opennet.ru/opennews/art.shtml?num=62009
+- https://www.youtube.com/watch?v=v9cT2empLXY
+- https://www.youtube.com/watch?v=Zxp8KvKjWz4
+- https://realpython.com/python313-new-features/
+- https://docs.python.org/3/
+- https://habr.com/ru/news/813271/
+- https://www.youtube.com/watch?v=TRgtRa6XuPs
