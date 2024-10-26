@@ -7,3 +7,5 @@
 - https://docs.python.org/3/
 - https://habr.com/ru/news/813271/
 - https://www.youtube.com/watch?v=TRgtRa6XuPs
+- https://www.youtube.com/watch?v=kVCTHuWwCR0
+- 
