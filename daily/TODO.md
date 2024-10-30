@@ -1,4 +1,3 @@
-- [ ] запили видос по проверке статусов возвратов для клаудов https://developers.cloudpayments.ru/#prosmotr-tranzaktsii
 - [ ] сделать выгрузку мейлов по неуспешным оплатам из клаудов
 	- [ ] написать им всем
 - [ ] изучить возможность подключения курса к [кредитованию сбера](https://www.sberbank.com/ru/person/credits/money/credit_na_obrazovanie?tab=request%D1%8E) с частичным погашением от гос-ва
