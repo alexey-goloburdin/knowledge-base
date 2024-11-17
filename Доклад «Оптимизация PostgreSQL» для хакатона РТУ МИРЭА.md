@@ -147,4 +147,35 @@ from pg_class where relname='wide_employee';
 |1 000 000|0.01           |10 000|
 ```
 
-Складываем эти 2 числа, получаем стоимость этого узла — последовательного сканирования всей таблицы `wide_employee`. 95 363 — ровно ту стоимость, которую мы видим в `EXPLAIN ANALYZE`. Скажите, круто? Никакой магии. Вот так появляется эта стои
+Складываем эти 2 числа, получаем стоимость этого узла — последовательного сканирования всей таблицы `wide_employee`. 95 363 — ровно ту стоимость, которую мы видим в `EXPLAIN ANALYZE`. Скажите, круто? Никакой магии. Вот так появляется эта стоимость.
+
+Пример с агрегацией для небольшой таблицы (для большой план будет сложнее):
+
+```sql
+explain analyze
+select count(*) from observations;
+
+Aggregate  (cost=1.43..1.44 rows=1 width=8) (actual time=0.038..0.038 rows=1 loops=1)
+  ->  Seq Scan on observations  (cost=0.00..1.34 rows=34 width=0) (actual time=0.028..0.031 rows=34 loops=1)
+Planning Time: 0.186 ms
+Execution Time: 0.064 ms
+```
+
+Тут есть узел Seq Scan и его данные передаются в верхний узел Aggregate. Причем минимальная стоимость узла Aggregate зависит от полной стоимости нижележащего узла, нечего агрегировать, пока все данные не получены.
+
+Если посмотрим на `count` от большой таблицы — там будет другой план:
+
+```sql
+explain analyze
+select count(*) from wide_employee;
+
+Finalize Aggregate  (cost=22188.97..22188.98 rows=1 width=8) (actual time=95.821..95.860 rows=1 loops=1)
+  ->  Gather  (cost=22188.76..22188.97 rows=2 width=8) (actual time=95.815..95.856 rows=3 loops=1)
+        Workers Planned: 2
+        Workers Launched: 2
+        ->  Partial Aggregate  (cost=21188.76..21188.77 rows=1 width=8) (actual time=85.843..85.843 rows=1 loops=3)
+              ->  Parallel Index Only Scan using wide_employee_pkey on wide_employee  (cost=0.42..20147.09 rows=416667 width=0) (actual time=0.116..57.502 rows=333333 loops=3)
+                    Heap Fetches: 0
+Planning Time: 0.349 ms
+Execution Time: 96.032 ms
+```
