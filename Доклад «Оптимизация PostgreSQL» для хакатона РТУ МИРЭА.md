@@ -38,21 +38,99 @@ https://rutube.ru/video/80851eb98742fac5a7b42325edaf5a69/?playlist=452238
 
 Стоимость плана — количество тактов процессора и количество IO-операций, то есть операций считывания и записи страниц
 
+Единица стоимости — [стоимость чтения одной странички](https://rutube.ru/video/7b35a0eaf75abb38f5962d99ed064a84/?playlist=452238) (10:35). Стоимость складывается из стоимости операций ввода-вывода и стоимости ресурсов процессора.
+
+Создадим табличку для тестов:
+
+```sql
+create table wide_employee (
+    employee_id bigint generated always as identity primary key,
+    first_name text,
+    last_name text,
+    phone text,
+    email text,
+    address text,
+    office_id bigint,
+    department_id text,
+    employment_date date,
+    grade smallint,
+    referral_id bigint,
+    salary bigint,
+    photo_url text,
+    notes text,
+    corporate_money int
+);
+
+INSERT INTO wide_employee (
+    first_name, last_name, phone, email, address, office_id, department_id,
+    employment_date, grade, referral_id, salary, photo_url, notes, corporate_money
+)
+SELECT 
+    -- Случайное имя
+    substr(md5(random()::text), 1, 8),
+    -- Случайная фамилия
+    substr(md5(random()::text), 1, 10),
+    -- Случайный номер телефона
+    format('(%s) %s-%s', (random() * 900 + 100)::int, (random() * 900 + 100)::int, (random() * 9000 + 1000)::int),
+    -- Случайный email
+    substr(md5(random()::text), 1, 6) || '@example.com',
+    -- Случайный адрес
+    format('%s %s St', (random() * 999)::int, substr(md5(random()::text), 1, 6)),
+    -- Случайный идентификатор офиса
+    (random() * 10 + 1)::int,
+    -- Случайный отдел
+    CASE WHEN (random() < 0.33) THEN 'HR'
+         WHEN (random() < 0.66) THEN 'IT'
+         ELSE 'Finance' END,
+    -- Случайная дата найма
+    '2015-01-01'::date + (random() * 2000)::int,
+    -- Случайная оценка (grade)
+    (random() * 10 + 1)::int,
+    -- Случайный идентификатор рекомендателя
+    (random() * 500 + 100)::int,
+    -- Случайная зарплата
+    (random() * 100000 + 40000)::int,
+    -- Случайный URL фотографии
+    'http://example.com/photo' || (random() * 10000)::int || '.jpg',
+    -- Случайные заметки
+    CASE WHEN random() < 0.5 THEN repeat('Hardworking', 50) ELSE repeat('Punctual', 50) END,
+    -- Случайное значение корпоративного счёта
+    (random() * 5000)::int
+FROM generate_series(1, 1000000) AS gs; -- миллион записей
+
+VACUUM FULL ANALYZE wide_employee;
+```
+
+Стоимость полного сканирования таблицы, то есть прочесть все её данные:
+
+```sql
+explain (analyze, buffers) select * from wide_employee;
+
+Seq Scan on wide_employee  (cost=0.00..95363.00 rows=1000000 width=624) (actual time=0.010..144.900 rows=1000000 loops=1)
+Planning Time: 0.251 ms
+Execution Time: 171.970 ms
+```
+
 >[!info] Цифры в explain
-> cost 0..4772. Стоимость начала выполнения работы — то есть стоимость подготовительных работ (тут они не нужны), и второе число это стоимость выполнения всей работы
+> cost 0..95363. Стоимость начала выполнения работы — то есть стоимость подготовительных работ (тут они не нужны), и второе число это стоимость выполнения всей работы
 > 
 > rows — количество строк
 > 
 > width в eplain — размер 1 строки в байтах (нам эта цифра не интересна — смотрим на количество строк и стоимость)
 
-Единица стоимости — [стоимость чтения одной странички](https://rutube.ru/video/7b35a0eaf75abb38f5962d99ed064a84/?playlist=452238) (10:35). Стоимость складывается из стоимости операций ввода-вывода и стоимости ресурсов процессора. Стоимость ввода-вывода:
+
+Стоимость ввода-вывода:
 
 ```sql
 select
-	relpages, -- количство страниц таблицы (её оценка в статистике)
+	relpages, -- количество страниц таблицы (её оценка в статистике)
 	current_setting('seq_page_cost'), -- стоимость чтения одной страницы
-	relpages * current_setting('seq_page_cost') as total -- итог
-from pg_class where relname='table_name';
+	relpages * current_setting('seq_page_cost')::int as total -- итог
+from pg_class where relname='wide_employee';
+
+|relpages|current_setting|total |
+|--------|---------------|------|
+|85 363  |1              |85 363|
 ```
 
 Стоимость ресурсов процессора:
@@ -61,9 +139,12 @@ from pg_class where relname='table_name';
 select
 	reltuples, -- количество строк
 	current_setting('cpu_tuple_cost'), -- стоимость обработки одной строки
-	reltuples * current_setting('cpu_tuple_cost') as total -- итог
-from pg_class where relname='table_name';
+	reltuples * current_setting('cpu_tuple_cost')::float as total -- итог
+from pg_class where relname='wide_employee';
+
+|reltuples|current_setting|total |
+|---------|---------------|------|
+|1 000 000|0.01           |10 000|
 ```
 
-Складываем эти 2 числа, получаем стоимость этого узла — последовательного сканирования всей таблицы `table_name`.
-
+Складываем эти 2 числа, получаем стоимость этого узла — последовательного сканирования всей таблицы `wide_employee`. 95 363 — ровно ту стоимость, которую мы видим в `EXPLAIN ANALYZE`. Скажите, круто? Никакой магии. Вот так появляется эта стои
