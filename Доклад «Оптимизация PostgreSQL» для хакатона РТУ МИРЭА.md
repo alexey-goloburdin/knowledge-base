@@ -254,4 +254,19 @@ https://rutube.ru/video/f338430ff0864953a0f18c5f48f0ca49/?playlist=452238
 ```sql
 create extension pg_stat_statements;
 alter system set shared_preload_libraries = 'pg_stat_statements';
+
+-- restart server
+-- sudo pg_ctlcluster 17 main restart
+
+set pg_stat_statements.track = 'all'; -- собирать в тч вложенные подзапросы
 ```
+
+кандидаты на оптимизация — rows и actual_rows если сильно отличаются, надо оптимизировать (собрать статистику лучше)
+
+и/или настроить глобальные параметры (например, work_mem или hash_multiplier)
+
+статистика — не отключать auto vacuum
+увеличить можно иногда точность статистики `default_statistics_target`
+
+для SSD дисков быстрых можно уменьшить `random_page_cost` c 4 до 1.1, это стоимость чтения рандомной страницы. Стоимость чтения последовательно страницы 1, рандомной больше, но для SSD не так сильно больше, как для накопителя на магнитных дисках.
+
