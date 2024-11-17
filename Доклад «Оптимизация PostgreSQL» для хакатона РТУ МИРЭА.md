@@ -40,6 +40,28 @@ https://rutube.ru/video/80851eb98742fac5a7b42325edaf5a69/?playlist=452238
 
 >[!info] Цифры в explain
 > cost 0..4772. Стоимость начала выполнения работы — то есть стоимость подготовительных работ (тут они не нужны), и второе число это стоимость выполнения всей работы
+> 
 > rows — количество строк
-> width в eplain — размер 1 строки в байтах
+> 
+> width в eplain — размер 1 строки в байтах (нам эта цифра не интересна — смотрим на количество строк и стоимость)
 
+
+Единица стоимости — [стоимость чтения одной странички](https://rutube.ru/video/7b35a0eaf75abb38f5962d99ed064a84/?playlist=452238) (10:35). Стоимость складывается из стоимости операций ввода-вывода и стоимости ресурсов процессора. Стоимость ввода-вывода:
+
+```sql
+select
+	relpages, -- количство страниц таблицы (её оценка в статистике)
+	current_setting('seq_page_cost'), -- стоимость чтения одной страницы
+	relpages * current_setting('seq_page_cost') as total
+from pg_class where relname='table_name';
+```
+
+Стоимость ресурсов процессора:
+
+```sql
+select
+	reltuples, -- количество строк
+	current_setting('cpu_tuple_cost'), -- стоимость обработки одной строки
+	reltuples * current_setting('cpu_tuple_cost') as total
+from pg_class where relname='table_name';
+```
