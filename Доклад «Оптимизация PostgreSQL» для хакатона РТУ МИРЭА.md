@@ -45,14 +45,13 @@ https://rutube.ru/video/80851eb98742fac5a7b42325edaf5a69/?playlist=452238
 > 
 > width в eplain — размер 1 строки в байтах (нам эта цифра не интересна — смотрим на количество строк и стоимость)
 
-
 Единица стоимости — [стоимость чтения одной странички](https://rutube.ru/video/7b35a0eaf75abb38f5962d99ed064a84/?playlist=452238) (10:35). Стоимость складывается из стоимости операций ввода-вывода и стоимости ресурсов процессора. Стоимость ввода-вывода:
 
 ```sql
 select
 	relpages, -- количство страниц таблицы (её оценка в статистике)
 	current_setting('seq_page_cost'), -- стоимость чтения одной страницы
-	relpages * current_setting('seq_page_cost') as total
+	relpages * current_setting('seq_page_cost') as total -- итог
 from pg_class where relname='table_name';
 ```
 
@@ -62,6 +61,7 @@ from pg_class where relname='table_name';
 select
 	reltuples, -- количество строк
 	current_setting('cpu_tuple_cost'), -- стоимость обработки одной строки
-	reltuples * current_setting('cpu_tuple_cost') as total
+	reltuples * current_setting('cpu_tuple_cost') as total -- итог
 from pg_class where relname='table_name';
 ```
+
