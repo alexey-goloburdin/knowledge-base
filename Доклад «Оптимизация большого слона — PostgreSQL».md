@@ -5,6 +5,13 @@ class: invert
 paginate: true
 title: Оптимизация большого слона — PostgteSQL
 ---
+---
+marp: true
+theme: default
+class: invert
+paginate: true
+title: Оптимизация большого слона — PostgteSQL
+---
 
 # <center>Оптимизация<br>большого слона — PostgreSQL</center>
 
@@ -807,3 +814,13 @@ alter system set shared_preload_libraries = 'pg_stat_statements';
     - очень часто некоторая неактуальность данных — не проблема
 - кеширование данных в приложении (в Redis, например)
 - секционирование (разбитие большой таблицы на несколько меньших)
+
+---
+
+# Где почитать?
+
+
+- Книга «Оптимизация запросов в PostgreSQL», Домбровская Г., Новиков Б., Бейликова А.
+- Курс Postgres Professional — https://postgrespro.ru/education/courses/QPT
+- Книга «Изучаем PostgreSQL 10», Андрей Волков, Джуба С.
+- Книга «PostgreSQL 16 изнутри», Рогов Егор
