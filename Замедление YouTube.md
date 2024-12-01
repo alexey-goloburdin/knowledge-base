@@ -1,3 +1,5 @@
+https://github.com/XTLS/Xray-core/discussions/3518
+
 https://startpage.com, Visit in Anonymous View
 
 https://habr.com/ru/articles/799751/ — обзорная статья
