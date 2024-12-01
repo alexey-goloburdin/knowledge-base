@@ -12,7 +12,7 @@ sudo cp /etc/letsencrypt/live/v2.rl6.ru/fullchain.pem /var/lib/marzban/certs/ful
 
 sudo vim /opt/marzban/.env
 
-	UVICORN_HOST = "YOUR_DOMAIN"
+	UVICORN_HOST = "v2.rl6.ru"
 	UVICORN_PORT = 8000
 	ALLOWED_ORIGINS=https://v2.rl6.ru:8000,https://v2.rl6.ru
 	
