@@ -1,5 +1,35 @@
 https://wiki.aeza.net/razvertyvanie-proksi-protokola-vless-s-pomoshyu-marzban#id-2.3-nastroika-protokola-vless-tcp-reality-v-paneli-marzban-i-sozdanie-polzovatelya
 
+```bash
+sudo apt install snapd -y
+sudo snap install core
+sudo snap refresh core
+sudo snap install certbot --classic
+sudo certbot certonly --standalone -d v2.rl6.ru --deploy-hook "cp /etc/letsencrypt/live/v2.rl6.ru/privkey.pem /var/lib/marzban/certs/key.pem && cp /etc/letsencrypt/live/v2.rl6.ru/fullchain.pem /var/lib/marzban/certs/fullchain.pem"
+
+sudo cp /etc/letsencrypt/live/v2.rl6.ru/privkey.pem /var/lib/marzban/certs/key.pem
+sudo cp /etc/letsencrypt/live/v2.rl6.ru/fullchain.pem /var/lib/marzban/certs/fullchain.pem
+
+sudo vim /opt/marzban/.env
+
+	UVICORN_HOST = "YOUR_DOMAIN"
+	UVICORN_PORT = 8000
+	ALLOWED_ORIGINS=https://v2.rl6.ru:8000,https://v2.rl6.ru
+	
+	UVICORN_SSL_CERTFILE = "/var/lib/marzban/certs/fullchain.pem"
+	UVICORN_SSL_KEYFILE = "/var/lib/marzban/certs/key.pem"
+
+
+sudo marzban restart
+
+# if you need
+sudo docker exec -ti marzban_marzban_1 bash
+
+sudo crontab -e
+0 3 * * * certbot renew --deploy-hook "cp /etc/letsencrypt/live/v2.rl6.ru/privkey.pem /var/lib/marzban/certs/key.pem && cp /etc/letsencrypt/live/v2.rl6.ru/fullchain.pem /var/lib/marzban/certs/fullchain.pem"
+```
+
+
 https://github.com/XTLS/Xray-core/discussions/3518
 
 https://startpage.com, Visit in Anonymous View
