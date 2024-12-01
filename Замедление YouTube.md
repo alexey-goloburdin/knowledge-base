@@ -31,7 +31,6 @@ sudo crontab -e
 0 3 * * * certbot renew --deploy-hook "cp /etc/letsencrypt/live/YOUR_DOMAIN/privkey.pem /var/lib/marzban/certs/key.pem && cp /etc/letsencrypt/live/YOUR_DOMAIN/fullchain.pem /var/lib/marzban/certs/fullchain.pem"
 ```
 
-
 https://github.com/XTLS/Xray-core/discussions/3518
 
 https://startpage.com, Visit in Anonymous View
