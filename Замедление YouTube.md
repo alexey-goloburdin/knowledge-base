@@ -1,6 +1,14 @@
-https://wiki.aeza.net/razvertyvanie-proksi-protokola-vless-s-pomoshyu-marzban#id-2.3-nastroika-protokola-vless-tcp-reality-v-paneli-marzban-i-sozdanie-polzovatelya
+Aeza with marzban template. Clients: hiddify next, streisand. Control panel with ssh-tunnel:
 
-replace YOUR_DOMAIN with your domain:)
+```bash
+ssh -L 8000:localhost:8000 www@SERVER_IP
+```
+
+And open http://localhost:8000/dashboard/#/login.
+
+Passwords on the server in `~/marzban.txt` file.
+
+Settings, replace YOUR_DOMAIN with your domain:)
 
 ```bash
 sudo apt install snapd -y
@@ -30,6 +38,118 @@ sudo docker exec -ti marzban_marzban_1 bash
 sudo crontab -e
 0 3 * * * certbot renew --deploy-hook "cp /etc/letsencrypt/live/YOUR_DOMAIN/privkey.pem /var/lib/marzban/certs/key.pem && cp /etc/letsencrypt/live/YOUR_DOMAIN/fullchain.pem /var/lib/marzban/certs/fullchain.pem"
 ```
+
+Dashboard settings:
+
+1. Добавить протокол Vless TCP Reality в панель Marzban
+2. Сменить Server Names ( по умолчанию установлен example.com)
+3. Сменить Dest ( по умолчанию установлен example.com:443)
+4. Смена ключа шифрования и параметра shortIds
+5. Фикс ошибки Timeout при подключении через приложение Hiddify
+6. Создание пользователя
+
+Наблюдаем что в блоке "Inbounds" только Shadowsocks TCP, **добавим Vless TCP Reality в начало блока после квадратной скобки**
+
+```
+{
+      "tag": "VLESS TCP REALITY",
+      "listen": "0.0.0.0",
+      "port": 443,
+      "protocol": "vless",
+      "settings": {
+        "clients": [],
+        "decryption": "none"
+      },
+      "streamSettings": {
+        "network": "tcp",
+        "tcpSettings": {},
+        "security": "reality",
+        "realitySettings": {
+          "show": false,
+          "dest": "заменить:443",
+          "xver": 0,
+          "serverNames": [
+            "заменить"
+          ],
+          "privateKey": "заменить",
+          "shortIds": [
+            "заменить"
+          ]
+        }
+      },
+      "sniffing": {
+        "enabled": true,
+        "destOverride": [
+          "http",
+          "tls",
+          "quic"
+        ]
+      }
+    },
+```
+
+**После добавления протокола Vless TCP Reality требуется изменить значения:** 1. ServerNames 2. Dest 3. Privatekey 4. shortIds.
+
+Подбор Server Name и Dest рекомендуем выполнять командой **ping** Чем ниже пинг до определенного сайта, тем меньше задержка при работающем соединении Необходимо выбирать надежные сайты, если сайт будет недоступен, соединения не будет. **Обязательно выбирайте не популярные но надежные сайты в качестве** **Server Name и Dest для вашей конфигурации Vless TCP Reality.**
+
+**Требования к сайту: 1. TLS 1.3 2. HTTP/2 3. Не должен находиться за CDN сервисом**
+
+```
+"dest:" "somesite.ru:443",
+"serverNames": ["somesite.ru"]
+```
+
+Сгенерируем новые ключи шифрования и параметр shortIds в командной строке вашего сервера командами (на сервере):
+
+```bash
+docker exec marzban_marzban_1 xray x25519
+
+# or
+docker exec marzban-marzban-1 xray x25519
+openssl rand -hex 8
+```
+Нам необходимо скопировать параметры **Private key** и **shortIds** после чего заменить их в панели.
+
+После внесения изменений, необходимо **сохранить изменения, перезагрузить ядро и перезагрузить страницу в браузере**. На данном моменте Vless TCP Reality настроен.
+
+Нам осталось убрать ошибку "Таймаут" при подключении через программу Hiddify
+
+Возвращаемся в конфигурацию панели и находим пункт "Routing"
+
+Вставляем следующее правило в самое начало блока rules после квадратной скобки
+
+```
+{
+        "outboundTag": "DIRECT",
+        "domain": [
+          "full:cp.cloudflare.com",
+          "domain:msftconnecttest.com",
+          "domain:msftncsi.com",
+          "domain:connectivitycheck.gstatic.com",
+          "domain:captive.apple.com",
+          "full:detectportal.firefox.com",
+          "domain:networkcheck.kde.org",
+          "full:*.gstatic.com"
+        ],
+        "type": "field"
+      },
+```
+
+После внесения изменений, необходимо их **сохранить** и **перезагрузить ядро**.
+
+Создадим пользователя в панели Marzban и выберем протокол Vless TCP Reality.
+
+Копируем ключ подключения к нашему серверу данным образом и переходим в третий пункт **"Подключение ключа в клиент VLESS"**.
+
+### Hiddify next settings
+
+Если после подключения к вашему серверу происходят ошибки, рекомендуем произвести следующие настройки.
+
+Отключим Регион "Россия" и включим режим VPN ( по умолчанию установлен режим Системный прокси). Для включения режима VPN необходимо установить запуск приложения от имени администратора в свойствах ярлыка. После данного действия, перезапускаем приложение и включаем режим VPN.
+
+---
+
+
 
 https://github.com/XTLS/Xray-core/discussions/3518
 
