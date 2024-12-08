@@ -28,7 +28,9 @@ Windows soft:
 
 
 ```bash
-sudo apt install -y zsh git gpg pass zip unzip curl wget tmux gcc htop ripgrep bat
+sudo apt install -y \
+    zsh git gpg pass zip unzip \
+    curl wget tmux gcc htop ripgrep fzf bat
 sudo ln -s $(which batcat) /usr/local/bin/bat
 
 # Install oh-my-zsh
@@ -65,6 +67,10 @@ npm i -g pyright
 echo "def main(name: str) -> None: print(f'hello, {name}!')" > main.py
 pyright main.py
 
+# Install typescript LSP server
+npm install -g typescript-language-server typescript
+
+
 # Set up git
 git config --global alias.st status
 git config --global user.name "Alexey Goloburdin"
@@ -86,7 +92,8 @@ Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set u
 
 Расскажи о характеристиках своего Huawei Matebook X Pro 2024
 
-Fn+r - переключение герцовки экрана, быстро-удобно
+Fn+r - переключение герцовки экрана, быстро-удобно.
+Fn+p - performance более производительный или более долгоживущий режим.
 
 Сравни отражения на выключенном экране света сзади с Air и Pro маками
 
@@ -95,6 +102,8 @@ Fn+r - переключение герцовки экрана, быстро-уд
 Тачпад на экране -- юзабельно, тыкаю иногда, скроллю иногда как по планшету, читая что-то
 
 По тачпаду можно водить для изменения яркости и громкости. Я этим не пользуюсь, мне нравится управлять этим с Fn-клавишами, но кому-то будет удобно возможно. Фейковых нажатий нет, что важно, то есть нет такого, что вместо сдвига мыши через тачпад меняется звук или яркость экрана, такого ни разу не было.
+
+В левый верхний экран -- свернуть это приложение. Правый верхний угол -- закрыть окно.
 
 Заряжать с любой стороны, type c, удобно, компактная зарядка и не обязательно родная. На многих виндоус ноутах да и на мощных макбуках зарядка там уже ощутимая и по размеру и по весу. Здесь в целом можно от 65вт зарядки заряжать, и от чуть более мощной 90 ваттной.
 
