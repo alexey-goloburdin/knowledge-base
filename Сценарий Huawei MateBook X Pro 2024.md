@@ -73,7 +73,7 @@ git config --global user.email "sterx@rl6.ru"
 git config --global core.quotepath
 ```
 
-Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`)
+Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
 
 
 ---
