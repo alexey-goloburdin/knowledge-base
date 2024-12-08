@@ -49,6 +49,8 @@ sudo ln -s $HOME/.soft/rust-analyzer /usr/local/bin
 tar -xzvf nvim-linux64.tar.gz
 sudo ln -s $HOME/.soft/nvim-linux64/bin/nvim /usr/local/bin
 
+echo "alias n=nvim" >> ~/.zshrc && . ~/.zshrc
+
 # Install ripgrep
 sudo apt install -y ripgrep
 
@@ -80,6 +82,15 @@ git config --global core.quotepath
 ```
 
 Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
+
+Копировать текст из WSL можно очень удобно с `clip.exe`. На маке есть `pbcopy`, а тут вот `clip.exe`:
+
+```bash
+ls -la /mnt/c/Users/
+history | tail -1 | clip.exe
+```
+
+Можно использовать для копирования паролей из `pass`, например.
 
 
 ---
