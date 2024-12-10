@@ -47,8 +47,11 @@ sudo ln -s $HOME/.soft/rust-analyzer /usr/local/bin
 
 # Download nvim into ~/.soft
 # https://github.com/neovim/neovim/releases
+wget https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz
 tar -xzvf nvim-linux64.tar.gz
-sudo ln -s $HOME/.soft/nvim-linux64/bin/nvim /usr/local/bin
+mv nvim-linux64 .soft/nvim
+sudo ln -s $HOME/.soft/nvim/bin/nvim /usr/local/bin/nvim
+nvim
 
 echo "alias n=nvim" >> ~/.zshrc && . ~/.zshrc
 
@@ -86,6 +89,14 @@ mkdir -p ~/.local/share/nvim/site/pack/packer/start/
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
     ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
+# Build telescope
+cd ~/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim
+make
+
+cd
+
+
 
 ```
 
