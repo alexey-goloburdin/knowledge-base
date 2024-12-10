@@ -30,7 +30,8 @@ Windows soft:
 ```bash
 sudo apt install -y \
     zsh git gpg pass zip unzip \
-    curl wget tmux gcc htop ripgrep fzf bat
+    curl wget tmux gcc htop ripgrep fzf bat build-essential
+
 sudo ln -s $(which batcat) /usr/local/bin/bat
 
 # Install oh-my-zsh
@@ -79,6 +80,13 @@ git config --global user.name "Alexey Goloburdin"
 git config --global user.email "sterx@rl6.ru"
 # чтобы кириллические имена файлов нормально выводились
 git config --global core.quotepath
+
+# packer
+mkdir -p ~/.local/share/nvim/site/pack/packer/start/
+
+git clone --depth 1 https://github.com/wbthomason/packer.nvim \
+    ~/.local/share/nvim/site/pack/packer/start/packer.nvim
+
 ```
 
 Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
@@ -94,6 +102,12 @@ history | tail -1 | clip.exe
 
 ```bash
 echo "alias pbcopy=clip.exe" >> ~/.zshrc && . ~/.zshrc
+```
+
+Открытие проводника в текущей директории (удобно, использовал `open .` на маке):
+
+```bash
+echo "alias open=explorer.exe" >> ~/.zshrc && . ~/.zshrc
 ```
 
 Доступ к терминалу всегда по Win+1. Очень удобно. К Obsidian -- по Win+2. Chrome -- Win+3. И так далее.
