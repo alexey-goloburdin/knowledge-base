@@ -95,12 +95,19 @@ cd ~/.local/share/nvim/site/pack/packer/start/telescope-fzf-native.nvim
 make
 
 cd
-
-
-
 ```
 
 Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
+
+Set up hot keys:
+
+```bash
+nvim "/mnt/c/Users/sterx/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/hotkeys.ahk"
+
+CapsLock::Ctrl
+```
+ Then re
+
 
 Копировать текст из WSL можно очень удобно с `clip.exe`. На маке есть `pbcopy`, а тут вот `clip.exe`:
 
