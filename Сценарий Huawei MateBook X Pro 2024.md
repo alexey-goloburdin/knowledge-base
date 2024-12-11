@@ -29,7 +29,7 @@ Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set u
 
 # Синхронизация заметок Obsidian через git
 
-Git в Windows настроен. Плагин git в Obs и хоткей на CTRL+P для push.
+Git в Windows настроен. Плагин git в Obsidian и хоткей на CTRL+P для push.
 
 # Linux
 
