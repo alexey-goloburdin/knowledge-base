@@ -1,7 +1,7 @@
 # Questions
 
 >[!warning]  TODO
->- gw для закрытия буфера в вимасе настрой!
+>- opopop
 
 # Вопросы
 
