@@ -30,7 +30,7 @@ Windows soft:
 ```bash
 sudo apt install -y \
     zsh git gpg pass zip unzip \
-    curl wget tmux gcc htop ripgrep fzf bat build-essential
+    curl wget tmux gcc bsdmainutils htop ripgrep fzf bat build-essential bsdmainutils
 
 sudo ln -s $(which batcat) /usr/local/bin/bat
 
@@ -54,6 +54,7 @@ sudo ln -s $HOME/.soft/nvim/bin/nvim /usr/local/bin/nvim
 nvim
 
 echo "alias n=nvim" >> ~/.zshrc && . ~/.zshrc
+echo "export EDITOR=vim" >> ~/.zshrc && . ~/.zshrc
 
 # Install ripgrep
 sudo apt install -y ripgrep
@@ -106,7 +107,17 @@ nvim "/mnt/c/Users/sterx/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/S
 
 CapsLock::Ctrl
 ```
- Then re
+ 
+Then reboot.
+
+Tmux:
+
+```bash
+git clone https://github.com/gpakosz/.tmux.git /tmp/tmux
+mkdir -p ~/.config/tmux
+cp /tmp/tmux/.tmux.conf ~/.config/tmux/tmux.conf
+cp /tmp/tmux/.tmux.conf.local ~/.config/tmux/tmux.conf.local
+```
 
 
 Копировать текст из WSL можно очень удобно с `clip.exe`. На маке есть `pbcopy`, а тут вот `clip.exe`:
