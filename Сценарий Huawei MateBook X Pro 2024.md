@@ -13,46 +13,23 @@
 
 # Windows-софт
 
-- WSL (set to wsl 2):
-```bash
-wsl --set-default-version 2
-```
 - Audacity
 - [SumatraPDF](https://www.sumatrapdfreader.org/free-pdf-reader). Интерфейс не перегружен (его почти нет) и запускается быстро. Даже полосу прокрутки можно скрыть. Возможна навигация через jk
 - Obsidian
 - Davinci Resolve
 - vlc as player
-
-# Копирование из WSL в буфер Windows
-
-Копировать текст из WSL можно очень удобно с `clip.exe`. На маке есть `pbcopy`, а тут вот `clip.exe`:
-
+- WSL (set to wsl 2):
 ```bash
-ls -la /mnt/c/Users/
-history | tail -1 | clip.exe
+wsl --set-default-version 2
 ```
 
-Можно использовать для копирования паролей из `pass`, например. Можно перебиндить на pbcopy при желании:
+# Git для Windows для Obsidian
 
-```bash
-echo "alias pbcopy=clip.exe" >> ~/.zshrc && . ~/.zshrc
-```
+Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
 
-Открытие проводника в текущей директории (удобно, использовал `open .` на маке):
+# Синхронизация заметок Obsidian через git
 
-```bash
-echo "alias open=explorer.exe" >> ~/.zshrc && . ~/.zshrc
-```
-
-# Hot keys
-
-AutoHotkey -- программа для настройки комбинаций клавиш.
-
-Syncthing, Obsiidian
-- как происходит выгрузка в git напрямую из Obsidian?
-
-
-Размещение софта на панели. Первое место Alacritty, всегда в максимально быстром доступе линукс-консоль, которую я не закрываю. Можете поставить сюда Windows Terminal, если хотите, или другой терминал - Kitty, WezTerm и тд.
+Git в Windows настроен. Плагин git в Obs и хоткей на CTRL+P для push.
 
 # Linux
 
@@ -212,24 +189,8 @@ make
 cd
 ```
 
-# Git для Windows для Obsidian
-
-Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
-
-# Настройки ввода
-
-Уменьшим задержку при вводе повторных символов. **Win + R**, команда `control keyboard`, **Enter**. Откроется окно "Свойства клавиатуры". В разделе **Задержка перед началом повторения** (Repeat delay) установите ползунок ближе к значению **Короткая** (Short).
-
-Set up hot keys:
-
-```bash
-nvim "/mnt/c/Users/sterx/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/hotkeys.ahk"
-
-CapsLock::Ctrl
-```
+# Tmux
  
-Then reboot.
-
 tmux prefix это `CTRL`+`A` или `CTRL`+`B`, а CTRL это Caps lock. Покажи создание панелей в tmux.
 
 ```bash
@@ -267,9 +228,50 @@ bind-key -T copy-mode-vi v send -X begin-selection
 bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
 ```
 
-Доступ к терминалу всегда по Win+1. Очень удобно. К Obsidian -- по Win+2. Chrome -- Win+3. И так далее.
+# Копирование из WSL в буфер Windows
+
+Копировать текст из WSL можно очень удобно с `clip.exe`. На маке есть `pbcopy`, а тут вот `clip.exe`:
+
+```bash
+ls -la /mnt/c/Users/
+history | tail -1 | clip.exe
+```
+
+Можно использовать для копирования паролей из `pass`, например. Можно перебиндить на pbcopy при желании:
+
+```bash
+echo "alias pbcopy=clip.exe" >> ~/.zshrc && . ~/.zshrc
+```
+
+Открытие проводника в текущей директории (удобно, использовал `open .` на маке):
+
+```bash
+echo "alias open=explorer.exe" >> ~/.zshrc && . ~/.zshrc
+```
+
+# Настройки ввода
+
+Уменьшим задержку при вводе повторных символов. **Win + R**, команда `control keyboard`, **Enter**. Откроется окно "Свойства клавиатуры". В разделе **Задержка перед началом повторения** (Repeat delay) установите ползунок ближе к значению **Короткая** (Short).
+
+# Горячие клавиши в системе
+
+AutoHotkey -- программа для настройки комбинаций клавиш.
+
+Set up hot keys:
+
+```bash
+nvim "/mnt/c/Users/sterx/AppData/Roaming/Microsoft/Windows/Start Menu/Programs/Startup/hotkeys.ahk"
+
+CapsLock::Ctrl
+```
+ 
+Then reboot.
+
+Доступ к терминалу всегда по Win+1. Очень удобно. К Obsidian -- по Win+2. Chrome -- Win+3. И так далее  для всего нужного софта. У меня пока только эти три программы. TG запускаю через Win и поиск.
 
 Поиск на маке через spotlight был по CTRL+Пробел у меня настроен, тут просто по кнопке Win. И запуск софта, и поиск файлов (покажи поиск по слову Сценарий).
+
+# Отключение всех системных звуков
 
 Отключаю все системные звуки в системе, чтобы не мешали, раздражают.
 
