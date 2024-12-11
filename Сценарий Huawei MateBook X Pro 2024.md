@@ -7,6 +7,10 @@
 - Как переключаться по вкладкам используя ALT вместо CTRL?
 - Переключение языка по ALT+Space?
 
+# Обновление Windows, драйверов
+
+В первую очередь обновляем на новом ноутбуке саму систему, драйвера.
+
 # Windows-софт
 
 - WSL (set to wsl 2):
@@ -15,6 +19,9 @@ wsl --set-default-version 2
 ```
 - Audacity
 - [SumatraPDF](https://www.sumatrapdfreader.org/free-pdf-reader). Интерфейс не перегружен (его почти нет) и запускается быстро. Даже полосу прокрутки можно скрыть. Возможна навигация через jk
+- Obsidian
+- Davinci Resolve
+- vlc as player
 
 # Копирование из WSL в буфер Windows
 
@@ -41,36 +48,112 @@ echo "alias open=explorer.exe" >> ~/.zshrc && . ~/.zshrc
 
 AutoHotkey -- программа для настройки комбинаций клавиш.
 
-Davinci Resolve как работает?
-
-Покажи настройку WSL -- терминала, Alacritty, установленного софта:
-- ssh and gpg keys
-- pass
-
 Syncthing, Obsiidian
 - как происходит выгрузка в git напрямую из Obsidian?
 
 
 Размещение софта на панели. Первое место Alacritty, всегда в максимально быстром доступе линукс-консоль, которую я не закрываю. Можете поставить сюда Windows Terminal, если хотите, или другой терминал - Kitty, WezTerm и тд.
 
+# Linux
 
 ```bash
 sudo apt install -y \
     zsh git gpg pass zip unzip \
-    curl wget tmux gcc bsdmainutils htop ripgrep fzf bat build-essential
+    curl wget tmux gcc bsdmainutils htop ripgrep fzf bat build-essential \
+    ripgrep
 
 sudo ln -s $(which batcat) /usr/local/bin/bat
 
+# GPG and SSH keys (change your username)
+mkdir /mnt/c/Users/sterx/AppData/Roaming/alacritty/
+vim /mnt/c/Users/sterx/AppData/Roaming/alacritty/alacritty.toml
+```
+
+Insert:
+
+```toml
+[general]
+import = [
+    "C:\\Users\\sterx\\AppData\\Roaming\\alacritty\\themes\\themes\\rose_pine.toml"
+]
+
+[env]
+TERM = "xterm-256color"
+
+[font]
+size = 12
+
+[font.normal]
+family = "Hack Nerd Font"
+style = "Regular"
+
+[[keyboard.bindings]]
+action = "SpawnNewInstance"
+key = "N"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u0015"
+key = "Back"
+mods = "Super"
+
+[[keyboard.bindings]]
+chars = "\u001Bb"
+key = "Left"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u001Bf"
+key = "Right"
+mods = "Alt"
+
+[[keyboard.bindings]]
+chars = "\u0000"
+key = "Space"
+mods = "Control"
+
+[[keyboard.bindings]]
+chars = "\u001BOH"
+key = "Left"
+mode = "AppCursor"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001BOF"
+key = "Right"
+mode = "AppCursor"
+mods = "Command"
+
+[[keyboard.bindings]]
+chars = "\u001BR"
+key = "R"
+mods = "Command"
+
+[window]
+decorations = "None"
+dynamic_padding = true
+opacity = 1
+startup_mode = "Maximized"
+
+[window.padding]
+x = 15
+y = 15
+
+[terminal.shell]
+program = "wsl"
+args = [
+    "-d",
+    "Debian",
+    "--cd",
+    "~"
+]
+```
+
+Config Linux:
+
+```bash
 # Install oh-my-zsh
 # https://ohmyz.sh/
-
-# INSTALL LSP SERVERS AND OTHER TOOLS
-
-# Download rust-analyzer into ~/.soft
-# https://github.com/rust-lang/rust-analyzer/releases
-cd ~/.soft
-gunzip gunzip rust-analyzer-x86_64-unknown-linux-gnu.gz
-sudo ln -s $HOME/.soft/rust-analyzer /usr/local/bin
 
 # Download nvim into ~/.soft
 # https://github.com/neovim/neovim/releases
@@ -83,10 +166,15 @@ nvim
 echo "alias n=nvim" >> ~/.zshrc && . ~/.zshrc
 echo "export EDITOR=vim" >> ~/.zshrc && . ~/.zshrc
 
-# Install ripgrep
-sudo apt install -y ripgrep
+# INSTALL LSP SERVERS AND OTHER TOOLS
 
-# Install nodejs
+# Download rust-analyzer into ~/.soft
+# https://github.com/rust-lang/rust-analyzer/releases
+cd ~/.soft
+gunzip rust-analyzer-x86_64-unknown-linux-gnu.gz
+sudo ln -s $HOME/.soft/rust-analyzer /usr/local/bin
+
+# Install nodejs and pyright
 # https://nodejs.org/en/download/package-manager
 # choose linux and nvm
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.0/install.sh | bash
@@ -104,15 +192,14 @@ pyright main.py
 # Install typescript LSP server
 npm install -g typescript-language-server typescript
 
-
-# Set up git
+# Set up git in WSL
 git config --global alias.st status
 git config --global user.name "Alexey Goloburdin"
 git config --global user.email "sterx@rl6.ru"
 # чтобы кириллические имена файлов нормально выводились
 git config --global core.quotepath
 
-# packer
+# Packer for nvim
 mkdir -p ~/.local/share/nvim/site/pack/packer/start/
 
 git clone --depth 1 https://github.com/wbthomason/packer.nvim \
@@ -125,7 +212,11 @@ make
 cd
 ```
 
+# Git для Windows для Obsidian
+
 Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
+
+# Настройки ввода
 
 Уменьшим задержку при вводе повторных символов. **Win + R**, команда `control keyboard`, **Enter**. Откроется окно "Свойства клавиатуры". В разделе **Задержка перед началом повторения** (Repeat delay) установите ползунок ближе к значению **Короткая** (Short).
 
