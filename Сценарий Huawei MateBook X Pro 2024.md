@@ -1,15 +1,47 @@
 # Questions
 
+# Вопросы
+
 - Как поставить тире в любой программе?
 - Как поставить кавычки ёлочкой?
 - Как переключаться по вкладкам используя ALT вместо CTRL?
 - Переключение языка по ALT+Space?
 
+# Windows-софт
+
+- WSL (set to wsl 2):
+```bash
+wsl --set-default-version 2
+```
+- Audacity
+- [SumatraPDF](https://www.sumatrapdfreader.org/free-pdf-reader). Интерфейс не перегружен (его почти нет) и запускается быстро. Даже полосу прокрутки можно скрыть. Возможна навигация через jk
+
+# Копирование из WSL в буфер Windows
+
+Копировать текст из WSL можно очень удобно с `clip.exe`. На маке есть `pbcopy`, а тут вот `clip.exe`:
+
+```bash
+ls -la /mnt/c/Users/
+history | tail -1 | clip.exe
+```
+
+Можно использовать для копирования паролей из `pass`, например. Можно перебиндить на pbcopy при желании:
+
+```bash
+echo "alias pbcopy=clip.exe" >> ~/.zshrc && . ~/.zshrc
+```
+
+Открытие проводника в текущей директории (удобно, использовал `open .` на маке):
+
+```bash
+echo "alias open=explorer.exe" >> ~/.zshrc && . ~/.zshrc
+```
+
+# Hot keys
+
 AutoHotkey -- программа для настройки комбинаций клавиш.
 
 Davinci Resolve как работает?
-
-Скорость компиляции Python 3.12 сравни?
 
 Покажи настройку WSL -- терминала, Alacritty, установленного софта:
 - ssh and gpg keys
@@ -18,11 +50,6 @@ Davinci Resolve как работает?
 Syncthing, Obsiidian
 - как происходит выгрузка в git напрямую из Obsidian?
 
-
-Windows soft:
-- audacity
-- [SumatraPDF](https://www.sumatrapdfreader.org/free-pdf-reader). Интерфейс не перегружен (его почти нет) и запускается быстро. Даже полосу прокрутки можно скрыть. Возможна навигация через jk
-- 
 
 Размещение софта на панели. Первое место Alacritty, всегда в максимально быстром доступе линукс-консоль, которую я не закрываю. Можете поставить сюда Windows Terminal, если хотите, или другой терминал - Kitty, WezTerm и тд.
 
@@ -100,6 +127,8 @@ cd
 
 Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
 
+Уменьшим задержку при вводе повторных символов. **Win + R**, команда `control keyboard`, **Enter**. Откроется окно "Свойства клавиатуры". В разделе **Задержка перед началом повторения** (Repeat delay) установите ползунок ближе к значению **Короткая** (Short).
+
 Set up hot keys:
 
 ```bash
@@ -110,37 +139,41 @@ CapsLock::Ctrl
  
 Then reboot.
 
-tmux prefix это `CTRL`+`A` или `CTRL`+`B`, а CTRL это Caps lock. Покажи создание панелей.
-
-Уменьшим задержку при вводе повторных символов. **Win + R**, команда `control keyboard`, **Enter**. Откроется окно "Свойства клавиатуры". В разделе **Задержка перед началом повторения** (Repeat delay) установите ползунок ближе к значению **Короткая** (Short).
-
-Tmux:
+tmux prefix это `CTRL`+`A` или `CTRL`+`B`, а CTRL это Caps lock. Покажи создание панелей в tmux.
 
 ```bash
 git clone https://github.com/gpakosz/.tmux.git /tmp/tmux
 mkdir -p ~/.config/tmux
 cp /tmp/tmux/.tmux.conf ~/.config/tmux/tmux.conf
 cp /tmp/tmux/.tmux.conf.local ~/.config/tmux/tmux.conf.local
-```
 
+# append to ~/.config/tmux/tmux.conf.local
+# Custom settings
+tmux_conf_theme_status_left=" ❐ #S "
+tmux_conf_theme_status_right=" #{prefix} #{?battery_percentage, #{battery_percentage},} , %d %b %R "
 
-Копировать текст из WSL можно очень удобно с `clip.exe`. На маке есть `pbcopy`, а тут вот `clip.exe`:
+tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6"
+tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_3"
 
-```bash
-ls -la /mnt/c/Users/
-history | tail -1 | clip.exe
-```
+tmux_conf_theme_status_right=""
 
-Можно использовать для копирования паролей из `pass`, например. Можно перебиндить на pbcopy при желании:
+# Использовать vi-режим в copy-mode
 
-```bash
-echo "alias pbcopy=clip.exe" >> ~/.zshrc && . ~/.zshrc
-```
+set -g mode-keys vi
 
-Открытие проводника в текущей директории (удобно, использовал `open .` на маке):
+# Включить копирование в системный буфер (требуется `xclip` или `pbcopy`)
 
-```bash
-echo "alias open=explorer.exe" >> ~/.zshrc && . ~/.zshrc
+bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -selection clipboard -i"
+
+# Альтернативный вариант для macOS
+# bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"
+
+# Удобный способ входа в copy-mode
+bind-key [ copy-mode
+
+# Настройка кнопок для навигации (опционально)
+bind-key -T copy-mode-vi v send -X begin-selection
+bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
 ```
 
 Доступ к терминалу всегда по Win+1. Очень удобно. К Obsidian -- по Win+2. Chrome -- Win+3. И так далее.
@@ -198,4 +231,6 @@ Fn+p - performance более производительный или более
 Офигенный звук, действительно офигенный. 6 динамиков.
 
 Прямой размыкатель для камеры, это не софтверная штука, а именно хардверная, размыкается цепь к камере. Те кто разбирали ноутбук, это подтверждают.
+
+Davinci Resolve compare
 
