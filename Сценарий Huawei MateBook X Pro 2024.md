@@ -16,45 +16,15 @@
 
 # Windows-софт
 
-- Audacity
-- [SumatraPDF](https://www.sumatrapdfreader.org/free-pdf-reader). Интерфейс не перегружен (его почти нет) и запускается быстро. Даже полосу прокрутки можно скрыть. Возможна навигация через jk
-- Obsidian
-- Davinci Resolve
-- vlc as player
 - WSL (set to wsl 2):
 ```bash
 wsl --set-default-version 2
 ```
-
-# Начальные настройки
-
-В проводнике от бокового меню открепить  Музыка, Видео. Оставить только Рабочий Стол, Загрузки, Документы, Изображения. Можно добавить сюда директории, с которыми часто будете работать, я со временем сделаю
-
-# Git для Windows для Obsidian
-
-Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
-
-# Синхронизация заметок Obsidian через git
-
-Git в Windows настроен. Плагин git в Obsidian и хоткей на CTRL+P для push.
-
-# Linux
-
+- Audacity
 ```bash
-sudo apt install -y \
-    zsh git gpg pass zip unzip \
-    curl wget tmux gcc bsdmainutils htop ripgrep fzf bat build-essential \
-    ripgrep
-
-sudo ln -s $(which batcat) /usr/local/bin/bat
-
-# GPG and SSH keys (change your username)
-mkdir /mnt/c/Users/sterx/AppData/Roaming/alacritty/
 vim /mnt/c/Users/sterx/AppData/Roaming/alacritty/alacritty.toml
 ```
-
-Insert:
-
+Paste:
 ```toml
 [general]
 import = [
@@ -63,6 +33,7 @@ import = [
 
 [env]
 TERM = "xterm-256color"
+COLORTERM = "truecolor"
 
 [font]
 size = 12
@@ -132,6 +103,37 @@ args = [
     "~"
 ]
 ```
+- [SumatraPDF](https://www.sumatrapdfreader.org/free-pdf-reader). Интерфейс не перегружен (его почти нет) и запускается быстро. Даже полосу прокрутки можно скрыть. Возможна навигация через jk
+- Obsidian
+- Davinci Resolve
+- vlc as player
+
+# Начальные настройки
+
+В проводнике от бокового меню открепить  Музыка, Видео. Оставить только Рабочий Стол, Загрузки, Документы, Изображения. Можно добавить сюда директории, с которыми часто будете работать, я со временем сделаю это.
+
+# Git для Windows для Obsidian
+
+Install [Git for Windows](https://git-scm.com/downloads/win) for Obsidian. Set up it in Git bash (`git config ...`).
+
+# Синхронизация заметок Obsidian через git
+
+Git в Windows настроен. Плагин git в Obsidian и хоткей на CTRL+P для push.
+
+# Linux
+
+```bash
+sudo apt install -y \
+    zsh git gpg pass zip unzip \
+    curl wget tmux gcc bsdmainutils htop ripgrep fzf bat build-essential \
+    ripgrep
+
+sudo ln -s $(which batcat) /usr/local/bin/bat
+
+# GPG and SSH keys (change your username)
+mkdir /mnt/c/Users/sterx/AppData/Roaming/alacritty/
+```
+
 
 Config Linux:
 
