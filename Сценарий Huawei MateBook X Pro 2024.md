@@ -31,133 +31,20 @@ wsl --set-default-version 2
 
 ```bash
 git clone https://github.com/alexey-goloburdin/dotfiles
-```
 
+# Copy Alacritty config into Windows
+cp $HOME/.config/alacritty/alacritty.toml \
+    /mnt/c/Users/sterx/AppData/Roaming/alacritty
+
+# We use Alacritty's default Linux config directory as our storage location here.
+mkdir -p ~/.config/alacritty/themes
+git clone https://github.com/alacritty/alacritty-theme ~/.config/alacritty/themes
+# Покажи прикольные темы отобранные мной сверху в конфиге Alacritty
+```
 
 # Windows-софт
 
 - Audacity
-```bash
-vim /mnt/c/Users/sterx/AppData/Roaming/alacritty/alacritty.toml
-```
-Paste:
-```toml
-[general]
-import = [
-    "C:\\Users\\sterx\\AppData\\Roaming\\alacritty\\themes\\themes\\rose_pine.toml"
-]
-
-[env]
-TERM = "xterm-256color"
-COLORTERM = "truecolor"
-
-[font]
-size = 12
-
-[font.normal]
-family = "Hack Nerd Font"
-style = "Regular"
-
-[[keyboard.bindings]]
-action = "SpawnNewInstance"
-key = "N"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u0015"
-key = "Back"
-mods = "Super"
-
-[[keyboard.bindings]]
-chars = "\u001Bb"
-key = "Left"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u001Bf"
-key = "Right"
-mods = "Alt"
-
-[[keyboard.bindings]]
-chars = "\u0000"
-key = "Space"
-mods = "Control"
-
-[[keyboard.bindings]]
-chars = "\u001BOH"
-key = "Left"
-mode = "AppCursor"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u001BOF"
-key = "Right"
-mode = "AppCursor"
-mods = "Command"
-
-[[keyboard.bindings]]
-chars = "\u001BR"
-key = "R"
-mods = "Command"
-
-[window]
-decorations = "None"
-dynamic_padding = true
-opacity = 1
-startup_mode = "Maximized"
-
-[window.padding]
-x = 15
-y = 15
-
-[terminal.shell]
-program = "wsl"
-args = [
-    "-d",
-    "Debian",
-    "--cd",
-    "~"
-]
-```
-
-Прикольные темы для Alacritty на мой вкус (==вывести на экран==):
-
-```
-# THEMES:
-
-SOFT COLORS:
-
-- autumn
-- citylights
-- wombat
-- tomorrow_night
-- taerminal
-- remedy_dark
-- monokai_pro
-- kanagawa_dragon
-- kanagawa_wave
-- everforest_dark
-- gruvbox_dark
-- gruvbox_material_hard_dark
-
-CONTRAST COLORS:
-
-- ayu_dark
-
-VIVID:
-
-- catppuccin_mocha
-- enfocado_dark
-- rose_pine
-- palenight
-- night_owl
-
-GREY:
-
-- doom_one 
-- nordic
-```
-
 - [SumatraPDF](https://www.sumatrapdfreader.org/free-pdf-reader). Интерфейс не перегружен (его почти нет) и запускается быстро. Даже полосу прокрутки можно скрыть. Возможна навигация через jk
 - Obsidian
 - Davinci Resolve
@@ -295,6 +182,19 @@ tmux_conf_24b_colour=true
 ```bash
 ls -la /mnt/c/Users/
 history | tail -1 | clip.exe
+```
+
+Правда, кириллица копируется криво. Поэтому будем использовать [win32yank](https://github.com/equalsraf/win32yank/releases), скачаем и положим исполнимый файл `win32yank.exe` в директорию, которая есть и в виндовой переменной окружения `PATH`, и в линуксовой, в `C:\Windows\System32`.
+
+```bash
+
+# не работает
+echo "привет" | clip.exe
+
+# работает!
+echo "привет" | iconv -f UTF-8 -t UTF-16LE | clip.exe
+
+echo 'alias pbcopy="iconv -f UTF-8 -t UTF-16LE | clip.exe"' >> ~/.zshrc && . ~/.zshrc
 ```
 
 Можно использовать для копирования паролей из `pass`, например. Можно перебиндить на pbcopy при желании:
