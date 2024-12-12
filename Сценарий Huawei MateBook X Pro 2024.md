@@ -2,6 +2,7 @@
 
 >[!warning]  TODO
 >- cyrillic copy
+>- nvim theme
 
 # Вопросы
 
