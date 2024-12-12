@@ -1,7 +1,7 @@
 # Questions
 
 >[!warning]  TODO
->- transparent status line in tmux
+>- cyrillic copy
 
 # Вопросы
 
