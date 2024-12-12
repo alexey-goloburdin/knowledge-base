@@ -81,6 +81,9 @@ Config Linux:
 # Install oh-my-zsh
 # https://ohmyz.sh/
 
+echo "source \$HOME/.config/zsh/env.zsh" >> ~/.zshrc
+echo "source \$HOME/.config/zsh/aliases.zsh" >> ~/.zshrc
+
 # Download nvim into ~/.soft
 # https://github.com/neovim/neovim/releases
 wget https://github.com/neovim/neovim/releases/download/v0.10.2/nvim-linux64.tar.gz
@@ -187,14 +190,13 @@ history | tail -1 | clip.exe
 Правда, кириллица копируется криво. Поэтому будем использовать [win32yank](https://github.com/equalsraf/win32yank/releases), скачаем и положим исполнимый файл `win32yank.exe` в директорию, которая есть и в виндовой переменной окружения `PATH`, и в линуксовой, в `C:\Windows\System32`.
 
 ```bash
-
 # не работает
 echo "привет" | clip.exe
 
 # работает!
-echo "привет" | iconv -f UTF-8 -t UTF-16LE | clip.exe
+echo "привет" | win32yank.exe -i
 
-echo 'alias pbcopy="iconv -f UTF-8 -t UTF-16LE | clip.exe"' >> ~/.zshrc && . ~/.zshrc
+echo 'alias pbcopy="win32yank.exe -i"' >> ~/.zshrc && . ~/.zshrc
 ```
 
 Можно использовать для копирования паролей из `pass`, например. Можно перебиндить на pbcopy при желании:
