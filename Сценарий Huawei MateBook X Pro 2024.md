@@ -134,7 +134,6 @@ sudo ln -s $(which batcat) /usr/local/bin/bat
 mkdir /mnt/c/Users/sterx/AppData/Roaming/alacritty/
 ```
 
-
 Config Linux:
 
 ```bash
@@ -207,34 +206,41 @@ git clone https://github.com/gpakosz/.tmux.git /tmp/tmux
 mkdir -p ~/.config/tmux
 cp /tmp/tmux/.tmux.conf ~/.config/tmux/tmux.conf
 cp /tmp/tmux/.tmux.conf.local ~/.config/tmux/tmux.conf.local
+```
 
-# append to ~/.config/tmux/tmux.conf.local
+Append to `~/.config/tmux/tmux.conf.local`:
+
+```toml
 # Custom settings
-tmux_conf_theme_status_left=" ❐ #S "
+tmux_conf_theme_status_left=" тЭР #S "
 tmux_conf_theme_status_right=" #{prefix} #{?battery_percentage, #{battery_percentage},} , %d %b %R "
 
 tmux_conf_theme_status_left_fg="$tmux_conf_theme_colour_6"
 tmux_conf_theme_status_left_bg="$tmux_conf_theme_colour_3"
 
 tmux_conf_theme_status_right=""
+tmux_conf_theme_status_bg="#191724"
+# tmux_conf_theme_status_bg="#221F30"
 
-# Использовать vi-режим в copy-mode
+# ╨Ш╤Б╨┐╨╛╨╗╤М╨╖╨╛╨▓╨░╤В╤М vi-╤А╨╡╨╢╨╕╨╝ ╨▓ copy-mode
 
 set -g mode-keys vi
 
-# Включить копирование в системный буфер (требуется `xclip` или `pbcopy`)
+# ╨Т╨║╨╗╤О╤З╨╕╤В╤М ╨║╨╛╨┐╨╕╤А╨╛╨▓╨░╨╜╨╕╨╡ ╨▓ ╤Б╨╕╤Б╤В╨╡╨╝╨╜╤Л╨╣ ╨▒╤Г╤Д╨╡╤А (╤В╤А╨╡╨▒╤Г╨╡╤В╤Б╤П `xclip` ╨╕╨╗╨╕ `pbcopy`)
 
 bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -selection clipboard -i"
 
-# Альтернативный вариант для macOS
+# ╨Р╨╗╤М╤В╨╡╤А╨╜╨░╤В╨╕╨▓╨╜╤Л╨╣ ╨▓╨░╤А╨╕╨░╨╜╤В ╨┤╨╗╤П macOS
 # bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"
 
-# Удобный способ входа в copy-mode
+# ╨г╨┤╨╛╨▒╨╜╤Л╨╣ ╤Б╨┐╨╛╤Б╨╛╨▒ ╨▓╤Е╨╛╨┤╨░ ╨▓ copy-mode
 bind-key [ copy-mode
 
-# Настройка кнопок для навигации (опционально)
+# ╨Э╨░╤Б╤В╤А╨╛╨╣╨║╨░ ╨║╨╜╨╛╨┐╨╛╨║ ╨┤╨╗╤П ╨╜╨░╨▓╨╕╨│╨░╤Ж╨╕╨╕ (╨╛╨┐╤Ж╨╕╨╛╨╜╨░╨╗╤М╨╜╨╛)
 bind-key -T copy-mode-vi v send -X begin-selection
 bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
+
+tmux_conf_24b_colour=true
 ```
 
 # Копирование из WSL в буфер Windows
