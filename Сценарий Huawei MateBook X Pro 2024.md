@@ -5,6 +5,7 @@
 >- nvim theme
 >- сказать о том, что у меня нет привязки к платформе. На винде есть WSL, поэтому все свои рабочие инструменты я просто переношу туда -- и они практически полностью идентичны для Linux, Mac OS, или вот Windows с WSL, с небольшими поправками. Браузер есть везде, монтажка Davinci Resolve есть везде. Не везде есть цифровая подпись для документооборота, под линукс скорее всего её настраивать будет боль, но пока такой задачи у меня не стоит, не везде есть родной виндовый офис, но оно мне не сильно и нужно -- открыть документы можно много чем, а делать свои документы тоже можно много где, передавая их в PDF. Так что сейчас в целом на любой операционке мои конкретные задачи решаются нормально. Ну, фотошоп я люблю, обложки в нём делаю, gimp это совсем не то, фотошоп я не заменил ничем. На винде и маке у меня фотошоп. Если надо будет уехать на линукс, что-то там придумается.
 >- ссылка на команды есть в описании видео
+>- gw for nvim
 
 # Вопросы
 
@@ -17,12 +18,24 @@
 
 В первую очередь обновляем на новом ноутбуке саму систему, драйвера.
 
-# Windows-софт
+# WSL
 
-- WSL (set to wsl 2):
+Ставим WSL. 
+
 ```bash
+wsl --install -d Debian
 wsl --set-default-version 2
 ```
+
+# dot-files
+
+```bash
+git clone https://github.com/alexey-goloburdin/dotfiles
+```
+
+
+# Windows-софт
+
 - Audacity
 ```bash
 vim /mnt/c/Users/sterx/AppData/Roaming/alacritty/alacritty.toml
@@ -167,7 +180,7 @@ Git в Windows настроен. Плагин git в Obsidian и хоткей н
 ```bash
 sudo apt install -y \
     zsh git gpg pass zip unzip \
-    curl wget tmux gcc bsdmainutils htop fzf bat ripgrep build-essential 
+    curl wget tmux gcc bsdmainutils htop fzf bat ripgrep build-essential
 
 sudo ln -s $(which batcat) /usr/local/bin/bat
 
@@ -263,21 +276,12 @@ tmux_conf_theme_status_right=""
 tmux_conf_theme_status_bg="#191724"
 # tmux_conf_theme_status_bg="#221F30"
 
-# ╨Ш╤Б╨┐╨╛╨╗╤М╨╖╨╛╨▓╨░╤В╤М vi-╤А╨╡╨╢╨╕╨╝ ╨▓ copy-mode
-
 set -g mode-keys vi
-
-# ╨Т╨║╨╗╤О╤З╨╕╤В╤М ╨║╨╛╨┐╨╕╤А╨╛╨▓╨░╨╜╨╕╨╡ ╨▓ ╤Б╨╕╤Б╤В╨╡╨╝╨╜╤Л╨╣ ╨▒╤Г╤Д╨╡╤А (╤В╤А╨╡╨▒╤Г╨╡╤В╤Б╤П `xclip` ╨╕╨╗╨╕ `pbcopy`)
 
 bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "xclip -selection clipboard -i"
 
-# ╨Р╨╗╤М╤В╨╡╤А╨╜╨░╤В╨╕╨▓╨╜╤Л╨╣ ╨▓╨░╤А╨╕╨░╨╜╤В ╨┤╨╗╤П macOS
-# bind-key -T copy-mode-vi y send -X copy-pipe-and-cancel "pbcopy"
-
-# ╨г╨┤╨╛╨▒╨╜╤Л╨╣ ╤Б╨┐╨╛╤Б╨╛╨▒ ╨▓╤Е╨╛╨┤╨░ ╨▓ copy-mode
 bind-key [ copy-mode
 
-# ╨Э╨░╤Б╤В╤А╨╛╨╣╨║╨░ ╨║╨╜╨╛╨┐╨╛╨║ ╨┤╨╗╤П ╨╜╨░╨▓╨╕╨│╨░╤Ж╨╕╨╕ (╨╛╨┐╤Ж╨╕╨╛╨╜╨░╨╗╤М╨╜╨╛)
 bind-key -T copy-mode-vi v send -X begin-selection
 bind-key -T copy-mode-vi y send -X copy-selection-and-cancel
 
