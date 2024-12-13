@@ -39,6 +39,10 @@
     margin-right: auto;
 }
 
+.obsidian-git-disabled {
+    opacity: 0.5;
+}
+
 .obsidian-git-center-button {
     display: block;
     margin: 20px auto;
@@ -75,6 +79,10 @@
 .git-tools .buttons > * {
     padding: 0 0;
     height: auto;
+}
+
+.is-active .git-tools .buttons > * {
+    color: var(--nav-item-color-active);
 }
 
 .git-author {
@@ -550,7 +558,7 @@
     white-space: pre; /* Keep spaces and do not collapse them. */
 }
 
-@media(max-width:800px){
+@media (max-width: 800px) {
     /* hide git blame gutter not to superpose text */
     .cm-gutterElement.obs-git-blame-gutter {
         display: none;
