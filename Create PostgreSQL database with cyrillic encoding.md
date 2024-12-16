@@ -1,5 +1,13 @@
 Чтобы нормально `ORDER BY`  работал и прочее надо создавать БД с правильной кодировкой. Неважно при этом как создан кластер.
 
+```bash
+sudo passwd postgres
+su - postgres
+psql
+```
+
+Создаём роль и БД:
+
 ```sql
 CREATE ROLE rroom WITH LOGIN PASSWORD 'mycoolp@ssword';
 
@@ -19,5 +27,7 @@ sudo apt-get install -y locales
 sudo locale-gen ru_RU.UTF-8
 sudo dpkg-reconfigure locales
 ```
+
+И, возможно, надо перезагрузиться (на WSL `sudo reboot` был нужен).
 
 [[PostgreSQL]]
