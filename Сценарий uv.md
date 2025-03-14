@@ -58,6 +58,7 @@ uv python list
 uv run main.py
 
 uv add requests
+# без инициализации проекта можно, прям так
 bat pyproject.toml
 
 nvim main.py
