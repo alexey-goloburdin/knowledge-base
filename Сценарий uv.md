@@ -1,3 +1,7 @@
+Здоров, котаны, если вдруг вы упустили современный Python-инструментарий, то рад познакомить вас с `uv`! Это пакетный менеджер для Python, как pip или poetry, только лучше, а ещё как pyenv, только лучше, а ещё как virtualenv, только лучше. Вот прям всё в одном. И вот прям blazingly fast, вот прям на расте, прям пушечка!
+
+Давайте разбираться!
+
 # Установка
 
 ```bash
@@ -103,6 +107,7 @@ uv run manage.py runserver
 ```
 
 На самом деле вирт окружение создастся в директории `.venv`.
+# Запуск скриптов без виртуального окружения
 
 Также можно для отдельного скрипта подтянуть любую библиотеку — вот вообще без создания вирт окружения:
 
@@ -111,6 +116,107 @@ uv run --with httpx==0.26.0 python -c "import httpx; print(httpx.get('https://to
 ```
 
 Скажите, класс, а?
+
+Но на этом ещё не заканчивается. Можно прям в файле прописать, что нам нужно, все зависимости и версию интерпретатора. И запускать этот файл!
+
+У меня есть скрипт, который нумерует маркдаун-файлы в директории. Я написал его для себя, я пишу курс Хардкорная веб-разработка в markdown-документах в Obsidian, и все уроки нумеруются, и иногда мне надо вставить урок в середину и не хочется менять нумерацию всех последующих уроков. Тогда я просто запускаю свой пайтон-скрипт и он делает красиво. Вот так выглядит этот код:
+
+```python
+import argparse
+from pathlib import Path
+import os
+import re
+
+from natsort import natsorted
+from tabulate import tabulate
+
+parser = argparse.ArgumentParser()
+parser.add_argument('-s', '--simulate', action='store_true', help="simulate renaming")
+parser.add_argument('base', nargs='?', default="", help="base static number — before counter")
+args = parser.parse_args()
+
+
+for root, dirs, files in Path(".").walk():
+    files = tuple(filter(lambda f: f.lower().endswith(".md"), natsorted(files)))
+    if not files: continue
+    index = 0
+
+    max_filename_len = len(sorted(files, key=lambda f: len(f))[-1])
+
+    files_for_rename, renamed_files = [], []
+    for file in files:
+        match = re.match(r"^([\d\. ]*)(.*)", file)
+        if not match: raise Exception(f"strange {file=}")
+        match = match.groups()
+        file_name = match[1]
+
+        index += 1
+        base_number = "" if not args.base else f"{args.base}."
+        new_file_name = f"{base_number}{index}. {file_name}"
+        files_for_rename.append([file, new_file_name])
+
+    try:
+        for filenames in files_for_rename:
+            file, new_file_name = filenames
+            if not args.simulate:
+                os.rename(file, new_file_name)
+            renamed_files.append(filenames)
+    except Exception as e:
+        print(e)
+
+    print(tabulate(renamed_files, headers=["old name", "new name"]))
+
+if args.simulate:
+    print("Changes simulated")
+```
+
+Покажу, как работает:
+
+```bash
+cd files
+ls
+
+true > "2.2. Как всё устроено — кластер, база данных, схема, табличное пространство, файл, страница.md"
+
+uv run --with natsort --with tabulate ../number_files.py --simulate
+uv run --with natsort --with tabulate ../number_files.py --simulate 12
+```
+
+Здесь используется 2 внешних либы — natsort и tabulate. Надо создавать виртуальное окружение ради одного этого скрипта и это, честно говоря, уныло. `uv` поможет! Можно запустить это так:
+
+```bash
+uv run --with natsort --with tabulate number_files.py
+```
+
+И без виртуального окружения! Кайф!
+
+```text
+#!/usr/bin/env -S uv run --script
+
+# /// script
+# requires-python = ">=3.13"
+# dependencies = [
+#   "natsort",
+#   "tabulate"
+# ]
+# ///
+```
+
+# Точки входа
+
+Также можно создавать команды или точки входа, добавим в `pyproject.toml`:
+
+```
+[project.scripts]
+hello = "main:hello"
+```
+
+Запустим:
+
+```bash
+echo "def hello(): print('hello!')" > main.py
+uv run helllo
+```
 
 # uvx
 
