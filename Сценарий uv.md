@@ -57,3 +57,28 @@ uv python list
 ```bash
 uv tree
 ```
+
+Тут не надо создавать самому вирт окружение. Можно, но не надо:
+
+```bash
+uv add django
+uv run django-admin startproject myproject
+ls
+cd myproject
+ls
+uv run manage.py startapp firstapp
+uv run manage.py runserver
+```
+
+# uvx
+
+```bash
+uvx ruff
+# download it
+
+# in manage.py directory
+uvx ruff check .
+
+uvx ruff check . --fix
+uvx ruff check . --fix
+```
