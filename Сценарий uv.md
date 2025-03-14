@@ -76,9 +76,22 @@ uv run manage.py runserver
 uvx ruff
 # download it
 
-# in manage.py directory
+# from directory with manage.py
 uvx ruff check .
 
 uvx ruff check . --fix
-uvx ruff check . --fix
+uvx ruff check .
+```
+
+Это работает в своём изолированном окружении. Если надо в окружении проекта, то можно по классике затащить зависимость в проект и запускать её с `uv run`:
+
+```bash
+# from directory with manage.py
+uv add --dev pytest
+
+ls
+# обрати внимание — pytest добавился в pyproject.toml на уровне выше
+bat ../pyproject.toml
+
+uv run pytest
 ```
