@@ -104,6 +104,14 @@ uv run manage.py runserver
 
 На самом деле вирт окружение создастся в директории `.venv`.
 
+Также можно для отдельного скрипта подтянуть любую библиотеку — вот вообще без создания вирт окружения:
+
+```bash
+uv run --with httpx==0.26.0 python -c "import httpx; print(httpx.get('https://to.digital').text[:151])"
+```
+
+Скажите, класс, а?
+
 # uvx
 
 ```bash
