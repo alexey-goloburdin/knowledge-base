@@ -91,6 +91,8 @@ uv run manage.py startapp firstapp
 uv run manage.py runserver
 ```
 
+На самом деле вирт окружение создастся в директории `.venv`.
+
 # uvx
 
 ```bash
@@ -117,10 +119,20 @@ bat ../pyproject.toml
 uv run pytest
 ```
 
+# pyright
+
+`pyrightconfig.json`:
+
+```json
+{
+    "venvPath": ".",
+    "venv": ".venv"
+}
+```
 
 # Ещё
 
-Помимо uv они сделали ещё ruff, сделаю тоже отдельное видео
+Помимо `uv` они сделали ещё `ruff`, сделаю тоже отдельное видео
 
 они делают свой статитический анализатор типов как mypy и pyright
 
