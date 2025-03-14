@@ -52,6 +52,27 @@ uv run main.py
 uv python list
 ```
 
+# Запуск Python-кода
+
+```bash
+uv run main.py
+
+uv add requests
+bat pyproject.toml
+
+nvim main.py
+```
+
+```python
+from pprint import pprint
+
+import requests
+
+countries = requests.get("https://restcountries.com/v3.1/name/russia").json()
+pprint(countries)
+```
+
+
 Можно вот так красиво показать дерево зависимостей, а, кайф?
 
 ```bash
@@ -95,3 +116,12 @@ bat ../pyproject.toml
 
 uv run pytest
 ```
+
+
+# Ещё
+
+Помимо uv они сделали ещё ruff, сделаю тоже отдельное видео
+
+они делают свой статитический анализатор типов как mypy и pyright
+
+ждём!
