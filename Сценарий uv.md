@@ -73,6 +73,11 @@ countries = requests.get("https://restcountries.com/v3.1/name/russia").json()
 pprint(countries)
 ```
 
+Или можно с инициализацией проекта, чтобы добавить туда `git`, `.gitgnore` и тд:
+
+```bash
+uv init myproject
+```
 
 Можно вот так красиво показать дерево зависимостей, а, кайф?
 
