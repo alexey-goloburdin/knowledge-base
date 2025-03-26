@@ -3,6 +3,15 @@
 
 # Что показать
 
+10 самых больших заметок:
+
+```dataview
+table WITHOUT ID file.name, file.size, link(file.link, "open") as f
+sort file.size desc
+limit 10
+```
+
+
 Убрать директорию минусом:
 
 ```
@@ -16,6 +25,7 @@ Limit 20
 # Ещё тулзы
 
 - https://github.com/gfxholo/iconic — иконки для заметок/директорий
+- https://github.com/h-sphere/sql-seal — некий аналог dataview, возможно лучше
 - https://github.com/SebastianMC/obsidian-custom-sort — сортировка директорий
 - https://github.com/epwalsh/obsidian.nvim — nvim plugin for obsidian (?)
 - https://github.com/SilentVoid13/Templater
