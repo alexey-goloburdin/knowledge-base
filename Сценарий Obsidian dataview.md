@@ -11,7 +11,6 @@ sort file.size desc
 limit 10
 ```
 
-
 Убрать директорию минусом:
 
 ```
@@ -21,6 +20,9 @@ sort ASCE
 Limit 20
 ```
 
+---
+
+Настройка CSS для дефолтной темы. Appearance -> CSS Snippets, включить сниппет, который лежит в `.obsidian/snippets/widepage.css`.
 
 # Ещё тулзы
 

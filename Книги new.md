@@ -1,3 +1,7 @@
+---
+cssclasses:
+  - wide-75
+---
 # Читаю сейчас
 
 ```dataviewjs
@@ -98,3 +102,4 @@ dv.table(
     })
 );
 ```
+

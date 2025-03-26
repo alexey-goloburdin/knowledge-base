@@ -1,0 +1,80 @@
+/* base settings for all page width */
+.wide-100 .cm-contentContainer, .wide-100 .cm-content, .wide-100 .cm-line,
+.wide .cm-contentContainer, .wide .cm-content, .wide .cm-line,
+.wide-95 .cm-contentContainer, .wide-95 .cm-content, .wide-95 .cm-line,
+.wide-90 .cm-contentContainer, .wide-90 .cm-content, .wide-90 .cm-line,
+.wide-85 .cm-contentContainer, .wide-85 .cm-content, .wide-85 .cm-line,
+.wide-80 .cm-contentContainer, .wide-80 .cm-content, .wide-80 .cm-line,
+.wide-75 .cm-contentContainer, .wide-75 .cm-content, .wide-75 .cm-line,
+.wide-70 .cm-contentContainer, .wide-70 .cm-content, .wide-70 .cm-line,
+.wide-65 .cm-contentContainer, .wide-65 .cm-content, .wide-65 .cm-line,
+.wide-60 .cm-contentContainer, .wide-60 .cm-content, .wide-60 .cm-line,
+.wide-55 .cm-contentContainer, .wide-55 .cm-content .wide-55 .cm-line
+{
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 100% page width for page with attribute cssclasses=wide-100 or cssclasses=wide */
+.wide-100 .cm-sizer, .wide-100 .cm-contentContainer, .wide-100 .cm-content
+{
+    width: 100% !important;
+    max-width: 100% !important;
+}
+
+/* 95% page width for page with attribute cssclasses=wide-95 */
+.wide-95 .cm-sizer {
+    width: 95% !important;
+    max-width: 95% !important;
+}
+
+/* 90% page width for page with attribute cssclasses=wide-90 */
+.wide-90 .cm-sizer {
+    width: 90% !important;
+    max-width: 90% !important;
+}
+
+/* 85% page width for page with attribute cssclasses=wide-85 */
+.wide-85 .cm-sizer {
+    width: 85% !important;
+    max-width: 85% !important;
+}
+
+/* 80% page width for page with attribute cssclasses=wide-80 */
+.wide-80 .cm-sizer {
+    width: 80% !important;
+    max-width: 80% !important;
+}
+
+/* 75% page width for page with attribute cssclasses=wide-75 */
+.wide-75 .cm-sizer {
+    width: 75% !important;
+    max-width: 75% !important;
+}
+
+/* 70% page width for page with attribute cssclasses=wide-70 */
+.wide-70 .cm-sizer {
+    width: 70% !important;
+    max-width: 70% !important;
+}
+
+/* 65% page width for page with attribute cssclasses=wide-65 */
+.wide-65 .cm-sizer {
+    width: 65% !important;
+    max-width: 65% !important;
+}
+
+
+/* 60% page width for page with attribute cssclasses=wide-60 */
+.wide-60 .cm-sizer {
+    width: 60% !important;
+    max-width: 60% !important;
+}
+
+/* 55% page width for page with attribute cssclasses=wide-55 */
+.wide-55 .cm-sizer {
+    width: 55% !important;
+    max-width: 55% !important;
+}
+
+
