@@ -38,16 +38,15 @@ Limit 20
 
 Настройка CSS для дефолтной темы. Настройки Obsidian, Appearance -> CSS Snippets, включить сниппет, который лежит в `.obsidian/snippets/widepage.css`.
 
-# Ещё тулзы
+progreess from [here](https://habr.com/ru/articles/710356/)
 
-- https://github.com/epwalsh/obsidian.nvim — nvim plugin for obsidian (?)
-- https://github.com/SilentVoid13/Templater
+
+# Ещё тулзы
 
 Синхронизация — git плагин и syncthing
 
 # Материалы
 
-- видос Минина — там были интересные плагины
 - playlist на ютубе про dataview
 - https://habr.com/ru/articles/710356/ — статья про dataview
 - https://gennbooth.ru/mysli?entry=1002

@@ -7,6 +7,8 @@
 Начал читать: 2025-03-22
 Закончил читать: 
 Тип: "[[Книга]]"
+Progress: <p> <progress max=100 value=90> </progress></p>
+Обложка: https://m.media-amazon.com/images/I/81sroE2iJNL.jpg
 ---
 ## Причина добавления
 
