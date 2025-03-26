@@ -15,6 +15,24 @@
     max-width: 100% !important;
 }
 
+/*
+.wide-100 .cm-vimMode .metadata-container,
+.wide .cm-vimMode .metadata-container,
+.wide-95 .cm-vimMode .metadata-container,
+.wide-90 .cm-vimMode .metadata-container,
+.wide-85 .cm-vimMode .metadata-container,
+.wide-80 .cm-vimMode .metadata-container,
+.wide-75 .cm-vimMode .metadata-container,
+.wide-70 .cm-vimMode .metadata-container,
+.wide-65 .cm-vimMode .metadata-container,
+.wide-60 .cm-vimMode .metadata-container,
+.wide-55 .cm-vimMode .metadata-container {
+    display: none !important;
+}
+*/
+
+
+
 /* 100% page width for page with attribute cssclasses=wide-100 or cssclasses=wide */
 .wide-100 .cm-sizer, .wide-100 .cm-contentContainer, .wide-100 .cm-content
 {

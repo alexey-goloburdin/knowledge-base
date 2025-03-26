@@ -40,9 +40,6 @@ Limit 20
 
 # Ещё тулзы
 
-- https://github.com/gfxholo/iconic — иконки для заметок/директорий
-- https://github.com/h-sphere/sql-seal — некий аналог dataview, возможно лучше
-- https://github.com/SebastianMC/obsidian-custom-sort — сортировка директорий
 - https://github.com/epwalsh/obsidian.nvim — nvim plugin for obsidian (?)
 - https://github.com/SilentVoid13/Templater
 
