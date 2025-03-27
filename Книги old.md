@@ -1,0 +1,158 @@
+---
+cssclasses:
+  - wide-85
+---
+# Читаю сейчас (`$= dv.pages("").where(page => {if (page["Тип"] && page["Тип"].path == "types/Книга.md" && page.file.folder != "templates" && !page["Закончил читать"] && page["Начал читать"]) {return page;}}).length`)
+
+```dataviewjs
+const categoryColors = {
+	"эффективность": "#fff9f2", "разработка": "#ebffff", "edtech": "#f5fff7",
+	"съёмка": "#f7f9ff", "художественное": "#fffdf0",
+	"default": "#f5f5f5"
+};
+const getCategoryColor = category => {
+    if (category in categoryColors) return categoryColors[category];
+    else return categoryColors["default"];
+}
+const getBooks = () => dv.pages("").where(page => {
+    if (page["Тип"] && page["Тип"].path == "types/Книга.md" && page.file.folder != "templates" && !page["Закончил читать"] && page["Начал читать"]) {
+      return page;
+    }
+}).sort(p => p["Начал читать"], "desc");
+
+const formatDate = d => {
+    return d.year === dv.date("now").year
+        ? d.toFormat("d MMMM", { locale: "ru" })
+        : d.toFormat("d MMMM yyyy", { locale: "ru" });
+}
+
+let books = "";
+
+for (const book of getBooks()) {
+	const categories = book.Категории.map(
+	    c => `<span class="category" style="background-color: ${getCategoryColor(c)}">${c}</span>`
+	).join(" ");
+    books += `<div class="book">
+		<a data-tooltip-position="top" aria-label="Книга «Создай свой второй мозг», Тьяго Форте.md" data-href="${book.file.name}" href="${book.file.name}.md" class="internal-link" target="_blank" rel="noopener nofollow"><img src="${book.Обложка}" data-filename="${book.file.name}" /></a>
+        ${book.Progress}
+        начал ${formatDate(book["Начал читать"])}<br>
+        <div class="categories">${categories}</div>
+        <div class="pages">${book.Страниц} стр.</div>
+    </div>`;
+}
+
+dv.el("div", books, {cls: "books"});
+
+//dv.container.querySelectorAll("img").forEach(img => {
+//	img.addEventListener("click", () => {
+//	    app.workspace.openLinkText(img.dataset.filename, "/", false)
+//	})
+//});
+```
+
+
+
+
+# Читаю сейчас
+
+```dataviewjs
+let booksCount = 0;
+
+let bookPages = dv.pages("").where(page => {
+    if (page["Тип"] && page["Тип"].path == "types/Книга.md" && page.file.folder != "templates" && !page["Закончил читать"] && page["Начал читать"]) {
+	  booksCount++;
+      return page;
+    }
+}).sort(p => p["Начал читать"], "desc");
+
+const MAX_BOOK_NAME_LENGTH = 50;
+let index = booksCount + 1;
+
+dv.table(
+    ["", "Название", "Автор", "Страниц", "Начал", "Прогресс"],
+    bookPages.map(p => {
+        const shortName = p.Название.length > MAX_BOOK_NAME_LENGTH  
+            ? p.Название.substring(0, MAX_BOOK_NAME_LENGTH) + "..." 
+            : p.Название;
+		const authors = p.Автор.split(",").map(el => el.trim()).join("<br />");
+        return [
+			--index,
+            dv.fileLink(p.file.path, false, shortName),
+            authors,
+            p.Страниц,
+            p["Начал читать"] !== null ? p["Начал читать"] :
+            "",
+            p.Progress
+        ];
+    })
+);
+```
+
+# Прочитанное в 2025
+
+```dataviewjs
+let booksCount = 0;
+
+let bookPages = dv.pages("").where(page => {
+    if (page["Тип"] && page["Тип"].path == "types/Книга.md" && page.file.folder != "templates" && page["Закончил читать"] && new Date(page["Закончил читать"].ts).getFullYear() === 2025) {
+	  booksCount++;
+      return page;
+    }
+}).sort(p => p["Закончил читать"], "desc");
+
+const MAX_BOOK_NAME_LENGTH = 50;
+let index = booksCount + 1;
+
+dv.table(
+    ["", "Название", "Автор", "Страниц", "Прочитал"],
+    bookPages.map(p => {
+        const shortName = p.Название.length > MAX_BOOK_NAME_LENGTH  
+            ? p.Название.substring(0, MAX_BOOK_NAME_LENGTH) + "..." 
+            : p.Название;
+		const authors = p.Автор.split(",").map(el => el.trim()).join("<br />");
+        return [
+			--index,
+            dv.fileLink(p.file.path, false, shortName),
+            authors,
+            p.Страниц,
+            p["Закончил читать"] !== null ? p["Закончил читать"] :
+            ""
+        ];
+    })
+);
+```
+
+# Все книги
+
+
+```dataviewjs
+let booksCount = 0;
+let book_pages = dv.pages("").where(page => {
+    if (page["Тип"] && page["Тип"].path == "types/Книга.md" && page.file.folder != "templates") {
+      booksCount++;
+      return page;
+    }
+}).sort(p => p["Закончил читать"], "desc");
+
+const MAX_BOOK_NAME_LENGTH = 50;
+let index = booksCount + 1;
+
+dv.table(
+    ["", "Название", "Автор", "Страниц", "Прочитана"],
+    book_pages.map(p => {
+        const shortName = p.Название.length > MAX_BOOK_NAME_LENGTH  
+            ? p.Название.substring(0, MAX_BOOK_NAME_LENGTH) + "..." 
+            : p.Название;
+		const authors = p.Автор.split(",").map(el => el.trim()).join("<br />");
+        return [
+			--index,
+            dv.fileLink(p.file.path, false, shortName),
+            authors,
+            p.Страниц,
+            p["Закончил читать"] !== null ? p["Закончил читать"] :
+            ""
+        ];
+    })
+);
+```
+
