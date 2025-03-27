@@ -78,3 +78,12 @@
 }
 
 
+
+.books span {
+    display: flex;
+    flex-wrap: wrap;
+}
+.book {
+    flex: 1; padding: 10px; width: 50px;
+    vertical-align: middle;
+}
