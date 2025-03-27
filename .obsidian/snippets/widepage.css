@@ -79,11 +79,39 @@
 
 
 
-.books span {
-    display: flex;
-    flex-wrap: wrap;
+.cm-preview-code-block:hover {
+    box-shadow: none !important;
 }
-.book {
-    flex: 1; padding: 10px; width: 50px;
-    vertical-align: middle;
+.metadata-properties-title {color: #d5d5d5; content:"Свойства";}
+.metadata-properties-heading .collapse-indicator {display: none;}
+
+.books > span {
+    padding: 15px;
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    grid-auto-rows: minmax(300px, auto);
+    gap: 10px;
+    height: 100%;
 }
+
+.books img {
+    cursor: pointer;
+    height: 250px !important;
+    display: block; 
+    margin: 0 auto 10px auto;
+}
+.books p[dir=auto] {margin: 0;}
+.books progress {display: block !important; margin: 0 auto;}
+.books .book {text-align: center;}
+.books .book .pages {color: #9e9e9e; font-size: 0.75em;}
+
+.books .book .category {
+    display: inline-block;
+    margin-bottom: 0.3em;
+    background-color: #f7efc3;
+    border-radius: 3px;
+    padding: 0px 7px;
+    width: auto;
+    font-size: 0.75em;
+}
+

@@ -4,5 +4,7 @@
   "enabledCssSnippets": [
     "obsidian",
     "widepage"
-  ]
+  ],
+  "showViewHeader": false,
+  "showRibbon": false
 }

@@ -1,14 +1,16 @@
 ---
 Название: Effective Python. 125 Specific Ways to Write  Better Python. 3 edition
 Автор: Brett Slatkin
-Страниц: 625
+Страниц: 513
 Добавлена в базу: 24.03.2025 в 18:37
 Прочитана: false
 Начал читать: 2025-03-22
 Закончил читать: 
 Тип: "[[Книга]]"
-Progress: <p> <progress max=100 value=90> </progress></p>
+Progress: <p><progress max=513 value=22></progress></p>
 Обложка: https://m.media-amazon.com/images/I/81sroE2iJNL.jpg
+Категории:
+  - разработка
 ---
 ## Причина добавления
 
