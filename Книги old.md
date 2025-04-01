@@ -33,7 +33,7 @@ for (const book of getBooks()) {
 	    c => `<span class="category" style="background-color: ${getCategoryColor(c)}">${c}</span>`
 	).join(" ");
     books += `<div class="book">
-		<a data-tooltip-position="top" aria-label="Книга «Создай свой второй мозг», Тьяго Форте.md" data-href="${book.file.name}" href="${book.file.name}.md" class="internal-link" target="_blank" rel="noopener nofollow"><img src="${book.Обложка}" data-filename="${book.file.name}" /></a>
+		<a data-tooltip-position="top" data-href="${book.file.name}" href="${book.file.name}.md" class="internal-link" target="_blank" rel="noopener nofollow"><img src="${book.Обложка}" data-filename="${book.file.name}" /></a>
         ${book.Progress}
         начал ${formatDate(book["Начал читать"])}<br>
         <div class="categories">${categories}</div>
@@ -42,12 +42,6 @@ for (const book of getBooks()) {
 }
 
 dv.el("div", books, {cls: "books"});
-
-//dv.container.querySelectorAll("img").forEach(img => {
-//	img.addEventListener("click", () => {
-//	    app.workspace.openLinkText(img.dataset.filename, "/", false)
-//	})
-//});
 ```
 
 
