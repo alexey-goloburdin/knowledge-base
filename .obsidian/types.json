@@ -3,6 +3,7 @@
     "aliases": "aliases",
     "cssclasses": "multitext",
     "tags": "tags",
-    "Категории": "multitext"
+    "Категории": "multitext",
+    "Добавлена в базу": "datetime"
   }
 }
