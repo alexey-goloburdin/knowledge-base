@@ -31,5 +31,14 @@
       "key": "P"
     }
   ],
-  "command-palette:open": []
+  "command-palette:open": [],
+  "daily-notes": [
+    {
+      "modifiers": [
+        "Mod"
+      ],
+      "key": "D"
+    }
+  ],
+  "editor:delete-paragraph": []
 }
