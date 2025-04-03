@@ -5,3 +5,5 @@ echo "alias pwgen=\"LC_ALL=C tr -dc 'A-Za-z0-9@#%^&*()_+=-{}[]:;<>,.?/' \
 # run with
 pwgen
 ```
+
+Этот alias уже добавлен в мои [dotfiles](https://github.com/alexey-goloburdin/dotfiles).
