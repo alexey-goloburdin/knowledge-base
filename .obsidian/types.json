@@ -4,6 +4,8 @@
     "cssclasses": "multitext",
     "tags": "tags",
     "Категории": "multitext",
-    "Добавлена в базу": "datetime"
+    "Добавлена в базу": "datetime",
+    "Начал читать": "date",
+    "Закончил читать": "date"
   }
 }
