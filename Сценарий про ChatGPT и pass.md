@@ -16,3 +16,19 @@
 а если у вас текущий скилл, скажем, 10 каких-то условных единиц и нейронка даёт вам дополнительные 30%, то вы получаете 3 дополнительных балла, и у вас теперь не 10, а 13 условных единиц.
 
 А если ваш текущий скилл не 10, а тысяча, то 30% это уже 300 единиц. Понимаете? Чем больше ваш личный опыт, тем больше вам может дать нейронка, потому что вы понимаете, как всё работает, как всё устроено, где какие подводные камни есть и так далее. И тут точно составленный промпт на основе вашего жизненного опыта действительно даст вам буст.
+
+--- 
+
+вариант решения:
+
+```bash
+# Set XDG_RUNTIME_DIR to a user-specific directory
+export XDG_RUNTIME_DIR=/run/user/$(id -u)
+# Create the directory if it doesn’t exist
+mkdir -p $XDG_RUNTIME_DIR
+# Create symlinks to the WSLg Wayland socket
+ln -s /mnt/wslg/runtime-dir/wayland-0 $XDG_RUNTIME_DIR/wayland-0
+ln -s /mnt/wslg/runtime-dir/wayland-0.lock $XDG_RUNTIME_DIR/wayland-0.lock
+
+# pass use wl-copy and it works perfectly
+```
