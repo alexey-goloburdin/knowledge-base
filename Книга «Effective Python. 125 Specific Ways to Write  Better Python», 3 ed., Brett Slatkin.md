@@ -11,6 +11,8 @@ Progress: <p><progress max=513 value=22></progress></p>
 Обложка: https://m.media-amazon.com/images/I/81sroE2iJNL.jpg
 Категории:
   - разработка
+Формат:
+  - электронная
 ---
 ## Причина добавления
 
