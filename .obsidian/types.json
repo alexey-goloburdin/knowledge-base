@@ -4,7 +4,7 @@
     "cssclasses": "multitext",
     "tags": "tags",
     "Категории": "multitext",
-    "Добавлена в базу": "datetime",
+    "Добавлена в базу": "date",
     "Начал читать": "date",
     "Закончил читать": "date"
   }
