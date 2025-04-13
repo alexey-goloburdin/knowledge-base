@@ -7,7 +7,7 @@
 Начал читать: 
 Закончил читать: 
 Тип: "[[Книга]]"
-Обложка: https://ir.ozone.ru/s3/multimedia-q/wc1000/6823645298.jpg
+Обложка: https://alpinabook.ru/upload/resize_cache/converted/90/iblock/7ec/1410_1410_1/7ecf74a7f1243b8eddd63afc5bb4d8bf.jpg.webp
 Категории:
   - менеджмент
 Progress: <p><progress max=0 value=0></progress></p>
