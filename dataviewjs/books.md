@@ -30,5 +30,21 @@ const formatDate = d => {
         : d.toFormat("d MMMM yyyy", { locale: "ru" });
 }
 
-window.books = {getCategoryColor, getBooks, formatDate};
+const renderCategories = book => {
+	return (book.Категории ? book.Категории : []).map(
+	    c => `<span class="category" style="background-color: ${getCategoryColor(c)}">${c}</span>`
+	).join(" ");
+}
+
+const renderBook = (book, additionalHtml) => {
+    return `<div class="book">
+		<a data-tooltip-position="top" data-href="${book.file.name}" href="${book.file.name}.md" class="internal-link" target="_blank" rel="noopener nofollow"><img src="${book.Обложка}" data-filename="${book.file.name}" /></a>
+        ${book.Progress}
+		${additionalHtml}
+        <div class="categories">${renderCategories(book)}</div>
+        <div class="pages">${book.Страниц} стр.</div>
+    </div>`;
+}
+
+window.books = {getBooks, renderBook};
 ```
