@@ -1,0 +1,1 @@
+Разработчик, архитектор, автор одноимённого youtube-канала https://www.youtube.com/@S0ERDEVS.
