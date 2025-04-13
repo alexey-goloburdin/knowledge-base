@@ -3,6 +3,7 @@ const CATEGORY_COLORS = {
     "эффективность": "#fff9f2", "разработка": "#ebffff", "edtech": "#f5fff7",
     "съёмка": "#f7f9ff", "художественное": "#fffdf0",
     "психология": "#faf1dd",
+    "архитектура ПО": "#fff3f3", "AI": "#dfe6ff",
     "default": "#f5f5f5"
 };
 
