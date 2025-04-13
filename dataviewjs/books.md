@@ -11,11 +11,17 @@ const getCategoryColor = category => {
     else return categoryColors["default"];
 }
 
-const getBooks = () => dv.pages("").where(page => {
-    if (page["Тип"] && page["Тип"].path == "types/Книга.md" && page.file.folder != "templates"  && page.file.folder != "templater" && !page["Закончил читать"] && page["Начал читать"]) {
-      return page;
-    }
-}).sort(p => p["Начал читать"], "desc");
+const getBooks = () => {
+    const books = dv.pages("")
+        .where(page => {
+            if (page["Тип"] && page["Тип"].path == "types/Книга.md"
+                    && page.file.folder != "templates"
+                    && page.file.folder != "templater"){
+                return page;
+            }
+        });
+    return books;
+};
 
 const formatDate = d => {
     if (!d) return '';
