@@ -6,14 +6,14 @@
 Прочитана: true
 Начал читать: 2024-06-11
 Закончил читать: 2024-06-29
-Тип: '[[Книга]]'
+Тип: "[[Книга]]"
 Формат:
-- бумажная
+  - бумажная
 Обложка: https://ir.ozone.ru/s3/multimedia-1-h/wc1000/7388458505.jpg
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=224 value=224></progress></p>
 Категории:
-- архитектура ПО
-- PostgreSQL
+  - архитектура ПО
+  - PostgreSQL
 ---
 ## Причина добавления
 

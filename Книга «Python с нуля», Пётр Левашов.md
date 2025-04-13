@@ -6,14 +6,14 @@
 Прочитана: true
 Начал читать: 2024-02-13
 Закончил читать: 2024-02-13
-Тип: '[[Книга]]'
+Тип: "[[Книга]]"
 Формат:
-- бумажная
+  - бумажная
 Обложка: https://ir.ozone.ru/s3/multimedia-1-a/wc1000/6918709078.jpg
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=449 value=449></progress></p>
 Категории:
-- разработка
-- Python
+  - разработка
+  - Python
 ---
 ## Причина добавления
 
