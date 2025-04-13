@@ -11,6 +11,9 @@
 - бумажная
 Обложка: https://ir.ozone.ru/s3/multimedia-1-a/wc1000/6918709078.jpg
 Progress: <p><progress max=0 value=0></progress></p>
+Категории:
+- разработка
+- Python
 ---
 ## Причина добавления
 

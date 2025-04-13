@@ -1,15 +1,27 @@
 ```js
-const CATEGORY_COLORS = {
+const CATEGORY_BG_COLORS = {
     "эффективность": "#fff9f2", "разработка": "#ebffff", "edtech": "#f5fff7",
     "съёмка": "#f7f9ff", "художественное": "#fffdf0",
     "психология": "#faf1dd",
     "архитектура ПО": "#fff3f3", "AI": "#dfe6ff",
+    //"фронтенд": "red",
+    "Python": "#25912b",
+    "менеджмент": "#f9fd95",
     "default": "#f5f5f5"
 };
 
-const getCategoryColor = category => {
-    return (category in CATEGORY_COLORS) ? CATEGORY_COLORS[category]: CATEGORY_COLORS["default"];
+const CATEGORY_FONT_COLORS = {
+    "Python": "#fff"
+};
+
+const getCategoryBgColor = category => {
+    return (category in CATEGORY_BG_COLORS) ? CATEGORY_BG_COLORS[category]: CATEGORY_BG_COLORS["default"];
 }
+
+const getCategoryFontColor = category => {
+    return (category in CATEGORY_FONT_COLORS) ? CATEGORY_FONT_COLORS[category]: CATEGORY_FONT_COLORS["default"];
+}
+
 
 const getBooks = () => {
     const books = dv.pages("")
@@ -31,7 +43,7 @@ const formatDate = d => {
 
 const renderCategories = book => {
     return (book.Категории ? book.Категории : []).map(
-        c => `<span class="category" style="background-color: ${getCategoryColor(c)}">${c}</span>`
+        c => `<span class="category" style="background-color: ${getCategoryBgColor(c)}; color: ${getCategoryFontColor(c)};">${c}</span>`
     ).join(" ");
 }
 
