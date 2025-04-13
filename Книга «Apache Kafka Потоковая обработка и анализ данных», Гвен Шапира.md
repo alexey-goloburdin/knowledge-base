@@ -10,6 +10,7 @@
 Формат:
 - электронная
 Обложка: https://ir.ozone.ru/s3/multimedia-s/wc1000/6562237048.jpg
+Progress: <p><progress max=0 value=0></progress></p>
 ---
 ## Причина добавления
 

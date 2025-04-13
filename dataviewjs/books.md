@@ -34,21 +34,20 @@ const renderCategories = book => {
     ).join(" ");
 }
 
-const renderBook = (book, additionalHtml) => {
-    additionalHtml = eval("`"+additionalHtml+"`");
+const renderBook = (book, additionalBookRenderFunction) => {
     return `<div class="book">
         <a data-tooltip-position="top" data-href="${book.file.name}" href="${book.file.name}.md" class="internal-link" target="_blank" rel="noopener nofollow"><img src="${book.Обложка}" data-filename="${book.file.name}" /></a>
         ${book.Progress}
-        ${additionalHtml}
+        ${additionalBookRenderFunction(book)}
         <div class="categories">${renderCategories(book)}</div>
         <div class="pages">${book.Страниц} стр.</div>
     </div>`;
 }
 
-const renderBooks = (booksFiles, additionalBookHtml) => {
+const renderBooks = (booksFiles, additionalBookRenderFunction) => {
     let booksHtml = [];
     for (const book of booksFiles) {
-        booksHtml.push(renderBook(book, additionalBookHtml))
+        booksHtml.push(renderBook(book, additionalBookRenderFunction))
     }
 	return booksHtml.join("");
 }

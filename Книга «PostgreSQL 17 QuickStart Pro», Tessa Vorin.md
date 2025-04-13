@@ -10,6 +10,7 @@
 Формат:
 - электронная
 Обложка: https://encrypted-tbn3.gstatic.com/images?q=tbn:ANd9GcTV_L7p2_Yd7DBRwVuKa-Tg3EF5zhB4tF3RTxTf2Gr0xkBz0_Ej
+Progress: <p><progress max=0 value=0></progress></p>
 ---
 ## Причина добавления
 

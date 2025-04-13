@@ -10,6 +10,7 @@
 Формат:
 - бумажная
 Обложка: https://ir.ozone.ru/multimedia/wc1000/1025515582.jpg
+Progress: <p><progress max=0 value=0></progress></p>
 ---
 ## Причина добавления
 

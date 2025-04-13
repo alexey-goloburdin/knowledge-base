@@ -11,6 +11,7 @@
 - бумажная
 - электронная
 Обложка: https://ir.ozone.ru/s3/multimedia-o/wc1000/6726786684.jpg
+Progress: <p><progress max=0 value=0></progress></p>
 ---
 ## Причина добавления
 
