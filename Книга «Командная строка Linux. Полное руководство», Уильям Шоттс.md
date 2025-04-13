@@ -6,14 +6,14 @@
 Прочитана: true
 Начал читать: 2024-02-01
 Закончил читать: 2024-02-01
-Тип: '[[Книга]]'
+Тип: "[[Книга]]"
 Формат:
-- бумажная
+  - бумажная
 Обложка: https://ir.ozone.ru/s3/multimedia-z/wc1000/6189490355.jpg
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=544 value=544></progress></p>
 Категории:
-- разработка
-- linux
+  - разработка
+  - linux
 ---
 ## Причина добавления
 
