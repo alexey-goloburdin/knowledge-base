@@ -7,11 +7,13 @@ const CATEGORY_BG_COLORS = {
     //"фронтенд": "red",
     "Python": "#25912b",
     "менеджмент": "#f9fd95",
+    "дизайн": "#d324ff",
     "default": "#f5f5f5"
 };
 
 const CATEGORY_FONT_COLORS = {
-    "Python": "#fff"
+    "Python": "#fff",
+    "дизайн": "#ffffec",
 };
 
 const getCategoryBgColor = category => {
