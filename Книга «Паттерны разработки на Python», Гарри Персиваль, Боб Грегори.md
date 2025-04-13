@@ -12,7 +12,7 @@
   - разработка
   - Python
   - архитектура ПО
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=336 value=336></progress></p>
 Формат:
   - бумажная
   - электронная

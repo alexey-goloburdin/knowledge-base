@@ -11,7 +11,7 @@
 Категории:
   - разработка
   - фронтенд
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=720 value=720></progress></p>
 Формат:
   - бумажная
 ---
