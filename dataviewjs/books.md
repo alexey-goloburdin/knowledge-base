@@ -49,7 +49,7 @@ const renderCategories = book => {
 
 const renderBook = (book, additionalBookRenderFunction) => {
     return `<div class="book">
-        <a data-tooltip-position="top" data-href="${book.file.name}" href="${book.file.name}.md" class="internal-link" target="_blank" rel="noopener nofollow"><img src="${book.Обложка}" data-filename="${book.file.name}" /></a>
+        <a href="${book.file.name}.md" class="internal-link" target="_blank" rel="noopener nofollow"><img src="${book.Обложка}" data-filename="${book.file.name}" /></a>
         ${book.Progress}
         ${additionalBookRenderFunction(book)}
         <div class="categories">${renderCategories(book)}</div>
