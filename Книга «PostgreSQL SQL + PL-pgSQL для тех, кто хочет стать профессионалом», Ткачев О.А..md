@@ -6,14 +6,14 @@
 Прочитана: true
 Начал читать: 2025-02-20
 Закончил читать: 2025-02-23
-Тип: '[[Книга]]'
+Тип: "[[Книга]]"
 Формат:
-- бумажная
+  - бумажная
 Обложка: https://ir.ozone.ru/s3/multimedia-z/wc1000/6846519203.jpg
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=480 value=480></progress></p>
 Категории:
-- разработка
-- PostgreSQL
+  - разработка
+  - PostgreSQL
 ---
 ## Причина добавления
 
