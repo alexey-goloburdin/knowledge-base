@@ -14,8 +14,7 @@ const getBooks = () => {
     const books = dv.pages("")
         .where(page => {
             if (page["Тип"] && page["Тип"].path == "types/Книга.md"
-                    && page.file.folder != "templates"
-                    && page.file.folder != "templater"){
+                    && !["templates", "templater"].includes(page.file.folder)){
                 return page;
             }
         });
@@ -46,7 +45,7 @@ const renderBook = (book, additionalHtml) => {
     </div>`;
 }
 
-const renderBooks = (books, additionalBookHtml) => {
+const renderBooks = (booksFiles, additionalBookHtml) => {
     let booksHtml = [];
     for (const book of booksFiles) {
         booksHtml.push(renderBook(book, additionalBookHtml))
