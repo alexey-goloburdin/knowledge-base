@@ -12,7 +12,7 @@
   - разработка
   - Python
   - архитектура ПО
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=153 value=153></progress></p>
 Формат:
   - электронная
 ---
@@ -21,6 +21,8 @@ Progress: <p><progress max=0 value=0></progress></p>
 Интересно было почитать что-то практическое после [[Книга «Чистая архитектура», Роберт Мартин]].
 
 Также по теме рекомендую [[Книга «Паттерны разработки на Python», Гарри Персиваль, Боб Грегори]].
+
+Можно [[Книга «Implementing the Clean Architecture», Sebastian Buczyński]].
 
 ## Рецензия
 
