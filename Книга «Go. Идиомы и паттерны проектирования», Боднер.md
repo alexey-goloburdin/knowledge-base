@@ -11,7 +11,7 @@
 Категории:
   - разработка
   - Go
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=496 value=496></progress></p>
 Формат:
   - электронная
 ---
