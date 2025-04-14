@@ -1,9 +1,9 @@
 ---
-Название: undefined
-Автор: undefined
-Страниц: 
+Название: "Django for APIs: Build web APIs with Python & Django"
+Автор: William S. Vincent
+Страниц: "200"
 Добавлена в базу: 2025-04-15
-Прочитана: false
+Прочитана: true
 Начал читать: 2023-05-01
 Закончил читать: 2023-05-01
 Тип: "[[Книга]]"
@@ -11,7 +11,7 @@
 Категории:
   - разработка
   - Python
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=200 value=200></progress></p>
 Формат:
 ---
 ## Причина добавления
