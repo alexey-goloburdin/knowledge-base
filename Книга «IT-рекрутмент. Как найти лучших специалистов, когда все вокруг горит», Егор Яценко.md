@@ -10,7 +10,7 @@
 Обложка: https://ir.ozone.ru/s3/multimedia-z/wc1000/6659788067.jpg
 Категории:
   - эффективность
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=256 value=256></progress></p>
 Формат:
   - бумажная
 ---
