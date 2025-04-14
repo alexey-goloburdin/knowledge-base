@@ -7,7 +7,7 @@
 Начал читать: 2023-04-01
 Закончил читать: 2023-04-01
 Тип: "[[Книга]]"
-Обложка: https://www.feldroy.com/static/two-scoops-of-django-3.x-card.png
+Обложка: https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1607194316i/55822151.jpg
 Категории:
   - разработка
   - Python
