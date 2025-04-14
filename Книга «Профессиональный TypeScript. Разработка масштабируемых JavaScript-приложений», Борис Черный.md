@@ -19,4 +19,6 @@ Progress: <p><progress max=0 value=0></progress></p>
 
 изучение TS и фронтенда
 
+у меня есть 2 экземпляра
+
 ## Рецензия
