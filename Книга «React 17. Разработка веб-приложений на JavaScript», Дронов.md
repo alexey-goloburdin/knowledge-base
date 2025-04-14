@@ -19,6 +19,4 @@ Progress: <p><progress max=0 value=0></progress></p>
 
 есть более новая сейчас — [[Книга «React 19. Разработка веб-приложений на JavaScript», Дронов]]
 
-
-
 ## Рецензия

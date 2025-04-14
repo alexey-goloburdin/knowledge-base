@@ -19,5 +19,4 @@ Progress: <p><progress max=0 value=0></progress></p>
 
 у меня есть старая версия [[Книга «React 17. Разработка веб-приложений на JavaScript», Дронов]]
 
-
 ## Рецензия
