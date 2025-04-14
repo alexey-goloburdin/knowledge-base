@@ -11,7 +11,7 @@
 Категории:
   - экономика и инвестиции
   - историческое
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=389 value=389></progress></p>
 Формат:
   - бумажная
 ---
