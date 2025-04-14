@@ -7,7 +7,7 @@
 Начал читать: 
 Закончил читать: 
 Тип: "[[Книга]]"
-Обложка: 
+Обложка: https://d2sofvawe08yqg.cloudfront.net/implementing-the-clean-architecture/s_hero?1620626544
 Категории:
   - разработка
   - Python
@@ -21,3 +21,5 @@ Progress: <p><progress max=239 value=239></progress></p>
 Читал после [[Книга «Чистая архитектура», Роберт Мартин]].
 
 ## Рецензия
+
+нормас книжка:) Читали в Ботаним
