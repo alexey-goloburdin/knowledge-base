@@ -1,0 +1,4 @@
+---
+cssclasses:
+  - wide-85
+---
