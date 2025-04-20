@@ -10,7 +10,7 @@
 Обложка: https://ir.ozone.ru/s3/multimedia-1-a/wc1000/7310992438.jpg
 Категории:
   - менеджмент
-  - ораторское
+  - разработка
 Progress: <p><progress max=0 value=0></progress></p>
 Формат:
 ---
