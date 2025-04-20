@@ -14,6 +14,10 @@ Progress: <p><progress max=513 value=22></progress></p>
 Формат:
 - электронная
 ---
+# Effective Python. 125 Specific Ways to Write  Better Python. 3 edition
+
+![https://m.media-amazon.com/images/I/81sroE2iJNL.jpg|250](https://m.media-amazon.com/images/I/81sroE2iJNL.jpg)
+
 ## Причина добавления
 
 Давно хотел прочесть, еще 1 издание. Решил прочесть в рамках Ботаним и подготовки 13 главы [[Курс Хардкорная веб-разработка]].

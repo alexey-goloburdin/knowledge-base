@@ -1,20 +1,24 @@
 ---
-Название: "The Road to React: The React.js with Hooks in JavaScript Book (2023 Edition)"
+Название: 'The Road to React: The React.js with Hooks in JavaScript Book (2023 Edition)'
 Автор: Robin Wieruch
-Страниц: "410"
+Страниц: '410'
 Добавлена в базу: 2025-04-15
 Прочитана: true
 Начал читать: 2023-05-01
 Закончил читать: 2023-05-01
-Тип: "[[Книга]]"
+Тип: '[[Книга]]'
 Обложка: https://m.media-amazon.com/images/I/41Vv6hJcxNL._SY445_SX342_.jpg
 Категории:
-  - разработка
-  - фронтенд
+- разработка
+- фронтенд
 Progress: <p><progress max=410 value=410></progress></p>
 Формат:
-  - электронная
+- электронная
 ---
+# The Road to React: The React.js with Hooks in JavaScript Book (2023 Edition)
+
+![https://m.media-amazon.com/images/I/41Vv6hJcxNL._SY445_SX342_.jpg|250](https://m.media-amazon.com/images/I/41Vv6hJcxNL._SY445_SX342_.jpg)
+
 ## Причина добавления
 
 возможно сейчас есть более новая версия этой книги https://www.roadtoreact.com/

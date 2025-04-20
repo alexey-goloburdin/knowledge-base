@@ -16,6 +16,10 @@ Progress: <p><progress max=0 value=0></progress></p>
 - разработка
 - архитектура ПО
 ---
+# Kafka в действии
+
+![https://ir.ozone.ru/s3/multimedia-1-q/wc1000/7057215494.jpg|250](https://ir.ozone.ru/s3/multimedia-1-q/wc1000/7057215494.jpg)
+
 ## Причина добавления
 
 Читаем в [[Ботаним]] после [[Книга «Создание микросервисов», 2 изд, Сэм Ньюмен]].

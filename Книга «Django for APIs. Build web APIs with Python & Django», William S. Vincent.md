@@ -1,19 +1,23 @@
 ---
-Название: "Django for APIs: Build web APIs with Python & Django"
+Название: 'Django for APIs: Build web APIs with Python & Django'
 Автор: William S. Vincent
-Страниц: "200"
+Страниц: '200'
 Добавлена в базу: 2025-04-15
 Прочитана: true
 Начал читать: 2023-05-01
 Закончил читать: 2023-05-01
-Тип: "[[Книга]]"
+Тип: '[[Книга]]'
 Обложка: https://m.media-amazon.com/images/I/61X5AsI-syL._SY522_.jpg
 Категории:
-  - разработка
-  - Python
+- разработка
+- Python
 Progress: <p><progress max=200 value=200></progress></p>
-Формат:
+Формат: null
 ---
+# Django for APIs: Build web APIs with Python & Django
+
+![https://m.media-amazon.com/images/I/61X5AsI-syL._SY522_.jpg|250](https://m.media-amazon.com/images/I/61X5AsI-syL._SY522_.jpg)
+
 ## Причина добавления
 
 сейчас есть более новая версия — https://learndjango.com/courses/django-for-apis/

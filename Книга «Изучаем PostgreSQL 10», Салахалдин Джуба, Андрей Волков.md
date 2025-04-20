@@ -16,6 +16,10 @@ Progress: <p><progress max=0 value=0></progress></p>
 - архитектура ПО
 - PostgreSQL
 ---
+# Изучаем PostgreSQL 10
+
+![https://ir.ozone.ru/multimedia/wc1000/1025880758.jpg|250](https://ir.ozone.ru/multimedia/wc1000/1025880758.jpg)
+
 ## Причина добавления
 
 [[Андрей Александров]] порекомендовал. Полистал оглавление — интересно, и в том числе в рамках подготовки главы по [[PostgreSQL]] для [[Курс Хардкорная веб-разработка]].

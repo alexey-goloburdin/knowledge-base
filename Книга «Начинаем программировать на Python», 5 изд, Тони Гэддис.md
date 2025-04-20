@@ -15,6 +15,10 @@ Progress: <p><progress max=0 value=0></progress></p>
 - разработка
 - Python
 ---
+# Начинаем программировать на Python
+
+![https://ir.ozone.ru/s3/multimedia-l/wc1000/6443388621.jpg|250](https://ir.ozone.ru/s3/multimedia-l/wc1000/6443388621.jpg)
+
 ## Причина добавления
 
 В [[Курс Хардкорная веб-разработка]] добавил её в обязательную литературу как первую по [[Python]].

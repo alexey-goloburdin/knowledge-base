@@ -1,20 +1,24 @@
 ---
 Название: Docker Deep Dive
 Автор: Nigel Poulton
-Страниц: "249"
+Страниц: '249'
 Добавлена в базу: 2025-04-14
 Прочитана: true
 Начал читать: 2022-10-01
 Закончил читать: 2022-10-01
-Тип: "[[Книга]]"
+Тип: '[[Книга]]'
 Обложка: https://learning.oreilly.com/library/cover/9781800565135/250w/
 Категории:
-  - разработка
-  - devops
+- разработка
+- devops
 Progress: <p><progress max=249 value=249></progress></p>
 Формат:
-  - электронная
+- электронная
 ---
+# Docker Deep Dive
+
+![https://learning.oreilly.com/library/cover/9781800565135/250w/|250](https://learning.oreilly.com/library/cover/9781800565135/250w/)
+
 ## Причина добавления
 
 ## Рецензия

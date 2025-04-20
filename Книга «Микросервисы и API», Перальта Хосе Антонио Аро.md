@@ -15,6 +15,10 @@ Progress: <p><progress max=0 value=0></progress></p>
 - разработка
 - микросервисы
 ---
+# Микросервисы и API
+
+![https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6988241800.jpg|250](https://ir.ozone.ru/s3/multimedia-1-s/wc1000/6988241800.jpg)
+
 ## Причина добавления
 
 Полистал в магазине, понравилась — есть примеры на [[Python]] на FastAPI и Flask и ряд заинтересовавших тем.

@@ -1,20 +1,24 @@
 ---
 Название: Two Scoops of Django 3x
 Автор: Daniel Feldroy, Audrey Feldroy
-Страниц: "540"
+Страниц: '540'
 Добавлена в базу: 2025-04-14
 Прочитана: true
 Начал читать: 2023-04-01
 Закончил читать: 2023-04-01
-Тип: "[[Книга]]"
+Тип: '[[Книга]]'
 Обложка: https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1607194316i/55822151.jpg
 Категории:
-  - разработка
-  - Python
+- разработка
+- Python
 Progress: <p><progress max=540 value=540></progress></p>
 Формат:
-  - электронная
+- электронная
 ---
+# Two Scoops of Django 3x
+
+![https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1607194316i/55822151.jpg|250](https://images-na.ssl-images-amazon.com/images/S/compressed.photo.goodreads.com/books/1607194316i/55822151.jpg)
+
 ## Причина добавления
 
 читал последнюю актуальную версию, хорошая книга по Django, наткнулся давно случайно

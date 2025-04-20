@@ -15,6 +15,10 @@ Progress: <p><progress max=0 value=0></progress></p>
 Формат:
 - бумажная
 ---
+# Head First. Архитектура ПО
+
+![https://ir.ozone.ru/s3/multimedia-1-0/wc1000/7396338780.jpg|250](https://ir.ozone.ru/s3/multimedia-1-0/wc1000/7396338780.jpg)
+
 ## Причина добавления
 
 Понравились книги от Head First:

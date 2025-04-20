@@ -1,20 +1,24 @@
 ---
 Название: Podman in Action
 Автор: Daniel Walsh
-Страниц: "312"
+Страниц: '312'
 Добавлена в базу: 2025-04-15
 Прочитана: true
 Начал читать: 2022-10-01
 Закончил читать: 2022-10-01
-Тип: "[[Книга]]"
+Тип: '[[Книга]]'
 Обложка: https://images.manning.com/360/480/resize/book/c/6645284-dac7-4a6c-85c9-910988970aa2/Walsh-HI.png
 Категории:
-  - разработка
-  - devops
+- разработка
+- devops
 Progress: <p><progress max=312 value=312></progress></p>
 Формат:
-  - электронная
+- электронная
 ---
+# Podman in Action
+
+![https://images.manning.com/360/480/resize/book/c/6645284-dac7-4a6c-85c9-910988970aa2/Walsh-HI.png|250](https://images.manning.com/360/480/resize/book/c/6645284-dac7-4a6c-85c9-910988970aa2/Walsh-HI.png)
+
 ## Причина добавления
 
 Вышла на русском сейчас. Я читал на английском.

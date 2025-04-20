@@ -15,6 +15,10 @@ Progress: <p><progress max=0 value=0></progress></p>
 - AI
 - разработка
 ---
+# Разработка приложений на базе GPT-4 и ChatGPT
+
+![https://ir.ozone.ru/s3/multimedia-1-h/wc1000/7207978589.jpg|250](https://ir.ozone.ru/s3/multimedia-1-h/wc1000/7207978589.jpg)
+
 ## Причина добавления
 
 В рамках изучения возможностей ChatGPT.
