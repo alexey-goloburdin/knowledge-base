@@ -15,6 +15,10 @@ Progress: <p><progress max=0 value=0></progress></p>
 Формат:
   - бумажная
 ---
+# Elasticsearch для разработчиков. Индексирование, анализ, поиск и агрегирование данных
+
+![https://ir.ozone.ru/s3/multimedia-1-6/wc1000/7441439370.jpg|250](https://ir.ozone.ru/s3/multimedia-1-6/wc1000/7441439370.jpg)
+
 ## Причина добавления
 
 хочу поизучать Elasticsearch
