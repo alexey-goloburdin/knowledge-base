@@ -55,4 +55,5 @@ Typst — потрясающая штука, особенно если вы с�
 - https://quarto.org/docs/output-formats/typst.html
 - https://typst.app/docs/reference/model/table/
 - https://sitandr.github.io/typst-examples-book/book/basics/tutorial/markup.html
-- 
+- https://www.dogeystamp.com/typst-notes/
+- https://github.com/kaarmu/typst.vim?tab=readme-ov-file
