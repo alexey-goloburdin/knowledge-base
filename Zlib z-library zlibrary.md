@@ -1,1 +1,2 @@
-https://z-library.sk/
+- https://z-library.sk/
+- https://z-lib.fm/
