@@ -50,8 +50,9 @@ const renderCategories = book => {
 }
 
 const renderBook = (book, additionalBookRenderFunction) => {
+    const bookName = book.file.name.replaceAll('"', "&quot;")
     return `<div class="book">
-        <a href="${book.file.name}.md" class="internal-link" target="_blank" rel="noopener nofollow"><img src="${book.Обложка}" data-filename="${book.file.name}" /></a>
+        <a href="${bookName}.md" class="internal-link" target="_blank" rel="noopener nofollow"><img src="${book.Обложка}" data-filename="${bookName}" /></a>
         ${book.Progress}
         ${additionalBookRenderFunction(book)}
         <div class="categories">${renderCategories(book)}</div>
