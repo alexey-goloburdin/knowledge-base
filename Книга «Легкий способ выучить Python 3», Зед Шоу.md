@@ -1,5 +1,5 @@
 ---
-Название: Легкий способ выучить Python 3 еще глубже
+Название: Легкий способ выучить Python 3
 Автор: Зед Шоу
 Страниц: "272"
 Добавлена в базу: 2025-04-13
@@ -11,11 +11,11 @@
 Категории:
   - разработка
   - Python
-Progress: <p><progress max=0 value=0></progress></p>
+Progress: <p><progress max=272 value=272></progress></p>
 Формат:
   - бумажная
 ---
-# Легкий способ выучить Python 3 еще глубже
+# Легкий способ выучить Python 3
 
 ![https://ir.ozone.ru/s3/multimedia-1-0/wc1000/7303205268.jpg|250](https://ir.ozone.ru/s3/multimedia-1-0/wc1000/7303205268.jpg)
 
