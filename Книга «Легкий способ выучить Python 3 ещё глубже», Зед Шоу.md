@@ -11,7 +11,7 @@
 Категории:
   - разработка
   - Python
-Progress: <p><progress max=272 value=0></progress></p>
+Progress: <p><progress max=272 value=272></progress></p>
 Формат:
   - бумажная
 ---
