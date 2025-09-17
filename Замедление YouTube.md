@@ -15,7 +15,7 @@ sudo apt install snapd -y
 sudo snap install core
 sudo snap refresh core
 sudo snap install certbot --classic
-sudo certbot certonly --standalone -d YOUR_DOMAIN --deploy-hook "cp /etc/letsencrypt/live/YOUR_DOMAIN/privkey.pem /var/lib/marzban/certs/key.pem && cp /etc/letsencrypt/live/YOUR_DOMAIN/fullchain.pem /var/lib/marzban/certs/fullchain.pem"
+sudo /snap/bin/certbot certonly --standalone -d YOUR_DOMAIN --deploy-hook "cp /etc/letsencrypt/live/YOUR_DOMAIN/privkey.pem /var/lib/marzban/certs/key.pem && cp /etc/letsencrypt/live/YOUR_DOMAIN/fullchain.pem /var/lib/marzban/certs/fullchain.pem"
 
 sudo cp /etc/letsencrypt/live/YOUR_DOMAIN/privkey.pem /var/lib/marzban/certs/key.pem
 sudo cp /etc/letsencrypt/live/YOUR_DOMAIN/fullchain.pem /var/lib/marzban/certs/fullchain.pem
