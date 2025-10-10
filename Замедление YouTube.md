@@ -1,3 +1,7 @@
+- https://marzban-docs.sm1ky.com/tutorials/cloudflare-warp/
+- https://www.youtube.com/watch?v=I5H2hRXfemQ
+- https://www.youtube.com/watch?v=I5H2hRXfemQ
+
 Aeza with marzban template. Clients: hiddify next, streisand. Control panel with ssh-tunnel:
 
 ```bash
@@ -11,10 +15,27 @@ Passwords on the server in `~/marzban.txt` file.
 Settings, replace YOUR_DOMAIN with your domain:)
 
 ```bash
+ssh-copy-id user@server_ip
+
+
+ssh user@server_ip
+vim /etc/ssh/sshd_config
+# set PasswordAuthentication no
+
+sudo systemctl restart ssh
+
+sudo apt update
+
 sudo apt install snapd -y
 sudo snap install core
 sudo snap refresh core
 sudo snap install certbot --classic
+
+# install marzban
+sudo bash -c "$(curl -sL https://github.com/Gozargah/Marzban-scripts/raw/master/marzban.sh)" @ install
+
+mkdir /var/lib/marzban/certs
+
 sudo /snap/bin/certbot certonly --standalone -d YOUR_DOMAIN --deploy-hook "cp /etc/letsencrypt/live/YOUR_DOMAIN/privkey.pem /var/lib/marzban/certs/key.pem && cp /etc/letsencrypt/live/YOUR_DOMAIN/fullchain.pem /var/lib/marzban/certs/fullchain.pem"
 
 sudo cp /etc/letsencrypt/live/YOUR_DOMAIN/privkey.pem /var/lib/marzban/certs/key.pem
@@ -24,7 +45,7 @@ sudo vim /opt/marzban/.env
 
 	UVICORN_HOST = "YOUR_DOMAIN"
 	UVICORN_PORT = 8000
-	ALLOWED_ORIGINS=https://YOUR_DOMAIN:8000,https://YOUR_DOMAIN
+	- [x] ALLOWED_ORIGINS=https://v2.rl6.ru:8000,https://v2.rl6.ru,http://localhost:8000,https://localhost:8000
 	
 	UVICORN_SSL_CERTFILE = "/var/lib/marzban/certs/fullchain.pem"
 	UVICORN_SSL_KEYFILE = "/var/lib/marzban/certs/key.pem"
@@ -32,7 +53,7 @@ sudo vim /opt/marzban/.env
 
 sudo marzban restart
 
-# if you need
+# if you need for automatic renew SSL
 sudo docker exec -ti marzban_marzban_1 bash
 
 sudo crontab -e
@@ -102,7 +123,7 @@ Dashboard settings:
 Сгенерируем новые ключи шифрования и параметр shortIds в командной строке вашего сервера командами (на сервере):
 
 ```bash
-docker exec marzban_marzban_1 xray x25519
+docker exec marzban-marzban-1 xray x25519
 
 # or
 docker exec marzban-marzban-1 xray x25519
