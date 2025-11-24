@@ -17,3 +17,9 @@ BEGIN
 END
 $$;
 ```
+
+при вставке длинного SQL-скрипта, чтобы он падал при первой ошибке:
+
+```shell
+psql -h localhost -U sterx -d birds -v ON_ERROR_STOP=1 -f sql.sql
+```
