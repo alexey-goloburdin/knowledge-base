@@ -1,3 +1,246 @@
+Здоров, котаны! 
+
+Как мы все знаем, в питоне есть много ништяков. Вот, например, есть обычные классы, в которых можно хранить данные и их обрабатывать:
+
+```python
+from datetime import datetime, timedelta
+from enum import StrEnum
+
+
+class MeetingStatus(StrEnum):
+    DRAFT = "draft"
+    SCHEDULED = "scheduled"
+    CONFIRMED = "confirmed"
+    CANCELLED = "cancelled"
+
+
+class Meeting:
+    # Бизнес-правила
+    _MIN_DURATION = timedelta(minutes=15)
+    _MAX_DURATION = timedelta(hours=3)
+    _RESCHEDULE_DEADLINE = timedelta(hours=2)  # нельзя переносить < чем за 2ч
+    _CONFIRM_DEADLINE = timedelta(
+        hours=24
+    )  # подтверждение возможно не позднее чем за 24ч
+    _QUORUM_RATIO = 0.6  # нужно 60% подтверждений
+    _MAX_PARTICIPANTS = 50
+
+    def __init__(
+        self,
+        *,
+        title: str,
+        starts_at: datetime,
+        ends_at: datetime,
+        host_id: str,
+        participant_ids: set[str],
+        created_at: datetime | None = None,
+    ):
+        self._title = self._validate_title(title)
+        self._host_id = host_id
+        self._participant_ids = self._validate_participants(
+            host_id, participant_ids
+        )
+
+        self._created_at = created_at or datetime.now()
+        self._starts_at, self._ends_at = self._validate_time_range(
+            starts_at, ends_at
+        )
+
+        self._status: MeetingStatus = MeetingStatus.SCHEDULED
+        self._cancel_reason: str | None = None
+
+        # состояние подтверждений
+        self._confirmed_by: set[str] = set()
+        self._declined_by: set[str] = set()
+
+    # Поля только на чтение
+    @property
+    def title(self) -> str:
+        return self._title
+
+    @property
+    def status(self) -> MeetingStatus:
+        return self._status
+
+    @property
+    def starts_at(self) -> datetime:
+        return self._starts_at
+
+    @property
+    def ends_at(self) -> datetime:
+        return self._ends_at
+
+    @property
+    def host_id(self) -> str:
+        return self._host_id
+
+    @property
+    def participant_ids(self) -> frozenset[str]:
+        return frozenset(self._participant_ids)
+
+    @property
+    def confirmed_by(self) -> frozenset[str]:
+        return frozenset(self._confirmed_by)
+
+    # Поведение
+    def rename(self, new_title: str) -> None:
+        self._ensure_active()
+        self._title = self._validate_title(new_title)
+
+    def invite(self, participant_id: str) -> None:
+        self._ensure_active()
+        if participant_id == self._host_id:
+            raise ValueError("Host cannot be invited as a participant.")
+        if participant_id in self._participant_ids:
+            return
+        self._participant_ids.add(participant_id)
+        # при изменении состава — подтверждения участия сбросываем
+        self._reset_confirmations()
+
+    def remove_participant(self, participant_id: str) -> None:
+        self._ensure_active()
+        if participant_id not in self._participant_ids:
+            return
+        self._participant_ids.remove(participant_id)
+        self._confirmed_by.discard(participant_id)
+        self._declined_by.discard(participant_id)
+
+        if len(self._participant_ids) == 0:
+            self.cancel("No participants left")
+
+    def confirm(self, user_id: str, *, now: datetime | None = None) -> None:
+        now = now or datetime.now()
+        self._ensure_active()
+
+        if user_id != self._host_id and user_id not in self._participant_ids:
+            raise ValueError("Only host or invited participants can confirm.")
+
+        if self._starts_at - now < self._CONFIRM_DEADLINE:
+            raise ValueError(
+                "Too late to confirm: confirmation deadline passed."
+            )
+
+        self._declined_by.discard(user_id)
+        self._confirmed_by.add(user_id)
+
+        if self._has_quorum():
+            self._status = MeetingStatus.CONFIRMED
+
+    def decline(self, user_id: str) -> None:
+        self._ensure_active()
+        if user_id != self._host_id and user_id not in self._participant_ids:
+            raise ValueError("Only host or invited participants can decline.")
+
+        self._confirmed_by.discard(user_id)
+        self._declined_by.add(user_id)
+
+        # если уже confirmed — может стать обратно scheduled,
+        # если кворум потерян
+        if self._status == MeetingStatus.CONFIRMED and not self._has_quorum():
+            self._status = MeetingStatus.SCHEDULED
+
+    def reschedule(
+        self,
+        *,
+        new_starts_at: datetime,
+        new_ends_at: datetime,
+        requested_by: str,
+        now: datetime | None = None,
+    ) -> None:
+        now = now or datetime.now()
+
+        self._ensure_active()
+
+        if requested_by != self._host_id:
+            raise ValueError("Only host can reschedule a meeting.")
+
+        if self._starts_at - now < self._RESCHEDULE_DEADLINE:
+            raise ValueError(
+                "Too late to reschedule: reschedule deadline passed."
+            )
+
+        new_starts_at, new_ends_at = self._validate_time_range(
+            new_starts_at, new_ends_at
+        )
+
+        if new_starts_at == self._starts_at and new_ends_at == self._ends_at:
+            return
+
+        self._starts_at = new_starts_at
+        self._ends_at = new_ends_at
+
+        # перенос сбрасывает подтверждения, статус откатываем
+        self._reset_confirmations()
+        self._status = MeetingStatus.SCHEDULED
+
+    def cancel(self, reason: str) -> None:
+        if self._status == MeetingStatus.CANCELLED:
+            return
+        self._status = MeetingStatus.CANCELLED
+        self._cancel_reason = reason
+        self._reset_confirmations()
+
+    def _ensure_active(self) -> None:
+        if self._status == MeetingStatus.CANCELLED:
+            raise ValueError("Meeting is cancelled.")
+
+    def _validate_title(self, title: str) -> str:
+        title = (title or "").strip()
+        if len(title) < 3:
+            raise ValueError("Title too short.")
+        if len(title) > 120:
+            raise ValueError("Title too long.")
+        return title
+
+    def _validate_participants(
+        self, host_id: str, participant_ids: set[str]
+    ) -> set[str]:
+        if not host_id:
+            raise ValueError("Host is required.")
+        participant_ids = set(participant_ids or set())
+        participant_ids.discard(host_id)
+        if len(participant_ids) > self._MAX_PARTICIPANTS:
+            raise ValueError("Too many participants.")
+        return participant_ids
+
+    def _validate_time_range(
+        self, starts_at: datetime, ends_at: datetime
+    ) -> tuple[datetime, datetime]:
+        if starts_at >= ends_at:
+            raise ValueError("Meeting start must be earlier than end.")
+        duration = ends_at - starts_at
+
+        if duration < self._MIN_DURATION:
+            raise ValueError("Meeting duration is too short.")
+        if duration > self._MAX_DURATION:
+            raise ValueError("Meeting duration is too long.")
+        return starts_at, ends_at
+
+    def _reset_confirmations(self) -> None:
+        self._confirmed_by.clear()
+        self._declined_by.clear()
+
+    def _has_quorum(self) -> bool:
+        # считаем всех, кто может подтвердить: хост + участники
+        eligible = 1 + len(self._participant_ids)
+        confirmed = len(self._confirmed_by)
+        return confirmed / eligible >= self._QUORUM_RATIO
+
+    def __repr__(self) -> str:
+        return (
+            f"Meeting(title={self._title!r}, status={self._status.value!r}, "
+            f"starts_at={self._starts_at.isoformat()}, "
+            f"ends_at={self._ends_at.isoformat()}, "
+            f"host_id={self._host_id!r}, "
+            f"participants={len(self._participant_ids)})"
+        )
+```
+
+Это класс встречи, который может быть использован в планировщике встреч. Он управляет доменной логикой — проверяет, что дата окончания встречи идёт после даты начала встречи, проверяет минимальную и максимальную продолжительность встречи в соответствии с бизнес-правилами, проверяет количество участников встречи, и переводит статус встречи в отменённую или подтверждённую встречу в зависимости от количества участников, подтвердивших встречу.
+
+
+
+
 👉 Это не объект в смысле ООП, а просто контейнер для данных, который определяет структуру данных. Такой объект называют ещё DTO и анемичным объектом
 
 Ключевая концепция ООП: данные и поведение, связанное с этими данными, должны жить вместе. Если у нас есть отдельно данные, пусть и в виде объекта, и отдельно какие-то функции, которые эти данные обрабатывают, то это плохая реализация ООП. Тогда класс ничего  не инкапсулирует, ничего толком не гарантирует, никаких инвариантов не поддерживает, логика обработки данных может быть размазана по всему проекту и тд. Это не ООП.
@@ -14,4 +257,8 @@ Pydantic — только для мест, где надо гонять дан�
 dataclass — удобно для DTO, то есть Data Transfer Object, чтобы, например, передавать данные между разными слоями приложения. Передаём данные не кортежами с кучей элементов, не обычными словарями, не типизированными словарями, а именно датаклассами. Причём надо стараться почаще использовать в таких случаях для датаклассов параметр `frozen=True` и `slots=True`, потому что для DTO это естественно. Установка `frozen` делает экземпляр датакласса неизменяемым, а параметр `slots` делает экземпляр более эффективным, запрещает добавление в рантайме новых полей и так далее.
 
 attrs — можно в целом использовать для БЛ, если вы скрываете поля от клиентов класса, и если вы почему-то  не против тянуть внешнюю библиотеку в слой с бизнес-логикой. Напомню, что вообще-то слой бизнес-логики не должен зависеть от всего изменчивого, в том числе и от внешних библиотек. Датаклассы это встроенная библиотека Python и мы считаем её стабильной и поэтому использовать датаклассы в бизнес-логике и доменной логике можно, а вот attrs, вообще говоря, нельзя. Но если вы почему-то позволяете себе использовать внешнюю библиотеку в слое домена, то в целом, если вы ещё и защищаете внутренности класса от публичного использования, то тогда использовать attrs для БЛ можно. Повторюсь, с учётом всех проговорённых ограничений и допущений. Если интересно моё мнение — то я бы не стал.
+
+
+
+Стоит сказать, что то, о чем я здесь говорю, — это, конечно, не догматизм. Это общая рекомендация, общее правило, если хотите, из которого можно находить исключения. Но чтобы отходить от правила, его хотя бы следует знать и понимать, почему оно именно такое. Надеюсь, что вы теперь это понимаете!
 
