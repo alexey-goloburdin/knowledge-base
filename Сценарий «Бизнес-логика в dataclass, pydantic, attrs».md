@@ -1,5 +1,3 @@
-===добавь про курс!!!===
-
 Здоров, котаны! 
 
 А вот пишете ли вы бизнес-логику в датаклассах? А в pydantic-моделях? А может быть в attrs-классах? Или вы пишете БЛ в своих обычных классах? М? Как вы делаете? А как надо делать?
@@ -267,8 +265,6 @@ class Meeting:
 Окей, возвращаемся к теме. Как наш класс для организации встреч выглядит с датаклассом:
 
 ```python
-from __future__ import annotations
-
 from dataclasses import dataclass, field
 from datetime import datetime, timedelta
 from enum import Enum
