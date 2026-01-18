@@ -1,7 +1,7 @@
 Timeline → AI Tools → Create Subtitles from Audio
 Language: Russian
 Caption preset: Subtitle Default
-Maximum 20 characters per line (вероятно можно больше поставить)
+Maximum 25 characters per line (вероятно можно больше поставить)
 Lines Single
 
 ---
@@ -18,4 +18,4 @@ Stroke — Белый, Size 1px
 
 Место на экране X 540, Y 500
 
-Drop Shadow: Black, X 3, Y -3, Blur 20, Opacity 80
+Drop Shadow: Black, X 3, Y -3, Blur 20, Opacity 75
