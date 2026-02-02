@@ -48,3 +48,24 @@ netsh int ipv4 set dynamic tcp start=49152 num=16384
 И перезагрузка (один раз).
 
 Попробуй сначала первую команду — покажет, в этом ли дело?
+
+```
+PS C:\Windows\system32> netstat -ano | findstr :8964
+PS C:\Windows\system32> netsh interface ipv4 show excludedportrange protocol=tcp
+
+Протокол tcp Диапазоны исключения портов
+
+Начальный порт    Конечный порт
+----------    --------
+      6216        6315
+      8020        8119
+      8189        8288
+     39814       39913
+     49403       49502
+     49503       49602
+     50000       50059     *
+
+* — управляемые исключения портов.
+
+PS C:\Windows\system32>
+```
