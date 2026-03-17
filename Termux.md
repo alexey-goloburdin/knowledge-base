@@ -6,4 +6,4 @@ pkg install termux-api
 termux-setup-storage
 ```
 
-gpg and ssh keys: [[Что надо сделать при настройке нового рабочего места]]
+gpg and sshkeys: [[Что надо сделать при настройке нового рабочего места]]
