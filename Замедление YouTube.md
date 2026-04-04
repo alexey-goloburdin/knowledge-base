@@ -43,9 +43,9 @@ sudo cp /etc/letsencrypt/live/YOUR_DOMAIN/fullchain.pem /var/lib/marzban/certs/f
 
 sudo vim /opt/marzban/.env
 
-	UVICORN_HOST = "YOUR_DOMAIN"
-	UVICORN_PORT = 8000
-	- [x] ALLOWED_ORIGINS=https://v2.rl6.ru:8000,https://v2.rl6.ru,http://localhost:8000,https://localhost:8000
+UVICORN_HOST = "YOUR_DOMAIN"
+UVICORN_PORT = 8000
+ALLOWED_ORIGINS=https://v2.rl6.ru:8000,https://v2.rl6.ru,http://localhost:8000,https://localhost:8000
 	
 	UVICORN_SSL_CERTFILE = "/var/lib/marzban/certs/fullchain.pem"
 	UVICORN_SSL_KEYFILE = "/var/lib/marzban/certs/key.pem"
