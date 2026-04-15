@@ -1,0 +1,662 @@
+:root
+{
+    /* DARK THEME */
+    /* Kanagawa Paper from https://github.com/sho-87/kanagawa-paper.nvim */
+    /* Bg Shades*/
+    /* Bg Shades*/
+    --sumiInk0      : #16161D;
+    --sumiInk1      : #181820;
+    --sumiInk2      : #1a1a22;
+    --sumiInk3      : #1F1F28;
+    --sumiInk4      : #2A2A37;
+    --sumiInk5      : #363646;
+    --sumiInk6      : #54546D;
+
+    /* Popup and Floats*/
+    --waveBlue1     : #223249;
+    --waveBlue2     : #2D4F67;
+
+    /* Diff and Git*/
+    --winterGreen   : #2B3328;
+    --winterYellow  : #49443C;
+    --winterRed     : #43242B;
+    --winterBlue    : #252535;
+    --autumnGreen   : #76946A;
+    --autumnRed     : #C34043;
+    --autumnYellow  : #DCA561;
+
+    /* Diag*/
+    --samuraiRed    : #E82424;
+    --roninYellow   : #FF9E3B;
+    --waveAqua1     : #6A9589;
+    --dragonBlue    : #658594;
+
+    /* Fg and Comments*/
+    --oldWhite      : #C8C093;
+    --fujiWhite     : #DCD7BA;
+    --fujiGray      : #727169;
+    --springViolet1 : #938AA9;
+
+    --oniViolet     : #957FB8;
+    --oniViolet2    : #b8b4d0;
+    --crystalBlue   : #7E9CD8;
+    --springViolet2 : #9CABCA;
+    --springBlue    : #7FB4CA;
+    --lightBlue     : #A3D4D5;
+    --waveAqua2     : #7AA89F;
+
+    --springGreen   : #98BB6C;
+    --boatYellow1   : #938056;
+    --boatYellow2   : #C0A36E;
+    --carpYellow    : #E6C384;
+
+    --sakuraPink    : #D27E99;
+    --waveRed       : #E46876;
+    --peachRed      : #FF5D62;
+    --surimiOrange  : #FFA066;
+    --katanaGray    : #717C7C;
+
+    /* Dragon Paper Colors */
+    --dragonBlack0  : #0d0c0c;
+    --dragonBlack1  : #12120f;
+    --dragonBlack2  : #1D1C19;
+    --dragonBlack3  : #181616;
+    --dragonBlack4  : #282727;
+    --dragonBlack5  : #393836;
+    --dragonBlack6  : #625e5a;
+
+    --dragonWhite   : #c5c9c5;
+    --dragonGreen   : #87a987;
+    --dragonGreen2  : #8a9a7b;
+    --dragonPink    : #a292a3;
+    --dragonOrange  : #b6927b;
+    --dragonOrange2 : #b98d7b;
+    --dragonGray    : #a6a69c;
+    --dragonGray2   : #9e9b93;
+    --dragonGray3   : #7a8382;
+    --dragonBlue2   : #8ba4b0;
+    --dragonViolet  : #8992a7;
+    --dragonRed     : #c4746e;
+    --dragonAqua    : #8ea4a2;
+    --dragonAsh     : #737c73;
+    --dragonTeal    : #949fb5;
+    --dragonYellow  : #c4b28a;
+
+    /* Lotus Colors */
+    --lotusInk0     : #3d3d5e;
+    --lotusInk1     : #545464;
+    --lotusInk2     : #43436c;
+    --lotusGray     : #dcd7ba;
+    --lotusGray2    : #716e61;
+    --lotusGray3    : #8a8980;
+    --lotusWhite0   : #d5cea3;
+    --lotusWhite1   : #dcd5ac;
+    --lotusWhite2   : #e5ddb0;
+    --lotusWhite3   : #f2ecbc;
+    --lotusWhite4   : #e7dba0;
+    --lotusWhite5   : #e4d794;
+}
+
+.theme-dark {
+    --background-primary: var(--dragonBlack3);
+    --background-primary-alt: var(--dragonBlack3);
+    --background-secondary: var(--dragonBlack2);
+    --background-secondary-alt: var(--dragonBlack4);
+    --text-normal: var(--dragonWhite);
+    --text-faint: var(--dragonGray2);
+    --text-title-h1: var(--dragonRed);
+    --text-title-h2: var(--dragonOrange);
+    --text-title-h3: var(--dragonYellow);
+    --text-title-h4: var(--dragonGreen);
+    --text-title-h5: var(--dragonAqua);
+    --text-title-h6: var(--dragonBlue2);
+    --text-link: var(--dragonBlue2);
+    --text-a: var(--dragonTeal);
+    --text-a-hover: var(--dragonPink);
+    --text-a-url: var(--dragonTeal);
+    --text-mark: rgba(139, 164, 176, 0.4);
+    --pre-code: var(--dragonBlack0);
+    --text-highlight-bg: var(--dragonBlack5);
+    --interactive-accent: var(--dragonBlue2);
+    --interactive-before: var(--dragonBlack6);
+    --background-modifier-border: var(--dragonBlue2);
+    --text-accent: var(--dragonGreen);
+    --interactive-accent-rgb: var(--dragonGreen2);
+    --inline-code: var(--dragonGreen);
+    --code-block: var(--dragonGray2);
+    --vim-cursor-background: var(--dragonWhite);
+    --vim-cursor-color: var(--dragonBlack3);
+    --text-selection: rgba(139, 164, 176, 0.5);
+    --text-tag: var(--dragonViolet);
+    --task-checkbox: var(--dragonBlack6);
+    --table-header: var(--dragonBlack4);
+    --table-row-even: var(--dragonBlack2);
+    --table-row-odd: var(--dragonBlack3);
+    --table-hover: var(--dragonBlack4);
+    --bold-color: var(--dragonWhite);
+}
+
+
+.theme-light {
+    --background-primary: var(--lotusWhite3);
+    --background-primary-alt: var(--lotusWhite4);
+    --background-secondary: var(--lotusWhite1);
+    --background-secondary-alt: var(--lotusWhite2);
+    --text-normal: var(--lotusInk1);
+    --text-faint: var(--lotusGray3);
+    --text-title-h1: var(--lotusRed);
+    --text-title-h2: var(--lotusOrange);
+    --text-title-h3: var(--lotusYellow3);
+    --text-title-h4: var(--lotusGreen);
+    --text-title-h5: var(--lotusAqua);
+    --text-title-h6: var(--lotusBlue4);
+    --text-link: var(--lotusBlue5);
+    --text-a: var(--lotusTeal1);
+    --text-a-hover: var(--lotusRed);
+    --text-a-url: var(--lotusTeal2);
+    --text-mark: rgba(183, 208, 174, 0.4);
+    --pre-code: var(--lotusGray);
+    --text-highlight-bg: var(--lotusBlue2);
+    --interactive-accent: var(--lotusBlue3);
+    --interactive-before: var(--lotusGray2);
+    --background-modifier-border: var(--lotusBlue3);
+    --text-accent: var(--lotusGreen);
+    --interactive-accent-rgb: var(--lotusGreen);
+    --inline-code: var(--lotusGreen);
+    --code-block: var(--lotusGray3);
+    --vim-cursor-background: var(--lotusGray);
+    --vim-cursor-color: var(--lotusInk1);
+    --text-selection: rgba(183, 208, 174, 0.5);
+    --text-tag: var(--lotusAqua);
+    --task-checkbox: var(--lotusGray2);
+    --table-header: hsl(42, 33%, 91%);
+    --table-row-even: hsl(42, 35%, 94%);
+    --table-row-odd: hsl(42, 37%, 97%);
+    --table-hover: var(--lotusWhite1);
+    --bold-color: var(--lotusInk1);
+}
+
+body {
+    --font-text-theme: -apple-system, BlinkMacSystemFont, Segoe UI, Helvetica, Arial, sans-serif, Apple Color Emoji, Segoe UI Emoji;
+    --font-monospace-theme: 'Hack Nerd Font', 'Source Code Pro', ui-monospace, SFMono-Regular, SF Mono, Menlo, Consolas, Liberation Mono, monospace;
+}
+
+body.theme-dark {
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+}
+
+body.theme-light {
+    background-color: var(--background-primary);
+    color: var(--text-normal);
+}
+
+.theme-dark code[class*="language-"],
+.theme-dark pre[class*="language-"],
+.theme-light code[class*="language-"],
+.theme-light pre[class*="language-"]
+{
+    text-shadow: none !important;
+    background-color: var(--pre-code) !important;
+}
+
+.graph-view.color-circle,
+.graph-view.color-fill-highlight,
+.graph-view.color-line-highlight
+{
+    color: var(--interactive-accent-rgb) !important;
+}
+.graph-view.color-text
+{
+    color: var(--text-a-url) !important;
+}
+/*
+.graph-view.color-fill
+{
+    color: var(--background-secondary);
+}
+.graph-view.color-line
+{
+  color: var(--background-modifier-border);
+}
+*/
+
+html,
+body
+{
+    /* font-size: 16px !important; */
+}
+
+strong
+{
+    font-weight: 600 !important;
+}
+
+a,
+.cm-hmd-internal-link
+{
+    color: var(--text-a) !important;
+    text-decoration: none !important;
+}
+
+a:hover,
+.cm-hmd-internal-link:hover,
+.cm-url
+{
+    color: var(--text-a-url) !important;
+    text-decoration: none !important;
+}
+
+a.tag, a.tag:hover {
+  color: var(--text-tag) !important;
+  background-color: var(--background-secondary-alt);
+  padding: 2px 4px;
+  border-radius: 4px;
+}
+
+a.tag:hover {
+    text-decoration: underline !important;
+}
+
+mark
+{
+    background-color: var(--text-mark);
+}
+
+
+.titlebar {
+  background-color: var(--background-secondary-alt);
+}
+
+.titlebar-inner {
+  color: var(--text-normal);
+}
+
+.view-actions a
+{
+    color: var(--text-normal) !important;
+}
+
+.view-actions a:hover
+{
+    color: var(--text-a) !important;
+}
+
+.HyperMD-codeblock-bg
+{
+    background-color: var(--pre-code) !important;
+}
+
+.HyperMD-codeblock
+{
+    line-height: 1.4em !important;
+    color: var(--code-block) !important;
+}
+
+.HyperMD-codeblock-begin
+{
+    border-top-left-radius: 4px !important;
+    border-top-right-radius: 4px !important;
+}
+
+.HyperMD-codeblock-end
+{
+    border-bottom-left-radius: 4px !important;
+    border-bottom-right-radius: 4px !important;
+}
+
+table {
+    border: 1px solid var(--background-secondary) !important;
+    border-collapse: collapse;
+}
+  
+th {
+    font-weight: 600 !important;
+    border: 0px !important;
+    text-align: left;
+    background-color: var(--table-header);
+    color: var(--neutral-green);
+}
+
+td {
+    border-left: 0px !important;
+    border-right: 0px !important;
+    border-bottom: 1px solid var(--background-secondary) !important;
+}
+
+tr:nth-child(even){ background-color: var(--table-row-even) }
+tr:nth-child(odd){ background-color: var(--table-row-odd) }
+tr:hover { background-color: var(--table-hover); }
+  
+thead
+{
+    border-bottom: 2px solid var(--background-modifier-border) !important;
+}
+
+.HyperMD-table-row
+{
+    line-height: normal !important;
+    padding-left: 4px !important;
+    padding-right: 4px !important;
+    /* background-color: var(--pre-code) !important; */
+}
+
+.HyperMD-table-row-0
+{
+    /* padding-top: 4px !important; */
+}
+
+.CodeMirror-foldgutter-folded,
+.is-collapsed .nav-folder-collapse-indicator
+{
+    color: var(--text-a) !important;
+}
+
+.nav-file-tag
+{
+    color: var(--text-a) !important;
+}
+
+.is-active .nav-file-title
+{
+    color: var(--text-a) !important;
+    background-color: var(--background-primary-alt) !important;
+}
+
+.nav-file-title
+{
+    border-bottom-left-radius: 0 !important;
+    border-bottom-right-radius: 0 !important;
+    border-top-left-radius: 0 !important;
+    border-top-right-radius: 0 !important;
+}
+
+.HyperMD-list-line
+{
+    padding-top: 0 !important;
+}
+
+.cm-hashtag-begin
+{
+    color: var(--text-tag) !important;
+    background-color: var(--background-secondary-alt);
+    padding: 2px 0 2px 4px;
+    border-top-left-radius: 4px;
+    border-bottom-left-radius: 4px;
+    text-decoration: none !important;
+}
+
+.cm-hashtag-end
+{
+    color: var(--text-tag) !important;
+    background-color: var(--background-secondary-alt);
+    padding: 2px 4px 2px 0;
+    border-top-right-radius: 4px;
+    border-bottom-right-radius: 4px;
+    text-decoration: none !important;
+}
+
+.cm-hashtag-begin:hover, .cm-hashtag-end:hover
+{
+    text-decoration: underline !important;
+}
+
+.markdown-preview-section pre code,
+.markdown-preview-section code
+{
+    font-size: 0.9em !important;
+    background-color: var(--pre-code) !important;
+}
+
+.markdown-preview-section pre code
+{
+    padding: 4px !important;
+    line-height: 1.4em !important;
+    display: block !important;
+    color: var(--code-block) !important;
+}
+
+.markdown-preview-section code
+{
+    color: var(--inline-code) !important;
+}
+
+.cm-s-obsidian,
+.cm-inline-code
+{
+    -webkit-font-smoothing: auto !important;
+}
+
+.cm-inline-code
+{
+    color: var(--inline-code) !important;
+    background-color: var(--pre-code) !important;
+    padding: 1px !important;
+}
+
+.workspace-leaf-header-title
+{
+    font-weight: 600 !important;
+}
+
+.side-dock-title
+{
+    padding-top: 15px !important;
+    font-size: 20px !important;
+}
+
+.side-dock-ribbon-tab:hover,
+.side-dock-ribbon-action:hover,
+.side-dock-ribbon-action.is-active:hover,
+.nav-action-button:hover,
+.side-dock-collapse-btn:hover
+{
+    color: var(--text-a);
+}
+
+.side-dock
+{
+    border-right: 0 !important;
+}
+
+/* vertical resize-handle */
+.workspace-split.mod-vertical > * > .workspace-leaf-resize-handle,
+.workspace-split.mod-left-split > .workspace-leaf-resize-handle,
+.workspace-split.mod-right-split > .workspace-leaf-resize-handle
+{
+    width: 1px !important;
+    background-color: var(--background-secondary-alt);
+}
+
+/* horizontal resize-handle */
+.workspace-split.mod-horizontal > * > .workspace-leaf-resize-handle
+{
+    height: 1px !important;
+    background-color: var(--background-secondary-alt);
+}
+
+/* Remove vertical split padding */
+.workspace-split.mod-root .workspace-split.mod-vertical .workspace-leaf-content,
+.workspace-split.mod-vertical > .workspace-split,
+.workspace-split.mod-vertical > .workspace-leaf,
+.workspace-tabs
+{
+    padding-right: 0px;
+}
+
+.markdown-embed-title
+{
+    font-weight: 600 !important;
+}
+
+.markdown-embed
+{
+    padding-left: 10px !important;
+    padding-right: 10px !important;
+    margin-left: 10px !important;
+    margin-right: 10px !important;
+}
+
+.cm-header-1.cm-link,
+h1 a
+{
+    color: var(--text-title-h1) !important;
+}
+
+.cm-header-2.cm-link,
+h2 a
+{
+    color: var(--text-title-h2) !important;
+}
+
+.cm-header-3.cm-link,
+h3 a
+{
+    color: var(--text-title-h3) !important;
+}
+.cm-header-4.cm-link,
+h4 a
+{
+    color: var(--text-title-h4) !important;
+}
+.cm-header-5.cm-link,
+h5 a
+{
+    color: var(--text-title-h5) !important;
+}
+.cm-header-6.cm-link,
+h6 a
+{
+    color: var(--text-title-h6) !important;
+}
+
+.cm-header {
+    font-weight: 500 !important;
+}
+
+.HyperMD-header-1,
+.markdown-preview-section h1
+{
+    font-weight: 500 !important;
+    font-size: 2.2em !important;
+    color: var(--text-title-h1) !important;
+}
+
+.HyperMD-header-2,
+.markdown-preview-section h2
+{
+    font-weight: 500 !important;
+    font-size: 2.0em !important;
+    color: var(--text-title-h2) !important;
+    /* text-transform: uppercase; */
+
+}
+
+.HyperMD-header-3,
+.markdown-preview-section h3
+{
+    font-weight: 500 !important;
+    font-size: 1.8em !important;
+    color: var(--text-title-h3) !important;
+}
+
+.HyperMD-header-4,
+.markdown-preview-section h4
+{
+    font-weight: 500 !important;
+    font-size: 1.6em !important;
+    color: var(--text-title-h4) !important;
+}
+
+.HyperMD-header-5,
+.markdown-preview-section h5
+{
+    font-weight: 500 !important;
+    font-size: 1.4em !important;
+    color: var(--text-title-h5) !important;
+}
+
+.HyperMD-header-6,
+.markdown-preview-section h6
+{
+    font-weight: 500 !important;
+    font-size: 1.2em !important;
+    color: var(--text-title-h6) !important;
+}
+
+.suggestion-item.is-selected
+{
+    background-color: var(--background-secondary);
+}
+
+.empty-state-action:hover
+{
+    color: var(--interactive-accent);
+}
+
+.empty-state-action:hover
+{
+    color: var(--interactive-accent);
+}
+
+.checkbox-container
+{
+    background-color: var(--interactive-before);
+}
+
+.checkbox-container:after
+{
+    background-color: var(--background-secondary-alt);
+}
+
+.mod-cta
+{
+    color: var(--background-secondary-alt) !important;
+    font-weight: 600 !important;
+}
+
+.mod-cta a
+{
+    color: var(--background-secondary-alt) !important;
+    font-weight: 600 !important;
+}
+
+.mod-cta:hover
+{
+    background-color: var(--interactive-before) !important;
+    font-weight: 600 !important;
+}
+
+.CodeMirror-cursor
+{
+    background-color: var(--vim-cursor-background) !important;
+    color: var(--vim-cursor-color) !important;
+    opacity: 60% !important;
+}
+
+input.task-list-item-checkbox {
+    border: 1px solid var(--task-checkbox);
+    appearance: none;
+    -webkit-appearance: none;
+}
+
+input.task-list-item-checkbox:checked
+{
+    background-color: var(--task-checkbox);
+    box-shadow: inset 0 0 0 2px var(--background-primary);
+}
+
+::selection
+{
+    background-color: var(--text-selection) !important;
+}
+
+.mermaid .note
+{
+    fill: var(--dark3) !important;
+}
+.cm-line .cm-strong
+{
+    color: var(--bold-color) !important;
+}
+
