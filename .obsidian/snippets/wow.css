@@ -1,0 +1,5 @@
+.cm-sizer,
+.cm-contentContainer,
+.cm-contentContainer div {
+    max-width: 1000px !important;
+}

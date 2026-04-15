@@ -4,5 +4,7 @@
   "promptDelete": false,
   "showLineNumber": false,
   "readableLineLength": true,
-  "showInlineTitle": false
+  "showInlineTitle": false,
+  "strictLineBreaks": false,
+  "propertiesInDocument": "visible"
 }
