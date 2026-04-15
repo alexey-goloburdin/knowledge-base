@@ -1,5 +1,5 @@
 {
-  "cssTheme": "AnuPpuccin",
+  "cssTheme": "Things",
   "theme": "moonstone",
   "enabledCssSnippets": [
     "obsidian",
@@ -9,6 +9,6 @@
   "showViewHeader": false,
   "showRibbon": false,
   "baseFontSizeAction": false,
-  "baseFontSize": 16,
+  "baseFontSize": 17,
   "nativeMenus": false
 }
