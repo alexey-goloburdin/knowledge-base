@@ -1,3 +1,43 @@
+---
+
+---
+# настройка программы вместо hiddify
+
+https://github.com/2dust/v2rayN
+
+Subscription group → Subscription group settings → Add
+- Remarks: marzban
+- URL: your url with https://
+- save
+
+Subscription group → Update subscriptions without proxy
+
+One-click multi-test latency and speed
+
+first row in table → right click → set as active
+
+In program bottom in «System proxy» dropdown select «Set system proxy».
+
+Check port in UI (in my example port is 10808)
+
+In WSL:
+
+```
+echo 'export http_proxy="http://127.0.0.1:10808"' >> ~/.zshrc
+echo 'export https_proxy="http://127.0.0.1:10808"' >> ~/.zshrc
+source ~/.zshrc
+```
+
+Yohooo!
+
+
+
+---
+
+
+
+
+
 - https://marzban-docs.sm1ky.com/tutorials/cloudflare-warp/
 - https://www.youtube.com/watch?v=I5H2hRXfemQ
 - https://www.youtube.com/watch?v=I5H2hRXfemQ
