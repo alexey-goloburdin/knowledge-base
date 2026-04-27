@@ -1,7 +1,7 @@
 ---
 
 ---
-# настройка программы вместо hiddify
+# настройка v2rayN вместо Hiddify
 
 https://github.com/2dust/v2rayN
 
