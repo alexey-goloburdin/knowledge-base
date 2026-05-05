@@ -11,14 +11,22 @@ check IP:
 ipconfig
 ```
 
+Get WSL address, for example, `172.27.112.1`.
+
 .mcp.json for pi:
 
 ```json
 {
   "mcpServers": {
     "playwright": {
-      "url": "http://192.168.0.36:3000/mcp"
+      "url": "http://172.27.112.1:3000/mcp"
     }
   }
 }
+```
+
+Run pi:
+
+```shell
+http_proxy="" https_proxy="" pi
 ```
