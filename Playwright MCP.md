@@ -1,6 +1,7 @@
-Run on Windows:
+Run on Windows in power:
 
 ```powershell
+`Set-ExecutionPolicy RemoteSigned -Scope CurrentUser`
 npx @playwright/mcp@latest --port 3000 --host 0.0.0.0 --allowed-hosts '*'
 ```
 
