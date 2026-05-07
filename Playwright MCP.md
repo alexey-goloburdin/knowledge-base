@@ -1,4 +1,6 @@
-Run on Windows in powershell:
+Тестовый проект лежит в `/home/sterx/code/tmp2`.
+
+Run Playwright MCP serevon Windows in powershell:
 
 ```powershell
 Set-ExecutionPolicy RemoteSigned -Scope CurrentUser
