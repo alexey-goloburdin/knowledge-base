@@ -13,7 +13,7 @@ ipconfig
 
 Get WSL address, for example, `172.27.112.1`.
 
-.mcp.json for pi:
+`.mcp.json` for pi:
 
 ```json
 {
