@@ -1,4 +1,21 @@
-https://chatgpt.com/c/67db4a23-48f4-8007-852b-3fa2a7604015
+#  Autocut
+
+Чтобы автоматически вырезать тишину
+
+1) выделяем все дорожки, ПКМ, Link Clips
+2) Clip → Audio Operations → Ripple Delete Silence
+3) ставь параметры для видео 25fps:
+ - Threshold: -34 dB
+ - Pre head: 2 frames
+ - Post tail: 3 frames
+ - Minimum to strip: 40 frames
+
+#  Magic mask
+
+Например, чтобы вывести текст сзади человека или заменить полностью фон
+https://www.youtube.com/watch?v=oA8-QHJZrg8
+
+# Black  Mist  Filter
 
 Чтобы воспроизвести эффект **Black Mist** с эффектом **Glow** в DaVinci Resolve, тебе нужно применить несколько нод и использовать инструменты **Glow**, **Blur** и **Curves**. Вот как это сделать:
 

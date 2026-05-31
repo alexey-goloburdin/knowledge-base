@@ -1,6 +1,5 @@
 для v2rayn, [[Замедление YouTube]]
 
-
 ```
 #Requires AutoHotkey v2.0
 #SingleInstance Force
