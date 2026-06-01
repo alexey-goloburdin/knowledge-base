@@ -239,7 +239,7 @@ Interesting themes:
   --color_scheme = "Operator Mono Dark",
   --color_scheme = "Red Planet",
   --color_scheme = "Rippedcasts",
-  --color_scheme = "Srcery (Gogh)"
+  --color_scheme = "Srcery (Gogh)",
 ```
 
 original config:
@@ -295,7 +295,7 @@ return {
   --color_scheme = "Operator Mono Dark",
   --color_scheme = "Red Planet",
   --color_scheme = "Rippedcasts",
-  --color_scheme = "Srcery (Gogh)"
+  --color_scheme = "Srcery (Gogh)",
 
   -- Font
   font = wezterm.font('Hack Nerd Font'),
