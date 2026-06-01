@@ -2,3 +2,4 @@
 - https://www.pexels.com/
 - https://unsplash.com/wallpapers
 - https://wallhaven.cc/toplist
+- https://www.wallpaperflare.com
