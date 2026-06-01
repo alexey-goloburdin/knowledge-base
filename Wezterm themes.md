@@ -245,9 +245,55 @@ Interesting themes:
 original config:
 
 ```yaml
-from pathlib import Path
+local wezterm = require 'wezterm'
 
-config = """local wezterm = require 'wezterm'
+local act = wezterm.action
+
+local keys = {
+  {
+    key = 'Space',
+    mods = 'CTRL',
+    action = act.SendString('\\0'),
+  },
+}
+
+for i = 1, 9 do
+  table.insert(keys, {
+    key = tostring(i),
+    mods = 'ALT',
+    action = act.ActivateTab(i - 1),
+  })
+end
+
+local function basename(s)
+  return string.gsub(s, '(.*[/\\])(.*)', '%2')
+end
+
+local function basename(path)
+  if not path or path == '' then
+    return 'Debian'
+  end
+
+  path = tostring(path)
+
+  -- если это file:// URI
+  path = path:gsub('^file://[^/]*', '')
+
+  -- убрать trailing slash
+  path = path:gsub('/+$', '')
+
+  local name = path:match('([^/]+)$')
+  return name or 'Debian'
+end
+
+wezterm.on('format-tab-title', function(tab)
+  local pane = tab.active_pane
+  local cwd = pane.current_working_dir
+
+  return {
+    { Text = ' ' .. (tab.tab_index + 1) .. ': ' .. basename(cwd) .. ' ' },
+  }
+end)
 
 return {
   -- WSL
@@ -267,11 +313,8 @@ return {
   --color_scheme = "Tomorrow Night (Gogh)",
   --color_scheme = "Trim Yer Beard (terminal.sexy)",
   --color_scheme = "VWbug (terminal.sexy)",
-  --color_scheme = "Violet Dark",
-  --color_scheme = "Visibone Alt. 2 (terminal.sexy)",
   --color_scheme = "Wombat",
-  --color_scheme = "Woodland (base64)",
-  --color_scheme = "X::Erosion (terminal.sexy)",
+  color_scheme = "X::Erosion (terminal.sexy)",
   --color_scheme = "darkmoss (base64)",
   --color_scheme = "duskfox",
   --color_scheme = "flexoki-dark",
@@ -335,17 +378,6 @@ return {
   audible_bell = 'Disabled',
 
   -- Keys
-  keys = {
-    {
-      key = 'Space',
-      mods = 'CTRL',
-      action = wezterm.action.SendString('\\0'),
-    },
-  },
+  keys = keys,
 }
-"""
-
-path = Path("/mnt/data/wezterm-original.lua")
-path.write_text(config, encoding="utf-8")
-path.as_posix()
 ```
