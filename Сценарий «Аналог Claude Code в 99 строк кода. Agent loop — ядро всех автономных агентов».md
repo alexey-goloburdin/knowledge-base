@@ -1,6 +1,6 @@
 Ооо, здоров, котаны, огненный материал сегодня для вас подготовил! Сам бы с кайфом хотел такой посмотреть некоторое время назад:)
 
-Напишем сегодня свой агент для разработки, такой свой минимальный claude code за 160 строк кода, а его основное ядро, отвечающее за основную логику, займет всего 6 строк. Вообще серьёзно.
+Напишем сегодня свой агент для разработки, такой свой минимальный claude code за 99 строк кода, а его основное ядро, отвечающее за основную логику, займет всего 6 строк. Вообще серьёзно.
 
 Поговорим про agent loop и про то, как под капотом работают все более-менее автономные ИИ-агенты, например, Claude Code, Codex, OpenCode, pi, OpenClaw, Hermes и прочие (==покажи их названия==). Это очень интересно с одной стороны, и удивительно легко и просто с другой стороны. Дело в том, что ключевая функциональность всех этих агентов, вот ядро, может быть реализована в 6 строках кода. Вот эти 6 строк на питоне:
 
@@ -15,7 +15,7 @@ while True:
 
 Мы дальше подробнее разберём этот код и напишем на его основе своего автономного кодинг ассистента. Ну и если вы хотите разрабатываете своих автономных агентов, необязательно для написания кода, и не понимаете, как они работают, то этот материал ровно чётенько для вас. Потому что цель у агента может быть любой, это небязательно написание кода, а принципы работы агента будут ровно те же самые.
 
-Короче. Что такое ИИ-агент? Определений много, все они подчёркивают разные особенности и смотрят на агентов с разных сторон, но давайте назовём по-простому ИИ-агентом связку большой языковой модели и доступных ей инструментов. То есть агент вызывает большую языковую модель через API и передаёт ей помимо промпта ещё набор инструментов, есть функций с их названиями и описаниями параметров. И модель в ответе может просить агента вызвать эти инструменты с такими-то аргументами. Агент вызывает инструменты и передаёт результат их вызова обратно модели. И в ответ модель может или вернуть конечный ответ пользователю или снова вернуть просьбу вызвать какой-то инструмент и так далее, пока цель не будет достигнута и задача не будет решена.
+Короче. Что такое ИИ-агент? Определений много, все они подчёркивают разные особенности и смотрят на агентов с разных сторон, но давайте назовём по-простому ИИ-агентом связку большой языковой модели и доступных ей инструментов. То есть агент вызывает большую языковую модель через API и передаёт ей помимо промпта ещё набор инструментов, то есть функций с их названиями и описаниями параметров. И модель в ответе может просить агента вызвать эти инструменты с такими-то аргументами. Агент вызывает инструменты и передаёт результат их вызова обратно модели. И в ответ модель может или вернуть конечный ответ пользователю или снова вернуть просьбу вызвать какой-то инструмент и так далее, пока цель не будет достигнута и задача не будет решена.
 
 Вот это и есть тот самый aget loop (==покажи agent loop==), агентский цикл, код которого я уже показывал:
 
@@ -30,9 +30,9 @@ while True:
 
 У нас тут есть бесконечный цикл `while True`. Структура `messages` это список всех сообщений в модель и от модели, то есть история контекста. Функция `callLLM` отвечает за вызов модели с переданным ей контекстом. Эта функция возвращает ответ от модели, в этом ответе может быть просьба вызвать инструмент или может быть просто ответ. Если есть просьба вызвать инструмент, то этот инструмент вызывается в функции `executeTools` и результат от инструмента тоже добавляется в контекст. И цикл уходит на следующую итерацию. Выход из цикла происходит тогда, когда модель прекратила возвращать просьбу вызвать инструмент, это считается либо решённой задачей, либо ситуацией, когда необходимо подключиться человеку, то есть нужно какое-то действие или уточнение от человека.
 
-На практике этот цикл, конечно, необязательно будет бесконечным, и имеет смысл установить какое-то разумное ограничение на максимальное количество итераций.
+На практике этот цикл, конечно, необязательно будет бесконечным, и часто имеет смысл установить какое-то разумное ограничение на максимальное количество итераций.
 
-Иии — вот и всё. По сути так и работают все автономные ИИ-агенты. Конечно, вокруг этого накручивается дополнительная логика на проверки безопасности, на сжатие контекста, когда он приближается к ограничению контекстного окна, и так далее, но суть, ядро — ровно такая, вот эти 7 строк кода, которые в том или ином виде представлены во всех этих ИИ-агентах.
+Иии — вот и всё. По сути так и работают все автономные ИИ-агенты. Конечно, вокруг этого накручивается дополнительная логика на проверки безопасности, на сжатие контекста, когда он приближается к ограничению контекстного окна, на устранение зацикливания, когда модель начинает вызывать одни и те же инструменты с одними и теми же аргументами, и так далее, но суть, ядро — ровно такая, вот эти 6 строк кода, которые в том или ином виде представлены во всех этих ИИ-агентах.
 
 Ну что, давайте бахнем минимального кодинг ассистента. На питончике. Который будет коммуницировать с локальной LLM-моделью и шарашить нам проекты. Но для начала нам надо подумать, как наш агент будет коммуницировать с внешним миром? Например, читать файлы, записывать файлы, искать файлы, запускать проекты для их проверки? А очень просто: давайте дадим ему доступ в bash, вот ровно один инструмент. Используя bash, он сможет делать все эти и массу других великолепных операций.
 
@@ -42,40 +42,15 @@ while True:
 
 ```python
 """Minimal coding agent loop — one tool: bash."""
-import json
-import subprocess
-
+import json, sys, subprocess
 import requests
 
 LLM_BASE_URL = "http://192.168.2.66:1234/v1"
 LLM_API_KEY = "sk-lm-8lxtW0iY:g7ImIC5vURnv2nJzxG5b"
 LLM_MODEL = "qwen3.6-35b-a3b"
+LLM_HEADERS = {"Content-Type": "application/json", "Authorization": f"Bearer {LLM_API_KEY}"}
+MAX_TURNS = 1000
 
-LLM_REQUEST_HEADERS = {
-    "Content-Type": "application/json",
-    "Authorization": f"Bearer {LLM_API_KEY}",
-}
-
-LLM_TOOLS = [
-    {
-        "type": "function",
-        "function": {
-            "name": "bash",
-            "description": "Execute a shell command and return the output.",
-            "parameters": {
-                "type": "object",
-                "properties": {
-                    "command": {
-                        "type": "string",
-                        "description": "The bash command to execute.",
-                    },
-                },
-                "required": ["command"],
-            },
-        },
-    }
-]
-MAX_TURNS = 1000  # safety limit
 
 SYSTEM_PROMPT = """\
 You are a coding agent. Your job is to help the user with programming tasks.
@@ -90,26 +65,30 @@ Workflow:
 
 Be concise. Explain what you're doing before each command."""
 
+LLM_TOOLS = [
+    {"type": "function",
+     "function": {"name": "bash",
+                  "description": "Execute a shell command and return the output.",
+                  "parameters": {"type": "object",
+                                 "properties": {
+                                     "command": {"type": "string", "description": "The bash command to execute."}
+                                 },
+                                 "required": ["command"]}
+                 }
+            }]
+
 
 def run_bash(command: str) -> str:
-    """Execute a shell command and return its output."""
     try:
-        result = subprocess.run(
-            command, shell=True, capture_output=True, text=True, timeout=120
-        )
-        out = result.stdout
-        if result.stderr:
-            out += "\nSTDERR:\n" + result.stderr
-        return f"Exit code: {result.returncode}\n{out}"
+        command_result = subprocess.run(command, shell=True, capture_output=True, text=True, timeout=120)
+        out = command_result.stdout + (f"\nSTDERR:\n{command_result.stderr}" if command_result.stderr else "")
+        return f"Exit code: {command_result.returncode}\n{out}"
     except subprocess.TimeoutExpired:
         return "Error: command timed out after 120s"
 
 
-LLM_TOOLS_MAP = {"bash": run_bash}
-
-
 def call_tool(name: str, arguments: dict) -> str:
-    func = LLM_TOOLS_MAP.get(name)
+    func = {"bash": run_bash}.get(name)
     if not func:
         return f"Error: unknown tool '{name}'"
     try:
@@ -118,94 +97,48 @@ def call_tool(name: str, arguments: dict) -> str:
         return f"Error calling {name}: {e}"
 
 
+def call_llm(messages):
+    payload = {"model": LLM_MODEL, "messages": messages, "tools": LLM_TOOLS, "tool_choice": "auto",
+               "temperature": 0.1, "max_tokens": 4096}
+    llm_http_response = requests.post(f"{LLM_BASE_URL}/chat/completions", json=payload, headers=LLM_HEADERS)
+    llm_http_response.raise_for_status()
+    msg = llm_http_response.json()["choices"][0]["message"]
+    content = (msg.get("content") or "").strip()
+    tool_calls = msg.get("tool_calls") or []
+    return content, tool_calls
+
+
 def agent_loop(user_message: str) -> None:
     messages: list[dict[str, object]] = [
-        {"role": "system", "content": SYSTEM_PROMPT},
-        {"role": "user",   "content": user_message},
+        {"role": "system", "content": SYSTEM_PROMPT}, {"role": "user", "content": user_message}
     ]
-
-    max_turns = MAX_TURNS
-
-    for turn in range(1, max_turns + 1):
+    for turn in range(1, MAX_TURNS + 1):
         print(f"\n{'='*60}\n🔄 Turn {turn}\n{'='*60}")
-
-        payload = {
-            "model": LLM_MODEL,
-            "messages": messages,
-            "tools": LLM_TOOLS,
-            "tool_choice": "auto",
-            "temperature": 0.1,
-            "max_tokens": 4096,
-        }
-
-        resp = requests.post(f"{LLM_BASE_URL}/chat/completions",
-                             json=payload, headers=LLM_REQUEST_HEADERS)
-        resp.raise_for_status()
-        data = resp.json()
-
-        choice = data["choices"][0]
-        msg = choice["message"]
-
-        # Show assistant's text (if any)
-        content = msg.get("content", "")
-        if isinstance(content, str):
-            content = content.strip()
-        else:
-            content = ""
-        has_tool_calls = bool(msg.get("tool_calls"))
-
+        content, tool_calls = call_llm(messages)
         if content:
             print(f"\n🤖 {content}")
-
-        # Check for tool calls
-        tool_calls = msg.get("tool_calls") or []
         if not tool_calls:
-            if not content:
-                print("(no text output)")
-            response = msg.get('content').strip() if msg.get('content') else ""
-            print(f"✅ Agent finished.\n\n{response}".strip())
+            print("(no text output)" if not content else "")
+            print("✅ Agent finished")
             return
-
-        # Process each tool call — only add blank line after 🤖 block
-        prefix = ""
-        if has_tool_calls and content:
-            prefix = "\n"  # blank line between text and tools
-
+        prefix = "\n" if content else ""
         for tool_call in tool_calls:
-            func_name = tool_call["function"]["name"]
-            func_args = json.loads(tool_call["function"]["arguments"])
-            tc_id = tool_call["id"]
-
-            print(f"{prefix}🔧 Tool: {func_name}({json.dumps(func_args, ensure_ascii=False)})")
-
-            result = call_tool(func_name, func_args)
-            print(f"   → {result[:500]}{'...' if len(result) > 500 else ''}")
-
-            messages.append({
-                "role": "assistant",
-                "content": content or None,
-                "tool_calls": [tool_call],
-            })
-            messages.append({
-                "role": "tool",
-                "tool_call_id": tc_id,
-                "content": result,
-            })
+            function = tool_call["function"]["name"]
+            arguments = json.loads(tool_call["function"]["arguments"])
+            tool_call_id = tool_call["id"]
+            print(f"{prefix}🔧 Tool: {function}({json.dumps(arguments, ensure_ascii=False)})")
+            result = call_tool(function, arguments)
+            print(f"   → {result[:500]}{'...' if len(result)>500 else ''}")
+            messages.append({"role": "assistant", "content": content or None, "tool_calls": [tool_call]})
+            messages.append({"role": "tool", "tool_call_id": tool_call_id, "content": result})
     print(f"\n⚠️  Max turns ({MAX_TURNS}) reached. Stopping.")
 
 
 if __name__ == "__main__":
-    import sys
-
-    if len(sys.argv) > 1:
-        prompt = " ".join(sys.argv[1:])
-    else:
-        prompt = ""
-
+    prompt = " ".join(sys.argv[1:]) if len(sys.argv) > 1 else ""
     if not prompt.strip():
         print("No task provided. Exiting.")
         sys.exit(1)
-
     agent_loop(prompt)
 ```
 
