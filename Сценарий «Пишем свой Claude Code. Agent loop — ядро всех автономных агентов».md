@@ -47,17 +47,16 @@ import subprocess
 
 import requests
 
-# LLM config
-BASE_URL = "http://192.168.2.66:1234/v1"
-API_KEY = "sk-lm-8lxtW0iY:g7ImIC5vURnv2nJzxG5b"
-MODEL   = "qwen3.6-35b-a3b"
+LLM_BASE_URL = "http://192.168.2.66:1234/v1"
+LLM_API_KEY = "sk-lm-8lxtW0iY:g7ImIC5vURnv2nJzxG5b"
+LLM_MODEL = "qwen3.6-35b-a3b"
 
-HEADERS = {
+LLM_REQUEST_HEADERS = {
     "Content-Type": "application/json",
-    "Authorization": f"Bearer {API_KEY}",
+    "Authorization": f"Bearer {LLM_API_KEY}",
 }
 
-TOOLS = [
+LLM_TOOLS = [
     {
         "type": "function",
         "function": {
@@ -76,6 +75,7 @@ TOOLS = [
         },
     }
 ]
+MAX_TURNS = 1000  # safety limit
 
 SYSTEM_PROMPT = """\
 You are a coding agent. Your job is to help the user with programming tasks.
@@ -105,12 +105,11 @@ def run_bash(command: str) -> str:
         return "Error: command timed out after 120s"
 
 
-# ── Tool dispatcher ──────────────────────────────────────────
-TOOLS_MAP = {"bash": run_bash}
+LLM_TOOLS_MAP = {"bash": run_bash}
 
 
 def call_tool(name: str, arguments: dict) -> str:
-    func = TOOLS_MAP.get(name)
+    func = LLM_TOOLS_MAP.get(name)
     if not func:
         return f"Error: unknown tool '{name}'"
     try:
@@ -119,30 +118,28 @@ def call_tool(name: str, arguments: dict) -> str:
         return f"Error calling {name}: {e}"
 
 
-# ── Agent loop ───────────────────────────────────────────────
-def agent_loop(user_message: str):
-    messages = [
+def agent_loop(user_message: str) -> None:
+    messages: list[dict[str, object]] = [
         {"role": "system", "content": SYSTEM_PROMPT},
         {"role": "user",   "content": user_message},
     ]
 
-    max_turns = 1000  # safety limit
+    max_turns = MAX_TURNS
 
     for turn in range(1, max_turns + 1):
-        print(f"\n{'='*60}")
-        print(f"🔄 Turn {turn}")
-        print(f"{'='*60}")
+        print(f"\n{'='*60}\n🔄 Turn {turn}\n{'='*60}")
 
         payload = {
-            "model": MODEL,
+            "model": LLM_MODEL,
             "messages": messages,
-            "tools": TOOLS,
+            "tools": LLM_TOOLS,
             "tool_choice": "auto",
             "temperature": 0.1,
             "max_tokens": 4096,
         }
 
-        resp = requests.post(f"{BASE_URL}/chat/completions", json=payload, headers=HEADERS)
+        resp = requests.post(f"{LLM_BASE_URL}/chat/completions",
+                             json=payload, headers=LLM_REQUEST_HEADERS)
         resp.raise_for_status()
         data = resp.json()
 
@@ -165,57 +162,45 @@ def agent_loop(user_message: str):
         if not tool_calls:
             if not content:
                 print("(no text output)")
-            print("✅ Agent finished.")
-            return msg.get("content")
+            response = msg.get('content').strip() if msg.get('content') else ""
+            print(f"✅ Agent finished.\n\n{response}".strip())
+            return
 
         # Process each tool call — only add blank line after 🤖 block
         prefix = ""
         if has_tool_calls and content:
             prefix = "\n"  # blank line between text and tools
 
-        for tc in tool_calls:
-            func_name  = tc["function"]["name"]
-            func_args  = json.loads(tc["function"]["arguments"])
-            tc_id      = tc["id"]
+        for tool_call in tool_calls:
+            func_name = tool_call["function"]["name"]
+            func_args = json.loads(tool_call["function"]["arguments"])
+            tc_id = tool_call["id"]
 
             print(f"{prefix}🔧 Tool: {func_name}({json.dumps(func_args, ensure_ascii=False)})")
 
             result = call_tool(func_name, func_args)
-            print(f"   → {result[:500]}{'...' if len(result)>500 else ''}")
+            print(f"   → {result[:500]}{'...' if len(result) > 500 else ''}")
 
             messages.append({
                 "role": "assistant",
                 "content": content or None,
-                "tool_calls": [tc],
+                "tool_calls": [tool_call],
             })
             messages.append({
                 "role": "tool",
                 "tool_call_id": tc_id,
                 "content": result,
             })
+    print(f"\n⚠️  Max turns ({MAX_TURNS}) reached. Stopping.")
 
-    print("\n⚠️  Max turns reached. Stopping.")
 
-
-# ── CLI entry point ──────────────────────────────────────────
 if __name__ == "__main__":
     import sys
 
     if len(sys.argv) > 1:
         prompt = " ".join(sys.argv[1:])
     else:
-        print("Minimal Coding Agent Loop")
-        print("Type your coding task (Ctrl-D to submit):\n")
         prompt = ""
-        while True:
-            try:
-                line = input()
-                if prompt:
-                    prompt += "\n" + line
-                else:
-                    prompt = line
-            except EOFError:
-                break
 
     if not prompt.strip():
         print("No task provided. Exiting.")
@@ -224,7 +209,7 @@ if __name__ == "__main__":
     agent_loop(prompt)
 ```
 
-Как видим, здесь ### строк кода. Код давайте подробнее посмотрим чуть позже, а сейчас давайте посмотрим, на что способен такой минимальный агент. 
+Как видим, здесь всего 166 строк кода вместе с отступами, комментами и всякой машинерией. Всего навсего. Код давайте подробнее посмотрим чуть позже, а сейчас давайте посмотрим, на что способен такой минимальный агент. 
 
 Давайте назовём этого кодинг-ассистента чебупелькой и в zsh создадим для него alias для быстрого запуска:
 
@@ -310,7 +295,9 @@ chebupelka "выполни задачу из файла task.md"
 
 48 шагов и задача выполнена. Вполне большая комплексная задача. На минимальнейшем самописном агенте из меньше чем 200 строк  кода, и на локальной модели qwen3.6-35b-a3b в кванте Q4_K_XL (==покажи==), модель запущена на одной карточке RTX 3090 за 70 тыс рублей на авито. Вот так вот, дорогие друзья!
 
-Давайте пробежимся теперь по коду агента.
+Давайте пробежимся теперь по коду агента. Первая задача — это получить промпт от пользователя. Он берётся из аргумента командной строки. Затем запускается агентный цикл, и в него передаётся этот промпт. Затем составляется список сообщений для модели, на начальном этапе он состоит из системного промпта и одного пользовательского промпта. В `max_turns` хранится ограничение на максимальное количество итераций агентного цикла. И затем запускается агентный цикл. Здесь он представлен не циклом `while True`, а циклом `for`, потому что у нас есть ограничение на количество итераций, и логичнее для этого использовать цикл `for`. Тело цикла сейчас большое, но это только потому, что я не стал декомпозировать его на маленькие функции, чтобы сократить общий размер агента и сделать код более явным.
+
+В цикле у нас составляется запрос к большой языковой модели, в этот запрос передаётся весь контекст, то есть весь список `messages`. Сначала в этом списке только системный промпт и начальный промпт от пользователя, затем в него будут добавляться вызовы инструментов и ответы от инструментов (покажи `messages.append` ниже). Затем идёт запрос в LLM, 
 
 
 ---
