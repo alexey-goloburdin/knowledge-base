@@ -77,13 +77,14 @@ SNIKKET_DOMAIN=sn.to.digital
 # An email address where the admin can be contacted
 # (also used to register your Let's Encrypt account to obtain certificates)
 SNIKKET_ADMIN_EMAIL=sterx@rl6.ru
+
+SNIKKET_TLS_PROFILE=intermediate
 EOF
 
+# printf '\nSNIKKET_TLS_PROFILE=intermediate\n' | sudo tee -a snikket.conf
 sudo docker compose up -d
 sudo docker exec snikket create-invite --admin --group default
 
-printf '\nSNIKKET_TLS_PROFILE=intermediate\n' | sudo tee -a snikket.conf
-sudo docker compose up -d
-
-
 ```
+
+
