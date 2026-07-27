@@ -83,9 +83,9 @@ https://my.selectel.ru/network/domains
 to.digital domain
 
 ```
-sn.to.digital  300  IN     A     155.212.180.31
-groups.sn.to.digital  300  IN     CNAME  sn.to.digital
-share.sn.to.digital   300  IN     CNAME  sn.to.digital
+snikket.to.digital  300  IN     A     155.212.180.31
+groups.snikket.to.digital  300  IN     CNAME  snikket.to.digital
+share.snikket.to.digital   300  IN     CNAME  snikket.to.digital
 ```
 
 server:
@@ -97,7 +97,7 @@ sudo curl -o docker-compose.yml https://snikket.org/service/resources/docker-com
 
 sudo tee snikket.conf <<EOF
 # The primary domain of your Snikket instance
-SNIKKET_DOMAIN=sn.to.digital
+SNIKKET_DOMAIN=snikket.to.digital
 
 # An email address where the admin can be contacted
 # (also used to register your Let's Encrypt account to obtain certificates)
@@ -111,12 +111,17 @@ sudo docker compose up -d
 sudo docker exec snikket create-invite --admin --group default
 ```
 
+Теперь нам необходимо установить клиентскую программу, например, на наш телефон.
 
-Клиенты:
+- iOS и MacOS — Monal https://monal-im.org/install/
+- Android — Conversations из андроид-магазина open source приложений  F-Droid https://f-droid.org/ru/packages/eu.siacs.conversations/
+- Windows — DinoX https://dinox.im/download/
+- Linux — Dino https://dino.im/
 
-- iOS и MacOS — Monal, https://monal-im.org/install/
-- Android — Conversations из F-Droid
-- Windows — https://dinox.im/download/
-- Linux — Dino
+==покажи названия и QR-коды==
+
+Теперь переходим по ссылке на регистрацию админа на этом телефоне и регистрируем наш первый аккаунт.
+
+Переходим на snikket.to.digital, 
 
 Чтобы можно было использовать сразу несколько устройств для одного аккаунта и сообщения отображались во всех этих устройствах, нужно подтвердить доверенность этих устройств. Для этого на каждом устройстве выбираем настройки аккаунта, переходим в настройки шифрования и подтверждаем доверенность всех других устройств. Теперь, когда вы будете писать сообщения с разных устройств, они будут везде отображаться.
