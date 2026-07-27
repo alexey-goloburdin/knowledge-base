@@ -8,6 +8,9 @@
 
 Хочется, чтобы всё просто-удобно-красиво-приятно работало. И именно это мы сегодня с вами и сделаем.
 
+Если вы думаете, что достаточно просто прочесть документацию Snikket и всё хорошо заработает — то нет, мой опыт показал, что и дефолтные клиенты Snikket отстой, и доп настройки требуются для корректной работы звонков, поэтому всё это покажу.
+
+
 
 https://snikket.org/service/quickstart/
 
@@ -100,3 +103,5 @@ sudo docker exec snikket create-invite --admin --group default
 
 - iOS и MacOS — Monal, https://monal-im.org/install/
 - Android — Conversations из F-Droid
+- Windows — https://dinox.im/download/
+- 
