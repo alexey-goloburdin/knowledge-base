@@ -22,10 +22,9 @@
 
 Что нам понадобится. Нам понадобится свой сервер, который мы сейчас арендуем в Selectel, я полностью покажу этот процесс, и нам понадобится домен, который вы также можете купить в Selectel, я тоже покажу, как это сделать. Конечно, процесс настройки своего мессенджера со звонками сложнее, чем просто установить WhatsApp, тут надо будет прям в терминале вводить всякие разные команды, но я вам полностью этот процесс покажу, и все команды также предоставлю.
 
-Итак, покупаем сервер в Selectel.
+Итак, покупаем сервер в Selectel. Будет достаточно минимального сервера на операционной системе Ubuntu с одним ядром процессора, одним гигабайтом оперативной памятью и 15 ГБ диска. В целом диска, наверное, хватит даже и 10 ГБ, а может быть даже и меньше, но я с некоторым запасом возьму 15.
 
-
-https://snikket.org/service/quickstart/
+==Не забудь показать установку ключей при заказе сервера==
 
 ```shell
 adduser www
@@ -56,6 +55,7 @@ EOF
 
 sudo sshd -t && sudo systemctl reload ssh
 
+# Открываем документацию Snikket https://snikket.org/service/quickstart/
 # install docker
 # https://docs.docker.com/engine/install/ubuntu/
 sudo apt install ca-certificates curl
@@ -77,8 +77,6 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 
 sudo systemctl status docker
 sudo docker run hello-world
-
-df -h
 ```
 
 https://my.selectel.ru/network/domains
@@ -114,7 +112,10 @@ sudo docker exec snikket create-invite --admin --group default
 ```
 
 
+Клиенты:
+
 - iOS и MacOS — Monal, https://monal-im.org/install/
 - Android — Conversations из F-Droid
 - Windows — https://dinox.im/download/
-- 
+- Linux — Dino
+
