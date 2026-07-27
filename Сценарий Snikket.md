@@ -98,6 +98,5 @@ sudo docker exec snikket create-invite --admin --group default
 ```
 
 
-monal
-
-conversations
+- iOS и MacOS — Monal, https://monal-im.org/install/
+- Android — Conversations из F-Droid
