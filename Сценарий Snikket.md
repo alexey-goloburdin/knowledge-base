@@ -122,7 +122,7 @@ groups.snikket.to.digital  300  IN     CNAME  snikket.to.digital
 share.snikket.to.digital   300  IN     CNAME  snikket.to.digital
 ```
 
-server:
+Выполняем на 
 
 ```shell
 mkdir /etc/snikket
