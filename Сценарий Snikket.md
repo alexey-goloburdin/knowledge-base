@@ -43,15 +43,26 @@ Add-WindowsCapability -Online -Name OpenSSH.Client~~~~0.0.1.0
 ssh -V
 ```
 
-Отлично, SSH-клиент установлен, закрываем PowerShell, запущенный от имени администратора и открываем обычный PowerShell.
+Отлично, SSH-клиент установлен, закрываем PowerShell, запущенный от имени администратора и открываем обычный PowerShell. С помощью этого SSH-клиента мы будем подключаться к серверу и настраивать его. Отлично!
 
-
-
-
-
-==Не забудь показать установку ключей при заказе сервера==
+Теперь необходимо сгенерировать SSH-ключи для безопасного входа на сервер.
 
 ```shell
+# генерируем приватный и публичный ключ,
+# указываем 2 раза одинаковый пароль
+ssh-keygen -t ed25519 -a 100
+
+#  копируем публичный ключ
+cat .\.ssh\id_ed25519.pub
+```
+
+Копируем полученный публичный ключ и вставляем его в Selectel при создании сервера.
+
+Подключаемся! IP моего сервера 155.212.180.31, у вас будет другой IP, используйте его в командах.
+
+```shell
+ssh root@155.212.180.31
+
 adduser www
 usermod -aG sudo www
 su - www
@@ -59,19 +70,15 @@ sudo apt update
 sudo apt install -y zsh git
 sh -c "$(curl -fsSL https://raw.githubusercontent.com/ohmyzsh/ohmyzsh/master/tools/install.sh)"
 
-# local computer
-cat ~/.ssh/id_ed25519.pub | pbcopy
-
-# remote computer with root auth
 install -d -m 700 -o www -g www /home/www/.ssh
 vim /home/www/.ssh/authorized_keys
-# paste public key
+# вставить скопированный ранее публичный ключ
 
 chown www:www /home/www/.ssh/authorized_keys
 chmod 600 /home/www/.ssh/authorized_keys
 sshd -t && systemctl reload ssh
 
-# test from local from parallel terminal
+# тестируем с локального терминала из другого окна
 ssh www@155.212.180.31
 # закроем вход для рута
 sudo tee /etc/ssh/sshd_config.d/00-disable-root.conf >/dev/null <<'EOF'
@@ -81,7 +88,7 @@ EOF
 sudo sshd -t && sudo systemctl reload ssh
 
 # Открываем документацию Snikket https://snikket.org/service/quickstart/
-# install docker
+# Устанавливаем docker
 # https://docs.docker.com/engine/install/ubuntu/
 sudo apt install ca-certificates curl
 sudo install -m 0755 -d /etc/apt/keyrings
@@ -103,6 +110,8 @@ sudo apt install docker-ce docker-ce-cli containerd.io docker-buildx-plugin dock
 sudo systemctl status docker
 sudo docker run hello-world
 ```
+
+Теперь нам необходимо настроить домен для нашего сервера. Если у вас нет своего домена, вы можете купить его в Selectel, если он у вас уже есть, используйте тот, что есть.
 
 https://my.selectel.ru/network/domains
 to.digital domain
