@@ -1,6 +1,8 @@
 ---
 
 ---
+https://github.com/Storik4pro/goodbyeDPI-UI
+
 # настройка v2rayN вместо Hiddify
 
 https://github.com/2dust/v2rayN
