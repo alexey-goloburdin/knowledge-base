@@ -1,7 +1,10 @@
+Шутка из книги WTF/минуту из-за двери разработчиков
+
 https://chatgpt.com/c/6aa85e79-cc80-83eb-be9d-391267a8524b
 
 https://www.youtube.com/watch?v=XuMR1pgc6pc
 
+https://www.youtube.com/watch?v=9T0JROtx6vE
 
 Ещё одна вещь, которую я хочу подсветить из интервью Мартина это то, что он использует интересную метрику, о которой я раньше не слышал — CFRA
 
